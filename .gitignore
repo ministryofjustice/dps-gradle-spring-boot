@@ -28,3 +28,4 @@ ecr.repo
 build
 out
 *.iml
+.kotlintest

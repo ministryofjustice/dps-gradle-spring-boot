@@ -17,6 +17,10 @@ tasks.withType<KotlinCompile> {
   }
 }
 
+tasks.withType<Test> {
+  useJUnitPlatform()
+}
+
 java {
   sourceCompatibility = JavaVersion.VERSION_11
   targetCompatibility = JavaVersion.VERSION_11
@@ -31,4 +35,13 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.2.6.RELEASE")
 
   testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.1")
+}
+
+gradlePlugin {
+  plugins {
+    create("DpsSpringBoot") {
+      id = "uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot"
+      implementationClass = "uk.gov.justice.digital.hmpps.gradle.DpsSpringBootPlugin"
+    }
+  }
 }
