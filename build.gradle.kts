@@ -27,4 +27,8 @@ group = "uk.gov.justice.digital.hmpps"
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.2.6.RELEASE")
+
+  testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.1")
 }
