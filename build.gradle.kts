@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   kotlin("jvm") version "1.3.61"
   id("java-gradle-plugin")
+  id("maven-publish")
 }
 
 repositories {
@@ -26,7 +27,8 @@ java {
   targetCompatibility = JavaVersion.VERSION_11
 }
 
-group = "uk.gov.justice.digital.hmpps"
+group = "uk.gov.justice.digital.hmpps.gradle"
+version = "0.0.1-SNAPSHOT"
 
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib")
