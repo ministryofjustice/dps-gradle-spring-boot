@@ -6,7 +6,7 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 class DpsSpringBootPlugin : Plugin<Project> {
 
-    override fun apply(project: Project) {
-        project.plugins.apply(SpringBootPlugin::class.java)
-    }
+  override fun apply(project: Project) {
+    project.plugins.apply(SpringBootPlugin::class.java)
+  }
 }
