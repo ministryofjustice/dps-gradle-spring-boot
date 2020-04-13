@@ -63,11 +63,6 @@ class DpsSpringBootPluginFuncTest {
           kotlin("jvm") version "1.3.71"
           id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
         }
-        
-        repositories {
-          mavenLocal()
-          mavenCentral()
-        }
   
         tasks.withType<KotlinCompile> {
           kotlinOptions {

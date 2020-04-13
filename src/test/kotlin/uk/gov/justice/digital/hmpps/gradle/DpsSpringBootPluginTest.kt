@@ -15,4 +15,12 @@ class DpsSpringBootPluginTest () {
         assertThat(project.plugins.getPlugin(SpringBootPlugin::class.java)).isNotNull
     }
 
+    @Test
+    fun `Using the DPS plugin should apply maven repositories`() {
+        val project = ProjectBuilder.builder().build()
+        project.pluginManager.apply("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot")
+
+        assertThat(project.repositories).extracting("name").containsExactlyInAnyOrder("MavenLocal", "MavenRepo")
+    }
+
 }
