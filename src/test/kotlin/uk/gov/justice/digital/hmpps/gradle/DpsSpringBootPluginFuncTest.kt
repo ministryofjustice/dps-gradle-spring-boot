@@ -13,6 +13,7 @@ import java.io.File
 import java.io.InputStreamReader
 import java.net.URL
 import java.nio.file.Files
+import kotlin.streams.asStream
 
 const val PROJECT_NAME = "spring-boot-project"
 const val MAIN_CLASS = "Application"
@@ -53,14 +54,10 @@ class DpsSpringBootPluginFuncTest {
   private fun runJar(jar: File): Process {
     val process = ProcessBuilder("java", "-jar", jar.absolutePath).start()
     val outputReader = BufferedReader(InputStreamReader(process.inputStream))
-    var startedOk = false
-    while(true) {
-      val line = outputReader.readLine() ?: break
-      println(line)
-      if (line.contains("Started ${MAIN_CLASS}Kt")) {
-        startedOk = true
-        break
-      }
+    val startedOk = outputReader.useLines {
+      it.asStream()
+        .peek { line -> println(line) }
+        .anyMatch { line -> line.contains("Started ${MAIN_CLASS}Kt") }
     }
     assertThat(startedOk).isTrue().withFailMessage("Unable to start the Spring Boot jar")
     return process
