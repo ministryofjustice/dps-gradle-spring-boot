@@ -9,21 +9,37 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 class DpsSpringBootPlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
+    project.group = "uk.gov.justice.digital.hmpps"
+    applyPlugins(project)
+    applyRepositories(project)
+    addDependencies(project)
+    setKotlinCompileJvmVersion(project)
+  }
+
+  private fun applyPlugins(project: Project) {
     project.plugins.apply(SpringBootPlugin::class.java)
     project.plugins.apply(KotlinPluginWrapper::class.java)
+  }
+
+  private fun applyRepositories(project: Project) {
     project.repositories.apply {
       mavenLocal()
       mavenCentral()
     }
-    project.group = "uk.gov.justice.digital.hmpps"
+  }
+
+  private fun setKotlinCompileJvmVersion(project: Project) {
+    project.tasks.withType(KotlinCompile::class.java).forEach {
+      it.kotlinOptions {
+        jvmTarget = "11"
+      }
+    }
+  }
+
+  private fun addDependencies(project: Project) {
     project.dependencies.add("implementation", "org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     project.dependencies.add("implementation", "org.jetbrains.kotlin:kotlin-reflect")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web:2.2.6.RELEASE")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator:2.2.6.RELEASE")
-    project.tasks.withType(KotlinCompile::class.java).forEach {
-      it.kotlinOptions{
-        jvmTarget = "11"
-      }
-    }
   }
 }
