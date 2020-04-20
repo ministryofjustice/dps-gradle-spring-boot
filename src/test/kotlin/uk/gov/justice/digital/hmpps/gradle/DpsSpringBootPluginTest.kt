@@ -1,18 +1,26 @@
 package uk.gov.justice.digital.hmpps.gradle
 
-import io.kotlintest.shouldNotBe
-import io.kotlintest.specs.WordSpec
+import org.assertj.core.api.Assertions.assertThat
 import org.gradle.testfixtures.ProjectBuilder
+import org.junit.jupiter.api.Test
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
-class DpsSpringBootPluginTest : WordSpec ({
+class DpsSpringBootPluginTest () {
 
-    "Using the plugin" should {
-        "Apply the SpringBoot plugin" {
-            val project = ProjectBuilder.builder().build()
-            project.pluginManager.apply("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot")
+    @Test
+    fun `Using the DPS plugin should apply the spring boot plugin`() {
+        val project = ProjectBuilder.builder().build()
+        project.pluginManager.apply("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot")
 
-            project.plugins.getPlugin(SpringBootPlugin::class.java) shouldNotBe null
-        }
+        assertThat(project.plugins.getPlugin(SpringBootPlugin::class.java)).isNotNull
     }
-})
+
+    @Test
+    fun `Using the DPS plugin should apply maven repositories`() {
+        val project = ProjectBuilder.builder().build()
+        project.pluginManager.apply("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot")
+
+        assertThat(project.repositories).extracting("name").containsExactlyInAnyOrder("MavenLocal", "MavenRepo")
+    }
+
+}

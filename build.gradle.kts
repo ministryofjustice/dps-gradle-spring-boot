@@ -36,7 +36,9 @@ dependencies {
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.2.6.RELEASE")
 
-  testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.1")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+  testImplementation("org.mockito:mockito-junit-jupiter:3.1.0")
+  testImplementation("org.assertj:assertj-core:3.13.2")
 }
 
 gradlePlugin {
