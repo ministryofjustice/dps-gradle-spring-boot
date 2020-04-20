@@ -1,5 +1,6 @@
 package uk.gov.justice.digital.hmpps.gradle
 
+import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.catchThrowable
 import org.assertj.core.groups.Tuple
@@ -45,6 +46,12 @@ class DpsSpringBootPluginTest {
       val thrown = catchThrowable { project.plugins.getPlugin(JavaPlugin::class.java) }
       assertThat(thrown).isNull()
     }
+
+    @Test
+    fun `Should apply the Spring Dependency plugin`() {
+      val thrown = catchThrowable { project.plugins.getPlugin(DependencyManagementPlugin::class.java) }
+      assertThat(thrown).isNull()
+    }
   }
 
   @Test
@@ -73,10 +80,10 @@ class DpsSpringBootPluginTest {
     @Test
     fun `Should apply Spring Boot standard libraries`() {
       assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting("group", "name", "version")
+        .extracting("group", "name")
         .contains(
-          Tuple.tuple("org.springframework.boot", "spring-boot-starter-web", "2.2.6.RELEASE"),
-          Tuple.tuple("org.springframework.boot", "spring-boot-starter-actuator", "2.2.6.RELEASE")
+          Tuple.tuple("org.springframework.boot", "spring-boot-starter-web"),
+          Tuple.tuple("org.springframework.boot", "spring-boot-starter-actuator")
         )
     }
   }
