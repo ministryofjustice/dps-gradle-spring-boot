@@ -18,7 +18,7 @@ import kotlin.streams.asStream
 const val PROJECT_NAME = "spring-boot-project"
 const val MAIN_CLASS = "Application"
 
-class DpsSpringBootPluginFuncTest {
+class KotlinFuncTest {
 
   @TempDir
   lateinit var projectDir: File
@@ -45,7 +45,7 @@ class DpsSpringBootPluginFuncTest {
 
     @BeforeAll
     @JvmStatic
-    fun `Create source files`() {
+    fun `Create and run project`() {
       makeBuildScript()
       makeSrcFile()
       makeSettingsScript()
