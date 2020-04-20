@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   validate:
-    executor: java
+    executor: dps/java
     steps:
       - checkout
       - restore_cache:
