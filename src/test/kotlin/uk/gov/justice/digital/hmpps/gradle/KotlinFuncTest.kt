@@ -35,6 +35,21 @@ class KotlinFuncTest {
     assertThat(infoResponse).isEqualTo("{}")
   }
 
+  @Test
+  fun `Spring dependency versions are defaulted from the dependency management plugin`() {
+    val webVersion = getDependencyVersion("spring-boot-starter-web")
+    val actuatorVersion = getDependencyVersion("spring-boot-starter-actuator")
+
+    assertThat(webVersion).isEqualTo(actuatorVersion)
+  }
+
+  private fun getDependencyVersion(dependency: String): String {
+    val result = buildProject("dependencyInsight", "--dependency", "$dependency")
+    assertThat(result.task(":dependencyInsight")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+    val (version) = Regex("org.springframework.boot:$dependency:(.*)\\s\\(selected by rule\\)").find(result.output)!!.destructured
+    return version
+  }
+
   companion object {
 
     @TempDir
@@ -119,10 +134,10 @@ class KotlinFuncTest {
       Files.writeString(settingsFile.toPath(), settingsScript)
     }
 
-    private fun buildProject(task: String): BuildResult {
+    private fun buildProject(vararg task: String): BuildResult {
       return GradleRunner.create()
         .withProjectDir(tempDir)
-        .withArguments(task)
+        .withArguments(*task)
         .withPluginClasspath()
         .build()
 
