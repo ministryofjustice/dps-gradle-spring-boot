@@ -37,6 +37,7 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-reflect")
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.2.6.RELEASE")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
   testImplementation("org.mockito:mockito-junit-jupiter:3.3.3")

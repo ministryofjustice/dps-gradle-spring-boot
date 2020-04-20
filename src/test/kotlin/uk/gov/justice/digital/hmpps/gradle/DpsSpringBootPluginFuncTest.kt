@@ -101,31 +101,12 @@ class DpsSpringBootPluginFuncTest {
       Files.writeString(srcFile.toPath(), srcFileScript)
     }
 
-    // TODO DT-727 Next task is to move everything below the plugins section to the plugin and make sure that these tests still pass
     private fun makeBuildScript() {
       val buildFile = File(tempDir, "build.gradle.kts")
       val buildScript = """
-        import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-  
         plugins {
-          kotlin("jvm") version "1.3.71"
           id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
         }
-  
-        tasks.withType<KotlinCompile> {
-          kotlinOptions {
-            jvmTarget = "11"
-          }
-        }
-        
-        dependencies {
-          implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-          implementation("org.jetbrains.kotlin:kotlin-reflect")
-        
-          implementation("org.springframework.boot:spring-boot-starter-web:2.2.6.RELEASE")
-          implementation("org.springframework.boot:spring-boot-starter-actuator:2.2.6.RELEASE")
-        }
-  
       """.trimIndent()
       Files.writeString(buildFile.toPath(), buildScript)
     }
