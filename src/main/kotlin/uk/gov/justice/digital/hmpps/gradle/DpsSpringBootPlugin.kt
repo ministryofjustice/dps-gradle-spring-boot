@@ -12,5 +12,6 @@ class DpsSpringBootPlugin : Plugin<Project> {
       mavenLocal()
       mavenCentral()
     }
+    project.group = "uk.gov.justice.digital.hmpps"
   }
 }
