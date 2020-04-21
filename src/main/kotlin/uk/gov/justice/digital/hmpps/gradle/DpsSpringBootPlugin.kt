@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.gradle
 
 import com.github.benmanes.gradle.versions.VersionsPlugin
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementConfigurer
 import org.gradle.api.Plugin
@@ -34,6 +35,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
     setManifestAttributes(project)
     setDependencyCheckConfig(project)
     addDependencyCheckSuppressionFile(project)
+    rejectUnstableDependencyUpdates(project)
     addDependencies(project)
     setKotlinCompileJvmVersion(project)
   }
@@ -116,6 +118,24 @@ class DpsSpringBootPlugin : Plugin<Project> {
     val file = Paths.get(javaClass.classLoader.getResource("dependency-check-suppress-spring.xml")?.toURI() ?: File("").toURI())
     val newFile = Paths.get(project.projectDir.absolutePath + "/dependency-check-suppress-spring.xml")
     Files.copy(file, newFile, StandardCopyOption.REPLACE_EXISTING)
+  }
+
+  private fun rejectUnstableDependencyUpdates(project: Project) {
+    project.tasks.withType(DependencyUpdatesTask::class.java).forEach { task ->
+      task.rejectVersionIf { selection ->
+        isUnstable(selection.candidate.version) && isStable(selection.currentVersion)
+      }
+    }
+  }
+
+  private fun isStable(version: String): Boolean {
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    return stableKeyword || regex.matches(version)
+  }
+
+  private fun isUnstable(version: String): Boolean {
+    return isStable(version).not()
   }
 
 }
