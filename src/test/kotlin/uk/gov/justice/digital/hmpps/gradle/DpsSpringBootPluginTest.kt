@@ -16,6 +16,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
+import org.springframework.boot.gradle.tasks.buildinfo.BuildInfo
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter.ISO_DATE
 
 class DpsSpringBootPluginTest {
 
@@ -70,21 +74,21 @@ class DpsSpringBootPluginTest {
     @Test
     fun `Should apply Kotlin standard libraries`() {
       assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting("group", "name")
-        .contains(
-          Tuple.tuple("org.jetbrains.kotlin", "kotlin-stdlib-jdk8"),
-          Tuple.tuple("org.jetbrains.kotlin", "kotlin-reflect")
-        )
+          .extracting("group", "name")
+          .contains(
+              Tuple.tuple("org.jetbrains.kotlin", "kotlin-stdlib-jdk8"),
+              Tuple.tuple("org.jetbrains.kotlin", "kotlin-reflect")
+          )
     }
 
     @Test
     fun `Should apply Spring Boot standard libraries`() {
       assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting("group", "name")
-        .contains(
-          Tuple.tuple("org.springframework.boot", "spring-boot-starter-web"),
-          Tuple.tuple("org.springframework.boot", "spring-boot-starter-actuator")
-        )
+          .extracting("group", "name")
+          .contains(
+              Tuple.tuple("org.springframework.boot", "spring-boot-starter-web"),
+              Tuple.tuple("org.springframework.boot", "spring-boot-starter-actuator")
+          )
     }
   }
 
@@ -105,4 +109,24 @@ class DpsSpringBootPluginTest {
     }
 
   }
+
+  @Test
+  fun `Should set build info`() {
+    val properties = (project.tasks.getByPath("bootBuildInfo") as BuildInfo).properties
+    assertThat(properties.additional).extracting("by").isEqualTo(System.getProperty("user.name"))
+    assertThat(properties.additional).extracting("operatingSystem").isNotNull()
+    assertThat(properties.additional).extracting("machine").isNotNull()
+
+    assertThat(properties.time).isNotNull()
+
+    assertThat(properties.version).isEqualTo(LocalDate.now().format(ISO_DATE))
+  }
+
+  @Test
+  fun `Should set manifest version and title in BootJar`() {
+    val manifestAttributes = (project.tasks.getByName("bootJar") as BootJar).manifest.attributes
+
+    assertThat(manifestAttributes).extracting("Implementation-Version", "Implementation-Title").contains(project.version, project.name)
+  }
+
 }

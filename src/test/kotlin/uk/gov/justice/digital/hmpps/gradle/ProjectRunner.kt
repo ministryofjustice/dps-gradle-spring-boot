@@ -8,11 +8,12 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
 import java.nio.file.Files
+import java.nio.file.Paths
 import kotlin.streams.asStream
 
 data class ProjectDetails(
-  val projectDir: File, val projectName: String, val packageDir: String, val mainClassName: String, val mainClass: String,
-  val buildScriptName: String, val buildScript: String, val settingsFileName: String
+    val projectDir: File, val projectName: String, val packageDir: String, val mainClassName: String, val mainClass: String,
+    val buildScriptName: String, val buildScript: String, val settingsFileName: String
 )
 
 fun createAndRunJar(projectDetails: ProjectDetails): Process {
@@ -32,23 +33,32 @@ fun getDependencyVersion(projectDir: File, dependency: String): String {
   return version
 }
 
+fun findJar(projectDir: File, projectName: String): File {
+  return Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
+    paths.filter { path -> path.toString().contains(projectName) }
+        .findFirst()
+        .map { jarPath -> jarPath.toFile() }
+        .orElseThrow()
+  }
+}
+
+
 private fun createJar(projectDir: File, projectName: String): File {
   val result = buildProject(projectDir, "bootJar")
 
   assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
-  val jar = File(projectDir, "build/libs/$projectName.jar")
+  val jar = findJar(projectDir, projectName)
   assertThat(jar.exists()).isTrue()
 
   return jar
 }
-
 private fun runJar(jar: File, mainClassName: String): Process {
   val process = ProcessBuilder("java", "-jar", jar.absolutePath).start()
   val outputReader = BufferedReader(InputStreamReader(process.inputStream))
   val startedOk = outputReader.useLines {
     it.asStream()
-      .peek { line -> println(line) }
-      .anyMatch { line -> line.contains("Started ${mainClassName.substringBefore(".")}") }
+        .peek { line -> println(line) }
+        .anyMatch { line -> line.contains("Started ${mainClassName.substringBefore(".")}") }
   }
   assertThat(startedOk).isTrue().withFailMessage("Unable to start the Spring Boot jar")
   return process
@@ -76,8 +86,8 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
 
 private fun buildProject(projectDir: File, vararg task: String): BuildResult {
   return GradleRunner.create()
-    .withProjectDir(projectDir)
-    .withArguments(*task)
-    .withPluginClasspath()
-    .build()
+      .withProjectDir(projectDir)
+      .withArguments(*task)
+      .withPluginClasspath()
+      .build()
 }
