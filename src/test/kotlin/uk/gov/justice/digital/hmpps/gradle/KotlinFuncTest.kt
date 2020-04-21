@@ -14,6 +14,28 @@ import java.util.jar.JarFile
 
 class KotlinFuncTest {
 
+  companion object {
+
+    @TempDir
+    @JvmStatic
+    lateinit var projectDir: File
+
+    var jarProcess: Process? = null
+
+    @BeforeAll
+    @JvmStatic
+    fun `Create and run project`() {
+      jarProcess = createAndRunJar(kotlinProjectDetails(projectDir))
+    }
+
+    @AfterAll
+    @JvmStatic
+    fun `End running jar`() {
+      jarProcess?.destroyForcibly()
+    }
+
+  }
+
   @Test
   fun `Spring Boot jar is up and healthy`() {
     val healthResponse = URL("http://localhost:8080/actuator/health").readText()
@@ -62,28 +84,6 @@ class KotlinFuncTest {
     assertThat(result.output)
         .contains(":dependencyUpdates SKIPPED")
         .contains("SUCCESSFUL")
-  }
-
-  companion object {
-
-    @TempDir
-    @JvmStatic
-    lateinit var projectDir: File
-
-    var jarProcess: Process? = null
-
-    @BeforeAll
-    @JvmStatic
-    fun `Create and run project`() {
-      jarProcess = createAndRunJar(kotlinProjectDetails(projectDir))
-    }
-
-    @AfterAll
-    @JvmStatic
-    fun `End running jar`() {
-      jarProcess?.destroyForcibly()
-    }
-
   }
 
 }
