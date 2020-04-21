@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.3.61"
+  kotlin("jvm") version "1.3.72"
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.28.0"
@@ -12,6 +12,9 @@ repositories {
   mavenLocal()
   mavenCentral()
   jcenter()
+  maven {
+    url = uri("https://plugins.gradle.org/m2/")
+  }
 }
 
 tasks.withType<KotlinCompile> {
@@ -38,6 +41,7 @@ dependencies {
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.2.6.RELEASE")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
+  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.9.RELEASE@pom")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
   testImplementation("org.mockito:mockito-junit-jupiter:3.3.3")
