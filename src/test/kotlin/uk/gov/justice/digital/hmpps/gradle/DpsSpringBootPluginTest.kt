@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
+import org.springframework.boot.gradle.tasks.buildinfo.BuildInfo
 
 class DpsSpringBootPluginTest {
 
@@ -105,4 +106,15 @@ class DpsSpringBootPluginTest {
     }
 
   }
+
+  @Test
+  fun `Should set the build info`() {
+    val additionalProperties = (project.tasks.getByPath("bootBuildInfo") as BuildInfo).properties.additional
+    assertThat(additionalProperties).extracting("by").isEqualTo(System.getProperty("user.name"))
+    assertThat(additionalProperties).extracting("operatingSystem").isNotNull()
+    assertThat(additionalProperties).extracting("machine").isNotNull()
+
+    assertThat((project.tasks.getByPath("bootBuildInfo") as BuildInfo).properties.time).isNotNull()
+  }
+
 }

@@ -46,6 +46,9 @@ dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
   testImplementation("org.mockito:mockito-junit-jupiter:3.3.3")
   testImplementation("org.assertj:assertj-core:3.15.0")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.17.0")
+  testImplementation("com.google.code.gson:gson:2.8.6")
+
 }
 
 gradlePlugin {

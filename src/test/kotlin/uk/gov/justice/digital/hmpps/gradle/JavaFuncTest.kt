@@ -1,5 +1,6 @@
 package uk.gov.justice.digital.hmpps.gradle
 
+import net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
@@ -13,13 +14,13 @@ class JavaFuncTest {
   @Test
   fun `Spring Boot jar is up and healthy`() {
     val healthResponse = URL("http://localhost:8080/actuator/health").readText()
-    assertThat(healthResponse).isEqualTo("""{"status":"UP"}""")
+    assertThatJson(healthResponse).node("status").isEqualTo("UP")
   }
 
   @Test
   fun `Spring Boot info endpoint is available`() {
     val infoResponse = URL("http://localhost:8080/actuator/info").readText()
-    assertThat(infoResponse).isEqualTo("{}")
+    assertThatJson(infoResponse).node("build.by").isEqualTo(System.getProperty("user.name"))
   }
 
   @Test

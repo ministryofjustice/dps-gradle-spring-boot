@@ -11,8 +11,8 @@ import java.nio.file.Files
 import kotlin.streams.asStream
 
 data class ProjectDetails(
-  val projectDir: File, val projectName: String, val packageDir: String, val mainClassName: String, val mainClass: String,
-  val buildScriptName: String, val buildScript: String, val settingsFileName: String
+    val projectDir: File, val projectName: String, val packageDir: String, val mainClassName: String, val mainClass: String,
+    val buildScriptName: String, val buildScript: String, val settingsFileName: String
 )
 
 fun createAndRunJar(projectDetails: ProjectDetails): Process {
@@ -47,8 +47,8 @@ private fun runJar(jar: File, mainClassName: String): Process {
   val outputReader = BufferedReader(InputStreamReader(process.inputStream))
   val startedOk = outputReader.useLines {
     it.asStream()
-      .peek { line -> println(line) }
-      .anyMatch { line -> line.contains("Started ${mainClassName.substringBefore(".")}") }
+        .peek { line -> println(line) }
+        .anyMatch { line -> line.contains("Started ${mainClassName.substringBefore(".")}") }
   }
   assertThat(startedOk).isTrue().withFailMessage("Unable to start the Spring Boot jar")
   return process
@@ -76,8 +76,8 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
 
 private fun buildProject(projectDir: File, vararg task: String): BuildResult {
   return GradleRunner.create()
-    .withProjectDir(projectDir)
-    .withArguments(*task)
-    .withPluginClasspath()
-    .build()
+      .withProjectDir(projectDir)
+      .withArguments(*task)
+      .withPluginClasspath()
+      .build()
 }

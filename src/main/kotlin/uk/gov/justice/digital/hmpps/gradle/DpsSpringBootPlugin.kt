@@ -6,7 +6,10 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.dsl.SpringBootExtension
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
+import java.net.InetAddress
+import java.time.Instant
 
 class DpsSpringBootPlugin : Plugin<Project> {
 
@@ -15,6 +18,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
     applyPlugins(project)
     applyRepositories(project)
     applyDependencyManagementBom(project)
+    setSpringBootInfo(project)
     addDependencies(project)
     setKotlinCompileJvmVersion(project)
   }
@@ -52,5 +56,19 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.dependencies.add("implementation", "org.jetbrains.kotlin:kotlin-reflect")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
+  }
+
+  private fun setSpringBootInfo(project: Project) {
+    val sbExtension = project.extensions.getByName("springBoot") as SpringBootExtension
+    sbExtension.buildInfo {
+      it.properties {
+        it.time = Instant.now()
+        it.additional = mapOf(
+            "by" to System.getProperty("user.name"),
+            "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
+            "machine" to InetAddress.getLocalHost().hostName
+        )
+      }
+    }
   }
 }
