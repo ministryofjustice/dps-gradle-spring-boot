@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import java.io.File
 import java.net.URL
-import java.time.LocalDateTime
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter.ISO_DATE
 import java.util.jar.JarFile
 
@@ -38,7 +38,7 @@ class JavaFuncTest {
   fun `Manifest file contains project name and version`() {
     val file = findJar(projectDir, "spring-boot-project-java")
     val jarFile = JarFile(file)
-    assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(LocalDateTime.now().format(ISO_DATE))
+    assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(LocalDate.now().format(ISO_DATE))
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo("spring-boot-project-java")
   }
 

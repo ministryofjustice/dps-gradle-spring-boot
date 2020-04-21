@@ -2,15 +2,14 @@ package uk.gov.justice.digital.hmpps.gradle
 
 import net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson
 import org.assertj.core.api.Assertions.assertThat
-import org.gradle.testkit.runner.TaskOutcome
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import java.io.File
 import java.net.URL
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter.ISO_DATE
 import java.util.jar.JarFile
 
 class KotlinFuncTest {
@@ -39,7 +38,7 @@ class KotlinFuncTest {
   fun `Manifest file contains project name and version`() {
     val file = findJar(projectDir, "spring-boot-project-kotlin")
     val jarFile = JarFile(file)
-    assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE))
+    assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(LocalDate.now().format(ISO_DATE))
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo("spring-boot-project-kotlin")
   }
 

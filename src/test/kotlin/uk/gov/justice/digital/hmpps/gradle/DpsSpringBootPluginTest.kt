@@ -21,6 +21,7 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.buildinfo.BuildInfo
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 import java.time.LocalDate
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter.ISO_DATE
 
 class DpsSpringBootPluginTest {
@@ -121,7 +122,7 @@ class DpsSpringBootPluginTest {
     assertThat(properties.additional).extracting("operatingSystem").isNotNull()
     assertThat(properties.additional).extracting("machine").isNotNull()
 
-    assertThat(properties.time).isNotNull()
+    assertThat(LocalDate.ofInstant(properties.time, ZoneId.systemDefault())).isEqualTo(LocalDate.now())
 
     assertThat(properties.version).isEqualTo(LocalDate.now().format(ISO_DATE))
   }
