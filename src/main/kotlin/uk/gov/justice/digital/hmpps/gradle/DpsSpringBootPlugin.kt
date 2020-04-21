@@ -10,17 +10,25 @@ import org.springframework.boot.gradle.dsl.SpringBootExtension
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import java.net.InetAddress
 import java.time.Instant
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class DpsSpringBootPlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
     project.group = "uk.gov.justice.digital.hmpps"
+    project.version = getVersion()
     applyPlugins(project)
     applyRepositories(project)
     applyDependencyManagementBom(project)
     setSpringBootInfo(project)
     addDependencies(project)
     setKotlinCompileJvmVersion(project)
+  }
+
+  private fun getVersion(): String {
+    return if (System.getenv().contains("BUILD_NUMBER")) System.getenv("BUILD_NUMBER")
+    else LocalDate.now().format(DateTimeFormatter.ISO_DATE)
   }
 
   private fun applyPlugins(project: Project) {
@@ -60,15 +68,19 @@ class DpsSpringBootPlugin : Plugin<Project> {
 
   private fun setSpringBootInfo(project: Project) {
     val sbExtension = project.extensions.getByName("springBoot") as SpringBootExtension
-    sbExtension.buildInfo {
-      it.properties {
-        it.time = Instant.now()
-        it.additional = mapOf(
-            "by" to System.getProperty("user.name"),
-            "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
-            "machine" to InetAddress.getLocalHost().hostName
-        )
+    sbExtension.buildInfo { buildInfo ->
+      buildInfo.properties { buildInfoProps ->
+        buildInfoProps.time = Instant.now()
+        buildInfoProps.additional = getAdditionalBuildInfo()
+        buildInfoProps.version = project.version.toString()
       }
     }
+  }
+
+  private fun getAdditionalBuildInfo(): Map<String, String> {
+    return mapOf(
+        "by" to System.getProperty("user.name"),
+        "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
+        "machine" to InetAddress.getLocalHost().hostName)
   }
 }

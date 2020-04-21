@@ -8,6 +8,7 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
 import java.nio.file.Files
+import java.nio.file.Paths
 import kotlin.streams.asStream
 
 data class ProjectDetails(
@@ -36,10 +37,19 @@ private fun createJar(projectDir: File, projectName: String): File {
   val result = buildProject(projectDir, "bootJar")
 
   assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
-  val jar = File(projectDir, "build/libs/$projectName.jar")
+  val jar = findJar(projectDir, projectName)
   assertThat(jar.exists()).isTrue()
 
   return jar
+}
+
+private fun findJar(projectDir: File, projectName: String): File {
+  return Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
+    paths.filter { path -> path.toString().contains(projectName) }
+        .findFirst()
+        .map { jarPath -> jarPath.toFile() }
+        .orElseThrow()
+  }
 }
 
 private fun runJar(jar: File, mainClassName: String): Process {

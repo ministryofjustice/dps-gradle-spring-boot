@@ -56,29 +56,30 @@ class JavaFuncTest {
 }
 
 fun javaProjectDetails(projectDir: File) =
-  ProjectDetails(
-    projectName = "spring-boot-project-java",
-    projectDir = projectDir,
-    packageDir = "src/main/java/uk/gov/justice/digital/hmpps/app",
-    mainClassName = "Application.java",
-    mainClass = """
-        package uk.gov.justice.digital.hmpps.app;
-
-        import org.springframework.boot.SpringApplication;
-        import org.springframework.boot.autoconfigure.SpringBootApplication;
+    ProjectDetails(
+        projectName = "spring-boot-project-java",
+        projectDir = projectDir,
+        packageDir = "src/main/java/uk/gov/justice/digital/hmpps/app",
+        mainClassName = "Application.java",
+        mainClass = """
+          package uk.gov.justice.digital.hmpps.app;
   
-        @SpringBootApplication
-        public class Application {
-  
-            public static void main(String[] args) {
-                SpringApplication.run(Application.class, args);
-            }
-        }
-    """.trimIndent(),
-    buildScriptName = "build.gradle",
-    buildScript = """
-        plugins {
-          id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
-        }
-      """.trimIndent(),
-    settingsFileName = "settings.gradle")
+          import org.springframework.boot.SpringApplication;
+          import org.springframework.boot.autoconfigure.SpringBootApplication;
+    
+          @SpringBootApplication
+          public class Application {
+    
+              public static void main(String[] args) {
+                  SpringApplication.run(Application.class, args);
+              }
+          }
+        """.trimIndent(),
+        buildScriptName = "build.gradle",
+        buildScript = """
+          plugins {
+            id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
+          }
+        """.trimIndent(),
+        settingsFileName = "settings.gradle"
+    )

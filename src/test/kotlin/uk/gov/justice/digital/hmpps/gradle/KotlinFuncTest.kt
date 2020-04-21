@@ -54,29 +54,31 @@ class KotlinFuncTest {
   }
 
 }
+
 fun kotlinProjectDetails(projectDir: File) =
-  ProjectDetails(
-    projectName = "spring-boot-project-kotlin",
-    projectDir = projectDir,
-    packageDir = "src/main/kotlin/uk/gov/justice/digital/hmpps/app",
-    mainClassName = "Application.kt",
-    mainClass = """
-        package uk.gov.justice.digital.hmpps.app
-  
-        import org.springframework.boot.autoconfigure.SpringBootApplication
-        import org.springframework.boot.runApplication
-  
-        @SpringBootApplication
-        open class Application
-  
-        fun main(args: Array<String>) {
-          runApplication<Application>(*args)
-        }
-    """.trimIndent(),
-    buildScriptName = "build.gradle.kts",
-    buildScript = """
-        plugins {
-          id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
-        }
-      """.trimIndent(),
-    settingsFileName = "settings.gradle.kts")
+    ProjectDetails(
+        projectName = "spring-boot-project-kotlin",
+        projectDir = projectDir,
+        packageDir = "src/main/kotlin/uk/gov/justice/digital/hmpps/app",
+        mainClassName = "Application.kt",
+        mainClass = """
+          package uk.gov.justice.digital.hmpps.app
+    
+          import org.springframework.boot.autoconfigure.SpringBootApplication
+          import org.springframework.boot.runApplication
+    
+          @SpringBootApplication
+          open class Application
+    
+          fun main(args: Array<String>) {
+            runApplication<Application>(*args)
+          }
+        """.trimIndent(),
+        buildScriptName = "build.gradle.kts",
+        buildScript = """
+          plugins {
+            id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
+          }
+        """.trimIndent(),
+        settingsFileName = "settings.gradle.kts"
+    )
