@@ -8,6 +8,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.dsl.SpringBootExtension
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 import java.net.InetAddress
 import java.time.Instant
 import java.time.LocalDate
@@ -22,6 +23,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
     applyRepositories(project)
     applyDependencyManagementBom(project)
     setSpringBootInfo(project)
+    setManifestAttributes(project)
     addDependencies(project)
     setKotlinCompileJvmVersion(project)
   }
@@ -83,4 +85,11 @@ class DpsSpringBootPlugin : Plugin<Project> {
         "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
         "machine" to InetAddress.getLocalHost().hostName)
   }
+
+  private fun setManifestAttributes(project: Project) {
+    val manifest = (project.tasks.getByName("bootJar") as BootJar).manifest
+    manifest.attributes["Implementation-Version"] = project.version
+    manifest.attributes["Implementation-Title"] = project.name
+  }
+
 }

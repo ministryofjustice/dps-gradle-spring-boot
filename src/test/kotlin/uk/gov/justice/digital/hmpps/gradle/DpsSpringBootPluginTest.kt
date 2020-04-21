@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.buildinfo.BuildInfo
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter.ISO_DATE
 
@@ -119,6 +120,13 @@ class DpsSpringBootPluginTest {
     assertThat(properties.time).isNotNull()
 
     assertThat(properties.version).isEqualTo(LocalDate.now().format(ISO_DATE))
+  }
+
+  @Test
+  fun `Should set manifest version and title in BootJar`() {
+    val manifestAttributes = (project.tasks.getByName("bootJar") as BootJar).manifest.attributes
+
+    assertThat(manifestAttributes).extracting("Implementation-Version", "Implementation-Title").contains(project.version, project.name)
   }
 
 }

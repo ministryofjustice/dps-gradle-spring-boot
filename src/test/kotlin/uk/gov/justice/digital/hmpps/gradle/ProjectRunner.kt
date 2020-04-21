@@ -33,6 +33,16 @@ fun getDependencyVersion(projectDir: File, dependency: String): String {
   return version
 }
 
+fun findJar(projectDir: File, projectName: String): File {
+  return Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
+    paths.filter { path -> path.toString().contains(projectName) }
+        .findFirst()
+        .map { jarPath -> jarPath.toFile() }
+        .orElseThrow()
+  }
+}
+
+
 private fun createJar(projectDir: File, projectName: String): File {
   val result = buildProject(projectDir, "bootJar")
 
@@ -42,16 +52,6 @@ private fun createJar(projectDir: File, projectName: String): File {
 
   return jar
 }
-
-private fun findJar(projectDir: File, projectName: String): File {
-  return Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
-    paths.filter { path -> path.toString().contains(projectName) }
-        .findFirst()
-        .map { jarPath -> jarPath.toFile() }
-        .orElseThrow()
-  }
-}
-
 private fun runJar(jar: File, mainClassName: String): Process {
   val process = ProcessBuilder("java", "-jar", jar.absolutePath).start()
   val outputReader = BufferedReader(InputStreamReader(process.inputStream))

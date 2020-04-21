@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import java.io.File
 import java.net.URL
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.jar.JarFile
 
 class KotlinFuncTest {
 
@@ -29,6 +32,14 @@ class KotlinFuncTest {
     val actuatorVersion = getDependencyVersion(projectDir, "spring-boot-starter-actuator")
 
     assertThat(webVersion).isEqualTo(actuatorVersion)
+  }
+
+  @Test
+  fun `Manifest file contains project name and version`() {
+    val file = findJar(projectDir, "spring-boot-project-kotlin")
+    val jarFile = JarFile(file)
+    assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE))
+    assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo("spring-boot-project-kotlin")
   }
 
   companion object {
