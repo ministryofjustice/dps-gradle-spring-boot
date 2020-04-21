@@ -43,6 +43,7 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.9.RELEASE@pom")
   implementation("org.owasp:dependency-check-gradle:5.3.2.1")
+  implementation("com.github.ben-manes:gradle-versions-plugin:0.28.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
   testImplementation("org.mockito:mockito-junit-jupiter:3.3.3")

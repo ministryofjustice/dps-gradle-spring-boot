@@ -1,5 +1,6 @@
 package uk.gov.justice.digital.hmpps.gradle
 
+import com.github.benmanes.gradle.versions.VersionsPlugin
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementConfigurer
 import org.gradle.api.Plugin
@@ -47,6 +48,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.plugins.apply(KotlinPluginWrapper::class.java)
     project.plugins.apply(DependencyManagementPlugin::class.java)
     project.plugins.apply(DependencyCheckPlugin::class.java)
+    project.plugins.apply(VersionsPlugin::class.java)
   }
 
   private fun applyRepositories(project: Project) {

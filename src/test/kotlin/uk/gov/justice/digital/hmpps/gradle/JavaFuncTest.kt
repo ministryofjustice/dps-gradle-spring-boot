@@ -56,6 +56,14 @@ class JavaFuncTest {
     assertThat(suppressionFile).exists()
   }
 
+  @Test
+  fun `The gradle version dependency dependencyUpdates task is available`() {
+    val result = buildProject(projectDir, "dependencyUpdates", "-m")
+    assertThat(result.output)
+        .contains(":dependencyUpdates SKIPPED")
+        .contains("SUCCESSFUL")
+  }
+
   companion object {
 
     @TempDir
