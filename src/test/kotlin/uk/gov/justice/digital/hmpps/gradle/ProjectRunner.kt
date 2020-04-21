@@ -42,7 +42,6 @@ fun findJar(projectDir: File, projectName: String): File {
   }
 }
 
-
 private fun createJar(projectDir: File, projectName: String): File {
   val result = buildProject(projectDir, "bootJar")
 
@@ -84,10 +83,10 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
   Files.writeString(settingsFile.toPath(), settingsScript)
 }
 
-private fun buildProject(projectDir: File, vararg task: String): BuildResult {
+fun buildProject(projectDir: File, vararg arguments: String): BuildResult {
   return GradleRunner.create()
       .withProjectDir(projectDir)
-      .withArguments(*task)
+      .withArguments(*arguments)
       .withPluginClasspath()
       .build()
 }

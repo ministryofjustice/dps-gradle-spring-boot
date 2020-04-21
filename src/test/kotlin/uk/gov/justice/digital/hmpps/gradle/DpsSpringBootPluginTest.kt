@@ -2,7 +2,6 @@ package uk.gov.justice.digital.hmpps.gradle
 
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.catchThrowable
 import org.assertj.core.groups.Tuple
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
@@ -15,6 +14,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.owasp.dependencycheck.gradle.DependencyCheckPlugin
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.buildinfo.BuildInfo
 import org.springframework.boot.gradle.tasks.bundling.BootJar
@@ -33,28 +33,30 @@ class DpsSpringBootPluginTest {
   @Nested
   inner class Plugins {
 
+    // All of these tests throw an exception if they fail - hence no assertions
     @Test
     fun `Should apply the Spring Boot plugin`() {
-      val thrown = catchThrowable { project.plugins.getPlugin(SpringBootPlugin::class.java) }
-      assertThat(thrown).isNull()
+      project.plugins.getPlugin(SpringBootPlugin::class.java)
     }
 
     @Test
     fun `Should apply the Kotlin plugin`() {
-      val thrown = catchThrowable { project.plugins.getPlugin(KotlinPluginWrapper::class.java) }
-      assertThat(thrown).isNull()
+      project.plugins.getPlugin(KotlinPluginWrapper::class.java)
     }
 
     @Test
     fun `Should apply the Java plugin`() {
-      val thrown = catchThrowable { project.plugins.getPlugin(JavaPlugin::class.java) }
-      assertThat(thrown).isNull()
+      project.plugins.getPlugin(JavaPlugin::class.java)
     }
 
     @Test
     fun `Should apply the Spring Dependency plugin`() {
-      val thrown = catchThrowable { project.plugins.getPlugin(DependencyManagementPlugin::class.java) }
-      assertThat(thrown).isNull()
+      project.plugins.getPlugin(DependencyManagementPlugin::class.java)
+    }
+
+    @Test
+    fun `Should apply the Owasp Dependency check plugin`() {
+      project.plugins.getPlugin(DependencyCheckPlugin::class.java)
     }
   }
 

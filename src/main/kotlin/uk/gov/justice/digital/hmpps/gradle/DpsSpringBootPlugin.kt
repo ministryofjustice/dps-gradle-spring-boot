@@ -6,6 +6,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.owasp.dependencycheck.gradle.DependencyCheckPlugin
 import org.springframework.boot.gradle.dsl.SpringBootExtension
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
@@ -37,6 +38,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.plugins.apply(SpringBootPlugin::class.java)
     project.plugins.apply(KotlinPluginWrapper::class.java)
     project.plugins.apply(DependencyManagementPlugin::class.java)
+    project.plugins.apply(DependencyCheckPlugin::class.java)
   }
 
   private fun applyRepositories(project: Project) {

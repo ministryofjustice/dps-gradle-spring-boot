@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.gradle
 
 import net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson
 import org.assertj.core.api.Assertions.assertThat
+import org.gradle.testkit.runner.TaskOutcome
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -40,6 +41,14 @@ class KotlinFuncTest {
     val jarFile = JarFile(file)
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE))
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo("spring-boot-project-kotlin")
+  }
+
+  @Test
+  fun `The Owasp dependency analyze task is available`() {
+    val result = buildProject(projectDir, "dependencyCheckAnalyze", "-m")
+    assertThat(result.output)
+        .contains(":dependencyCheckAnalyze SKIPPED")
+        .contains("SUCCESSFUL")
   }
 
   companion object {

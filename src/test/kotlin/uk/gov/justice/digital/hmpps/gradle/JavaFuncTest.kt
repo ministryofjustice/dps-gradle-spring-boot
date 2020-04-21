@@ -42,6 +42,14 @@ class JavaFuncTest {
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo("spring-boot-project-java")
   }
 
+  @Test
+  fun `The Owasp dependency analyze task is available`() {
+    val result = buildProject(projectDir, "dependencyCheckAnalyze", "-m")
+    assertThat(result.output)
+        .contains(":dependencyCheckAnalyze SKIPPED")
+        .contains("SUCCESSFUL")
+  }
+
   companion object {
 
     @TempDir
