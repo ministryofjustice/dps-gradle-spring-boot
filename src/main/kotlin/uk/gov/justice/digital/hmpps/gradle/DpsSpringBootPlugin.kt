@@ -7,6 +7,8 @@ import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.owasp.dependencycheck.gradle.DependencyCheckPlugin
+import org.owasp.dependencycheck.gradle.extension.DependencyCheckExtension
+import org.owasp.dependencycheck.reporting.ReportGenerator
 import org.springframework.boot.gradle.dsl.SpringBootExtension
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
@@ -25,6 +27,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
     applyDependencyManagementBom(project)
     setSpringBootInfo(project)
     setManifestAttributes(project)
+    setDependencyCheckConfig(project)
     addDependencies(project)
     setKotlinCompileJvmVersion(project)
   }
@@ -92,6 +95,14 @@ class DpsSpringBootPlugin : Plugin<Project> {
     val manifest = (project.tasks.getByName("bootJar") as BootJar).manifest
     manifest.attributes["Implementation-Version"] = project.version
     manifest.attributes["Implementation-Title"] = project.name
+  }
+
+  private fun setDependencyCheckConfig(project: Project) {
+    val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
+    extension.failBuildOnCVSS = 5f
+    extension.suppressionFiles = listOf()
+    extension.format = ReportGenerator.Format.ALL
+    extension.analyzers.assemblyEnabled = false
   }
 
 }

@@ -15,6 +15,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.owasp.dependencycheck.gradle.DependencyCheckPlugin
+import org.owasp.dependencycheck.gradle.extension.DependencyCheckExtension
+import org.owasp.dependencycheck.reporting.ReportGenerator
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.buildinfo.BuildInfo
 import org.springframework.boot.gradle.tasks.bundling.BootJar
@@ -129,6 +131,15 @@ class DpsSpringBootPluginTest {
     val manifestAttributes = (project.tasks.getByName("bootJar") as BootJar).manifest.attributes
 
     assertThat(manifestAttributes).extracting("Implementation-Version", "Implementation-Title").contains(project.version, project.name)
+  }
+
+  @Test
+  fun `Should apply owasp dependency check configuration`() {
+    val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
+    assertThat(extension.failBuildOnCVSS).isEqualTo(5f)
+    assertThat(extension.suppressionFiles).isEmpty()
+    assertThat(extension.format).isEqualTo(ReportGenerator.Format.ALL)
+    assertThat(extension.analyzers.assemblyEnabled).isFalse()
   }
 
 }
