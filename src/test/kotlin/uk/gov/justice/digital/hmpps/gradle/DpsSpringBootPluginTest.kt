@@ -144,7 +144,7 @@ class DpsSpringBootPluginTest {
   fun `Should apply owasp dependency check configuration`() {
     val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
     assertThat(extension.failBuildOnCVSS).isEqualTo(5f)
-    assertThat(extension.suppressionFiles).containsExactly("dependency-check-suppress-spring.xml")
+    assertThat(extension.suppressionFiles).containsExactly(DEPENDENCY_SUPPRESSION_FILENAME)
     assertThat(extension.format).isEqualTo(ReportGenerator.Format.ALL)
     assertThat(extension.analyzers.assemblyEnabled).isFalse()
   }

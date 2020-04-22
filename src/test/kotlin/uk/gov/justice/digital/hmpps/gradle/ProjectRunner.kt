@@ -17,12 +17,18 @@ data class ProjectDetails(
 )
 
 fun createAndRunJar(projectDetails: ProjectDetails): Process {
+  makeProject(projectDetails)
+  with(projectDetails) {
+    val jar = createJar(projectDir, projectName)
+    return runJar(jar, mainClassName)
+  }
+}
+
+fun makeProject(projectDetails: ProjectDetails) {
   with(projectDetails) {
     makeBuildScript(projectDir, buildScriptName, buildScript)
     makeSrcFile(projectDir, packageDir, mainClassName, mainClass)
     makeSettingsScript(projectDir, settingsFileName, projectName)
-    val jar = createJar(projectDir, projectName)
-    return runJar(jar, mainClassName)
   }
 }
 
@@ -60,6 +66,7 @@ private fun createJar(projectDir: File, projectName: String): File {
 
   return jar
 }
+
 private fun runJar(jar: File, mainClassName: String): Process {
   val process = ProcessBuilder("java", "-jar", jar.absolutePath).start()
   val outputReader = BufferedReader(InputStreamReader(process.inputStream))

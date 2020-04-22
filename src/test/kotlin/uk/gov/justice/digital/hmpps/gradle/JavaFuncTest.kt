@@ -74,7 +74,7 @@ class JavaFuncTest {
 
   @Test
   fun `The Owasp dependency check suppression file is copied into the project`() {
-    val suppressionFile = findFile(projectDir, "dependency-check-suppress-spring.xml")
+    val suppressionFile = findFile(projectDir, DEPENDENCY_SUPPRESSION_FILENAME)
     assertThat(suppressionFile).exists()
   }
 
