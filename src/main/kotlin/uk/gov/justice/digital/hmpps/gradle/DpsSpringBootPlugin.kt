@@ -115,9 +115,9 @@ class DpsSpringBootPlugin : Plugin<Project> {
   }
 
   private fun addDependencyCheckSuppressionFile(project: Project) {
-    val file = Paths.get(javaClass.classLoader.getResource("dependency-check-suppress-spring.xml")?.toURI() ?: File("").toURI())
+    val inputStream = javaClass.classLoader.getResourceAsStream("dependency-check-suppress-spring.xml")
     val newFile = Paths.get(project.projectDir.absolutePath + "/dependency-check-suppress-spring.xml")
-    Files.copy(file, newFile, StandardCopyOption.REPLACE_EXISTING)
+    Files.copy(inputStream, newFile, StandardCopyOption.REPLACE_EXISTING)
   }
 
   private fun rejectUnstableDependencyUpdates(project: Project) {
