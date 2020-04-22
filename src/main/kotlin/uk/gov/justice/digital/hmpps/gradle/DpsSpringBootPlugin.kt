@@ -1,15 +1,24 @@
 package uk.gov.justice.digital.hmpps.gradle
 
+import com.github.benmanes.gradle.versions.VersionsPlugin
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementConfigurer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.owasp.dependencycheck.gradle.DependencyCheckPlugin
+import org.owasp.dependencycheck.gradle.extension.DependencyCheckExtension
+import org.owasp.dependencycheck.reporting.ReportGenerator
 import org.springframework.boot.gradle.dsl.SpringBootExtension
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
+import java.io.File
 import java.net.InetAddress
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
 import java.time.Instant
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -24,6 +33,9 @@ class DpsSpringBootPlugin : Plugin<Project> {
     applyDependencyManagementBom(project)
     setSpringBootInfo(project)
     setManifestAttributes(project)
+    setDependencyCheckConfig(project)
+    addDependencyCheckSuppressionFile(project)
+    rejectUnstableDependencyUpdates(project)
     addDependencies(project)
     setKotlinCompileJvmVersion(project)
   }
@@ -37,6 +49,8 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.plugins.apply(SpringBootPlugin::class.java)
     project.plugins.apply(KotlinPluginWrapper::class.java)
     project.plugins.apply(DependencyManagementPlugin::class.java)
+    project.plugins.apply(DependencyCheckPlugin::class.java)
+    project.plugins.apply(VersionsPlugin::class.java)
   }
 
   private fun applyRepositories(project: Project) {
@@ -90,6 +104,38 @@ class DpsSpringBootPlugin : Plugin<Project> {
     val manifest = (project.tasks.getByName("bootJar") as BootJar).manifest
     manifest.attributes["Implementation-Version"] = project.version
     manifest.attributes["Implementation-Title"] = project.name
+  }
+
+  private fun setDependencyCheckConfig(project: Project) {
+    val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
+    extension.failBuildOnCVSS = 5f
+    extension.suppressionFiles = listOf("dependency-check-suppress-spring.xml")
+    extension.format = ReportGenerator.Format.ALL
+    extension.analyzers.assemblyEnabled = false
+  }
+
+  private fun addDependencyCheckSuppressionFile(project: Project) {
+    val file = Paths.get(javaClass.classLoader.getResource("dependency-check-suppress-spring.xml")?.toURI() ?: File("").toURI())
+    val newFile = Paths.get(project.projectDir.absolutePath + "/dependency-check-suppress-spring.xml")
+    Files.copy(file, newFile, StandardCopyOption.REPLACE_EXISTING)
+  }
+
+  private fun rejectUnstableDependencyUpdates(project: Project) {
+    project.tasks.withType(DependencyUpdatesTask::class.java).forEach { task ->
+      task.rejectVersionIf { selection ->
+        isUnstable(selection.candidate.version) && isStable(selection.currentVersion)
+      }
+    }
+  }
+
+  private fun isStable(version: String): Boolean {
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    return stableKeyword || regex.matches(version)
+  }
+
+  private fun isUnstable(version: String): Boolean {
+    return isStable(version).not()
   }
 
 }

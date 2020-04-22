@@ -8,11 +8,33 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import java.io.File
 import java.net.URL
-import java.time.LocalDateTime
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter.ISO_DATE
 import java.util.jar.JarFile
 
 class JavaFuncTest {
+
+  companion object {
+
+    @TempDir
+    @JvmStatic
+    lateinit var projectDir: File
+
+    var jarProcess: Process? = null
+
+    @BeforeAll
+    @JvmStatic
+    fun `Create and run project`() {
+      jarProcess = createAndRunJar(javaProjectDetails(projectDir))
+    }
+
+    @AfterAll
+    @JvmStatic
+    fun `End running jar`() {
+      jarProcess?.destroyForcibly()
+    }
+
+  }
 
   @Test
   fun `Spring Boot jar is up and healthy`() {
@@ -38,30 +60,30 @@ class JavaFuncTest {
   fun `Manifest file contains project name and version`() {
     val file = findJar(projectDir, "spring-boot-project-java")
     val jarFile = JarFile(file)
-    assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(LocalDateTime.now().format(ISO_DATE))
+    assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(LocalDate.now().format(ISO_DATE))
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo("spring-boot-project-java")
   }
 
-  companion object {
+  @Test
+  fun `The Owasp dependency analyze task is available`() {
+    val result = buildProject(projectDir, "dependencyCheckAnalyze", "-m")
+    assertThat(result.output)
+        .contains(":dependencyCheckAnalyze SKIPPED")
+        .contains("SUCCESSFUL")
+  }
 
-    @TempDir
-    @JvmStatic
-    lateinit var projectDir: File
+  @Test
+  fun `The Owasp dependency check suppression file is copied into the project`() {
+    val suppressionFile = findFile(projectDir, "dependency-check-suppress-spring.xml")
+    assertThat(suppressionFile).exists()
+  }
 
-    var jarProcess: Process? = null
-
-    @BeforeAll
-    @JvmStatic
-    fun `Create and run project`() {
-      jarProcess = createAndRunJar(javaProjectDetails(projectDir))
-    }
-
-    @AfterAll
-    @JvmStatic
-    fun `End running jar`() {
-      jarProcess?.destroyForcibly()
-    }
-
+  @Test
+  fun `The gradle version dependency dependencyUpdates task is available`() {
+    val result = buildProject(projectDir, "dependencyUpdates", "-m")
+    assertThat(result.output)
+        .contains(":dependencyUpdates SKIPPED")
+        .contains("SUCCESSFUL")
   }
 
 }

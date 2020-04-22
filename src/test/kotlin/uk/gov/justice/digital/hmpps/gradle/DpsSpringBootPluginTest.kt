@@ -1,8 +1,8 @@
 package uk.gov.justice.digital.hmpps.gradle
 
+import com.github.benmanes.gradle.versions.VersionsPlugin
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.catchThrowable
 import org.assertj.core.groups.Tuple
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
@@ -15,10 +15,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.owasp.dependencycheck.gradle.DependencyCheckPlugin
+import org.owasp.dependencycheck.gradle.extension.DependencyCheckExtension
+import org.owasp.dependencycheck.reporting.ReportGenerator
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.buildinfo.BuildInfo
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 import java.time.LocalDate
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter.ISO_DATE
 
 class DpsSpringBootPluginTest {
@@ -33,28 +37,35 @@ class DpsSpringBootPluginTest {
   @Nested
   inner class Plugins {
 
+    // All of these tests throw an exception if they fail - hence no assertions
     @Test
     fun `Should apply the Spring Boot plugin`() {
-      val thrown = catchThrowable { project.plugins.getPlugin(SpringBootPlugin::class.java) }
-      assertThat(thrown).isNull()
+      project.plugins.getPlugin(SpringBootPlugin::class.java)
     }
 
     @Test
     fun `Should apply the Kotlin plugin`() {
-      val thrown = catchThrowable { project.plugins.getPlugin(KotlinPluginWrapper::class.java) }
-      assertThat(thrown).isNull()
+      project.plugins.getPlugin(KotlinPluginWrapper::class.java)
     }
 
     @Test
     fun `Should apply the Java plugin`() {
-      val thrown = catchThrowable { project.plugins.getPlugin(JavaPlugin::class.java) }
-      assertThat(thrown).isNull()
+      project.plugins.getPlugin(JavaPlugin::class.java)
     }
 
     @Test
     fun `Should apply the Spring Dependency plugin`() {
-      val thrown = catchThrowable { project.plugins.getPlugin(DependencyManagementPlugin::class.java) }
-      assertThat(thrown).isNull()
+      project.plugins.getPlugin(DependencyManagementPlugin::class.java)
+    }
+
+    @Test
+    fun `Should apply the Owasp Dependency check plugin`() {
+      project.plugins.getPlugin(DependencyCheckPlugin::class.java)
+    }
+
+    @Test
+    fun `Should apply the gradle versions check plugin`() {
+      project.plugins.getPlugin(VersionsPlugin::class.java)
     }
   }
 
@@ -117,7 +128,7 @@ class DpsSpringBootPluginTest {
     assertThat(properties.additional).extracting("operatingSystem").isNotNull()
     assertThat(properties.additional).extracting("machine").isNotNull()
 
-    assertThat(properties.time).isNotNull()
+    assertThat(LocalDate.ofInstant(properties.time, ZoneId.systemDefault())).isEqualTo(LocalDate.now())
 
     assertThat(properties.version).isEqualTo(LocalDate.now().format(ISO_DATE))
   }
@@ -127,6 +138,15 @@ class DpsSpringBootPluginTest {
     val manifestAttributes = (project.tasks.getByName("bootJar") as BootJar).manifest.attributes
 
     assertThat(manifestAttributes).extracting("Implementation-Version", "Implementation-Title").contains(project.version, project.name)
+  }
+
+  @Test
+  fun `Should apply owasp dependency check configuration`() {
+    val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
+    assertThat(extension.failBuildOnCVSS).isEqualTo(5f)
+    assertThat(extension.suppressionFiles).containsExactly("dependency-check-suppress-spring.xml")
+    assertThat(extension.format).isEqualTo(ReportGenerator.Format.ALL)
+    assertThat(extension.analyzers.assemblyEnabled).isFalse()
   }
 
 }

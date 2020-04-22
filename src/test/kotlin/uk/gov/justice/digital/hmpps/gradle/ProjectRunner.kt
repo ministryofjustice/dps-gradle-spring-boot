@@ -42,6 +42,14 @@ fun findJar(projectDir: File, projectName: String): File {
   }
 }
 
+fun findFile(projectDir: File, fileName: String): File {
+  return Files.walk(Paths.get(projectDir.absolutePath )).use { paths ->
+    paths.filter { path -> path.toString().contains(fileName) }
+        .findFirst()
+        .map { filePath -> filePath.toFile() }
+        .orElseThrow()
+  }
+}
 
 private fun createJar(projectDir: File, projectName: String): File {
   val result = buildProject(projectDir, "bootJar")
@@ -84,10 +92,10 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
   Files.writeString(settingsFile.toPath(), settingsScript)
 }
 
-private fun buildProject(projectDir: File, vararg task: String): BuildResult {
+fun buildProject(projectDir: File, vararg arguments: String): BuildResult {
   return GradleRunner.create()
       .withProjectDir(projectDir)
-      .withArguments(*task)
+      .withArguments(*arguments)
       .withPluginClasspath()
       .build()
 }
