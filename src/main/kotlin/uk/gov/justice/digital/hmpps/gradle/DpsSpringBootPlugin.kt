@@ -6,6 +6,7 @@ import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementConfigurer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.tasks.Copy
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.owasp.dependencycheck.gradle.DependencyCheckPlugin
@@ -27,16 +28,22 @@ class DpsSpringBootPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     project.group = "uk.gov.justice.digital.hmpps"
     project.version = getVersion()
+
     applyPlugins(project)
     applyRepositories(project)
     applyDependencyManagementBom(project)
+    addAgentDepsConfiguration(project)
+    createCopyAgentTask(project)
+
     setSpringBootInfo(project)
     setManifestAttributes(project)
     setDependencyCheckConfig(project)
     addDependencyCheckSuppressionFile(project)
     rejectUnstableDependencyUpdates(project)
-    addDependencies(project)
     setKotlinCompileJvmVersion(project)
+
+    addDependencies(project)
+
     project.afterEvaluate {
       checkOverriddenSuppressionsFile(project)
     }
@@ -80,8 +87,11 @@ class DpsSpringBootPlugin : Plugin<Project> {
   private fun addDependencies(project: Project) {
     project.dependencies.add("implementation", "org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     project.dependencies.add("implementation", "org.jetbrains.kotlin:kotlin-reflect")
+
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
+
+    project.dependencies.add("agentDeps", "com.microsoft.azure:applicationinsights-agent:2.6.0")
   }
 
   private fun setSpringBootInfo(project: Project) {
@@ -151,4 +161,17 @@ class DpsSpringBootPlugin : Plugin<Project> {
       )
     }
   }
+
+  private fun addAgentDepsConfiguration(project: Project) {
+    project.configurations.create("agentDeps").isTransitive = false
+  }
+
+  private fun createCopyAgentTask(project: Project) {
+    val copyAgentTask = project.tasks.register("copyAgent", Copy::class.java) {
+      it.from(project.configurations.getByName("agentDeps"))
+      it.into("${project.buildDir}/libs")
+    }
+    project.tasks.getByName("assemble").dependsOn(copyAgentTask)
+  }
+
 }
