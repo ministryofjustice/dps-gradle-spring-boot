@@ -29,7 +29,7 @@ Any vulnerabilities introduced by this plugin that have been mitigated can be su
 
 ### Additional Suppressions
 
-If you are using this plugin and need to additional suppressions for vulnerabilities introduced by your dependencies then you can specify additional suppression xmls in your Gradle build file:
+If you are using this plugin and need additional suppressions for vulnerabilities introduced by your dependencies then you can specify additional suppression xmls in your Gradle build file:
 ```
 dependencyCheck {
   suppressionFiles.add("<your-suppresion-file>.xml")

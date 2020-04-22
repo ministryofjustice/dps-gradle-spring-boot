@@ -28,7 +28,7 @@ class DependencySuppressionFuncTest {
           }
            
           dependencies {
-            implementation("org.springframework.boot:spring-boot-starter-security")   // CVEs from this lib are suppressed in the plugin's file DEPENDENCY_SUPPRESSION_FILENAME
+            implementation("org.springframework.boot:spring-boot-starter-security")   // CVEs from this lib are suppressed in the plugin's DEPENDENCY_SUPPRESSION_FILENAME
             implementation("com.nimbusds:nimbus-jose-jwt:7.8")                        // CVEs from this lib are suppressed in ADDITIONAL_SUPPRESSION_FILENAME
           }
           

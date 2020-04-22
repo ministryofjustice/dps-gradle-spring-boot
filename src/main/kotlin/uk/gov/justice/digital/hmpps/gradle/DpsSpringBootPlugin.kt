@@ -145,7 +145,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
     if (extension.suppressionFiles.contains(DEPENDENCY_SUPPRESSION_FILENAME).not()) {
       project.logger.warn("""
         
-        WARNING: The default dependency checker suppression file has not been applied. Did you accidentally set suppressionFiles = "<file>" instead of suppressionFiles.add("<file>") in your Gradle build script?
+        WARNING: The default dependency checker suppression file has not been applied. Did you accidentally set suppressionFiles = listOf("<file>") instead of suppressionFiles.add("<file>") in your Gradle build script?
         
       """.trimIndent()
       )
