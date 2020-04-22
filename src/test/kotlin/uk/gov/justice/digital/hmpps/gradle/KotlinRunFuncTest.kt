@@ -69,22 +69,6 @@ fun kotlinProjectDetails(projectDir: File) =
           plugins {
             id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
           }
-//          tasks {
-//            val agentDeps by configurations.register("agentDeps") {
-//              dependencies {
-//                "agentDeps"("com.microsoft.azure:applicationinsights-agent:2.6.0") {
-//                  isTransitive = false
-//                }
-//              }
-//            }
-//
-//            val copyAgent by registering(Copy::class) {
-//              from(agentDeps)
-//              into("build/libs")
-//            }
-//
-//            assemble { dependsOn(copyAgent) }
-//          }
         """.trimIndent(),
         settingsFileName = "settings.gradle.kts"
     )
