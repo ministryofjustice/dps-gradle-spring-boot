@@ -21,3 +21,28 @@ pluginManagement {
 
 You should find that the project compiles because the dps gradle plugin has imported the Spring Boot plugin on your behalf
 
+## OWASP Dependency Check and Suppressions
+
+The plugin `org.owasp.dependencycheck` is applied by this plugin.  It has a task `dependencyCheckAnalyze` which is used to check for vulnerabilities in dependencies.
+
+Any vulnerabilities introduced by this plugin that have been mitigated can be suppressed in file `src/main/resources/dps-gradle-spring-boot-suppressions.xml`.  See the OWASP dependency check plugin's homepage for further details.
+
+### Additional Suppressions
+
+If you are using this plugin and need additional suppressions for vulnerabilities introduced by your dependencies then you can specify additional suppression xmls in your Gradle build file:
+```
+dependencyCheck {
+  suppressionFiles.add("<your-suppresion-file>.xml")
+}
+```
+
+***WARNING***
+
+It is possible to overwrite the `suppressionFiles` list like this:
+```
+// This removes the plugin's default suppression file
+dependencyCheck {
+  suppressionFiles = listOf("<your-suppresion-file>.xml")
+}
+```
+ This will remove the suppressions file supplied by this plugin which is probably not the intention.  

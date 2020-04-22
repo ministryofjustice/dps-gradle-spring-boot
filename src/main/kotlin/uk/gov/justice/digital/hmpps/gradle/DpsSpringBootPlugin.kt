@@ -14,7 +14,6 @@ import org.owasp.dependencycheck.reporting.ReportGenerator
 import org.springframework.boot.gradle.dsl.SpringBootExtension
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
-import java.io.File
 import java.net.InetAddress
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -38,6 +37,9 @@ class DpsSpringBootPlugin : Plugin<Project> {
     rejectUnstableDependencyUpdates(project)
     addDependencies(project)
     setKotlinCompileJvmVersion(project)
+    project.afterEvaluate {
+      checkOverriddenSuppressionsFile(project)
+    }
   }
 
   private fun getVersion(): String {
@@ -109,15 +111,15 @@ class DpsSpringBootPlugin : Plugin<Project> {
   private fun setDependencyCheckConfig(project: Project) {
     val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
     extension.failBuildOnCVSS = 5f
-    extension.suppressionFiles = listOf("dependency-check-suppress-spring.xml")
+    extension.suppressionFiles.add(DEPENDENCY_SUPPRESSION_FILENAME)
     extension.format = ReportGenerator.Format.ALL
     extension.analyzers.assemblyEnabled = false
   }
 
   private fun addDependencyCheckSuppressionFile(project: Project) {
-    val file = Paths.get(javaClass.classLoader.getResource("dependency-check-suppress-spring.xml")?.toURI() ?: File("").toURI())
-    val newFile = Paths.get(project.projectDir.absolutePath + "/dependency-check-suppress-spring.xml")
-    Files.copy(file, newFile, StandardCopyOption.REPLACE_EXISTING)
+    val inputStream = javaClass.classLoader.getResourceAsStream(DEPENDENCY_SUPPRESSION_FILENAME)
+    val newFile = Paths.get(project.projectDir.absolutePath + "/$DEPENDENCY_SUPPRESSION_FILENAME")
+    Files.copy(inputStream, newFile, StandardCopyOption.REPLACE_EXISTING)
   }
 
   private fun rejectUnstableDependencyUpdates(project: Project) {
@@ -138,4 +140,15 @@ class DpsSpringBootPlugin : Plugin<Project> {
     return isStable(version).not()
   }
 
+  private fun checkOverriddenSuppressionsFile(project: Project) {
+    val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
+    if (extension.suppressionFiles.contains(DEPENDENCY_SUPPRESSION_FILENAME).not()) {
+      project.logger.warn("""
+        
+        WARNING: The default dependency checker suppression file has not been applied. Did you accidentally set suppressionFiles = listOf("<file>") instead of suppressionFiles.add("<file>") in your Gradle build script?
+        
+      """.trimIndent()
+      )
+    }
+  }
 }
