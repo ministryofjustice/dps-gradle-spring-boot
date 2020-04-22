@@ -39,9 +39,9 @@ fun getDependencyVersion(projectDir: File, dependency: String): String {
   return version
 }
 
-fun findJar(projectDir: File, projectName: String): File {
+fun findJar(projectDir: File, partialJarName: String): File {
   return Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
-    paths.filter { path -> path.toString().contains(projectName) }
+    paths.filter { path -> path.toString().contains(partialJarName) }
         .findFirst()
         .map { jarPath -> jarPath.toFile() }
         .orElseThrow()
@@ -102,7 +102,7 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
 fun buildProject(projectDir: File, vararg arguments: String): BuildResult {
   return GradleRunner.create()
       .withProjectDir(projectDir)
-      .withArguments(*arguments)
+      .withArguments("clean", *arguments)
       .withPluginClasspath()
       .build()
 }

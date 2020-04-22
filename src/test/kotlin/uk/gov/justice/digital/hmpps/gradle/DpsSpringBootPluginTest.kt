@@ -8,6 +8,7 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaPluginConvention
+import org.gradle.api.tasks.Copy
 import org.gradle.internal.extensibility.DefaultConvention
 import org.gradle.testfixtures.ProjectBuilder
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
@@ -147,6 +148,29 @@ class DpsSpringBootPluginTest {
     assertThat(extension.suppressionFiles).containsExactly(DEPENDENCY_SUPPRESSION_FILENAME)
     assertThat(extension.format).isEqualTo(ReportGenerator.Format.ALL)
     assertThat(extension.analyzers.assemblyEnabled).isFalse()
+  }
+
+  @Nested
+  inner class AgentDeps {
+    // The test fails if an exception is thrown
+    @Test
+    fun `Should create agentDeps configuration`() {
+      project.configurations.getByName("agentDeps")
+    }
+
+    @Test
+    fun `Should create copyAgent task`() {
+      val copyAgentTask = project.tasks.getByName("copyAgent") as Copy
+      assertThat(copyAgentTask.destinationDir.absolutePath).contains("lib")
+      assertThat(copyAgentTask.source.singleFile.name).contains("applicationinsights")
+    }
+
+    @Test
+    fun `assemble task should depend on copyAgent task`() {
+      val assembleTask = project.tasks.getByName("assemble")
+      val dependsOn = assembleTask.taskDependencies.getDependencies(assembleTask)
+      assertThat(dependsOn).extracting("name").contains("copyAgent")
+    }
   }
 
 }
