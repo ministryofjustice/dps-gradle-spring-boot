@@ -43,7 +43,6 @@ class DpsSpringBootPlugin : Plugin<Project> {
     addDependencyCheckSuppressionFile(project)
     rejectUnstableDependencyUpdates(project)
     setKotlinCompileJvmVersion(project)
-    excludeJunit4(project)
 
     addDependencies(project)
 
@@ -179,10 +178,6 @@ class DpsSpringBootPlugin : Plugin<Project> {
       it.into("${project.buildDir}/libs")
     }
     project.tasks.getByName("assemble").dependsOn(copyAgentTask)
-  }
-
-  private fun excludeJunit4(project: Project) {
-    project.configurations.getByName("testImplementation").exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
   }
 
 }
