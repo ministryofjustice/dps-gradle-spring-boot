@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   dps: ministryofjustice/dps@1.2.1
+  owasp: entur/owasp@0.0.10
 
 jobs:
   validate:
@@ -36,3 +37,15 @@ workflows:
           filters:
             tags:
               ignore: /.*/
+
+  scheduled:
+    triggers:
+      - schedule:
+          cron: "0 7 * * 1-5"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - owasp/gradle_owasp_dependency_check:
+          executor: validator
