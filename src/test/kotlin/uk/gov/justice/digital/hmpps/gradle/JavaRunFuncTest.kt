@@ -44,6 +44,12 @@ class JavaRunFuncTest {
     assertThatJson(infoResponse).node("build.by").isEqualTo(System.getProperty("user.name"))
   }
 
+  @Test
+  fun `Spring Boot info endpoint contains git info`() {
+    val infoResponse = URL("http://localhost:8080/actuator/info").readText()
+    assertThatJson(infoResponse).node("git.branch").isEqualTo("master")
+  }
+
 }
 
 fun javaProjectDetails(projectDir: File) =

@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.gradle
 
 import com.github.benmanes.gradle.versions.VersionsPlugin
+import com.gorylenko.GitPropertiesPlugin
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.groups.Tuple
@@ -67,6 +68,11 @@ class DpsSpringBootPluginTest {
     @Test
     fun `Should apply the gradle versions check plugin`() {
       project.plugins.getPlugin(VersionsPlugin::class.java)
+    }
+
+    @Test
+    fun `Should apply the gradle git properties plugin`() {
+      project.plugins.getPlugin(GitPropertiesPlugin::class.java)
     }
   }
 

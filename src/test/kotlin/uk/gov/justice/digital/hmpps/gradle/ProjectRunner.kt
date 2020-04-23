@@ -1,6 +1,8 @@
 package uk.gov.justice.digital.hmpps.gradle
 
 import org.assertj.core.api.Assertions.assertThat
+import org.eclipse.jgit.api.Git
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
@@ -29,6 +31,7 @@ fun makeProject(projectDetails: ProjectDetails) {
     makeBuildScript(projectDir, buildScriptName, buildScript)
     makeSrcFile(projectDir, packageDir, mainClassName, mainClass)
     makeSettingsScript(projectDir, settingsFileName, projectName)
+    makeGitRepo(projectDir)
   }
 }
 
@@ -49,7 +52,7 @@ fun findJar(projectDir: File, partialJarName: String): File {
 }
 
 fun findFile(projectDir: File, fileName: String): File {
-  return Files.walk(Paths.get(projectDir.absolutePath )).use { paths ->
+  return Files.walk(Paths.get(projectDir.absolutePath)).use { paths ->
     paths.filter { path -> path.toString().contains(fileName) }
         .findFirst()
         .map { filePath -> filePath.toFile() }
@@ -97,6 +100,14 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
         rootProject.name = "$projectName"
       """.trimIndent()
   Files.writeString(settingsFile.toPath(), settingsScript)
+}
+
+private fun makeGitRepo(projectDir: File) {
+  val repo = FileRepositoryBuilder.create(File(projectDir, ".git"))
+  repo.create()
+  val git = Git(repo)
+  git.add().addFilepattern("*").call()
+  git.commit().setMessage("Commit everything").call()
 }
 
 fun buildProject(projectDir: File, vararg arguments: String): BuildResult {

@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.gradle
 
 import com.github.benmanes.gradle.versions.VersionsPlugin
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import com.gorylenko.GitPropertiesPlugin
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementConfigurer
 import org.gradle.api.Plugin
@@ -60,6 +61,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.plugins.apply(DependencyManagementPlugin::class.java)
     project.plugins.apply(DependencyCheckPlugin::class.java)
     project.plugins.apply(VersionsPlugin::class.java)
+    project.plugins.apply(GitPropertiesPlugin::class.java)
   }
 
   private fun applyRepositories(project: Project) {
