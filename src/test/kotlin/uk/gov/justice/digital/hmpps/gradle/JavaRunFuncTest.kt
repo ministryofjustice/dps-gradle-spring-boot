@@ -78,5 +78,19 @@ fun javaProjectDetails(projectDir: File) =
             id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
           }
         """.trimIndent(),
-        settingsFileName = "settings.gradle"
+        settingsFileName = "settings.gradle",
+        testClass = """
+          package uk.gov.justice.digital.hmpps.app;
+          
+          import org.junit.jupiter.api.Test;
+          
+          import static org.assertj.core.api.Assertions.assertThat;
+          
+          public class ApplicationTest {
+              @Test
+              public void aTest() {
+                  assertThat("anything").isEqualTo("anything");
+              }
+          }
+        """.trimIndent()
     )

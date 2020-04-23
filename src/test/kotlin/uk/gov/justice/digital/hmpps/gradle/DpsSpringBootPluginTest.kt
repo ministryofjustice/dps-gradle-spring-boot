@@ -108,6 +108,15 @@ class DpsSpringBootPluginTest {
               Tuple.tuple("org.springframework.boot", "spring-boot-starter-actuator")
           )
     }
+
+    @Test
+    fun `Should apply Spring Boot Test`() {
+      assertThat(project.configurations.getByName("testImplementation").dependencies)
+          .extracting("group", "name")
+          .contains(
+              Tuple.tuple("org.springframework.boot", "spring-boot-starter-test")
+          )
+    }
   }
 
   @Nested

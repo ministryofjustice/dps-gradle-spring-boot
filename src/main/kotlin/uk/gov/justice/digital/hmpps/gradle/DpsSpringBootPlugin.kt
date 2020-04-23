@@ -42,6 +42,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
     addDependencyCheckSuppressionFile(project)
     rejectUnstableDependencyUpdates(project)
     setKotlinCompileJvmVersion(project)
+    excludeJunit4(project)
 
     addDependencies(project)
 
@@ -92,6 +93,8 @@ class DpsSpringBootPlugin : Plugin<Project> {
 
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
+
+    project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test")
 
     project.dependencies.add("agentDeps", "com.microsoft.azure:applicationinsights-agent:2.6.0")
   }
@@ -174,6 +177,10 @@ class DpsSpringBootPlugin : Plugin<Project> {
       it.into("${project.buildDir}/libs")
     }
     project.tasks.getByName("assemble").dependsOn(copyAgentTask)
+  }
+
+  private fun excludeJunit4(project: Project) {
+    project.configurations.getByName("testImplementation").exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
   }
 
 }

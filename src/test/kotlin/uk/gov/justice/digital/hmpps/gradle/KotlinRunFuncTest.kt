@@ -76,5 +76,18 @@ fun kotlinProjectDetails(projectDir: File) =
             id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
           }
         """.trimIndent(),
-        settingsFileName = "settings.gradle.kts"
+        settingsFileName = "settings.gradle.kts",
+        testClass = """
+          package uk.gov.justice.digital.hmpps.app
+          
+          import org.assertj.core.api.Assertions.assertThat
+          import org.junit.jupiter.api.Test
+          
+          class ApplicationTest {
+              @Test
+              fun `A Test`() {
+                  assertThat("anything").isEqualTo("anything")
+              }
+          }
+        """.trimIndent()
     )
