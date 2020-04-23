@@ -133,11 +133,22 @@ class DpsSpringBootPluginTest {
     }
 
     @Test
-    fun `Should apply Spring Boot Test`() {
-      assertThat(project.configurations.getByName("testImplementation").dependencies)
-          .extracting("group", "name")
+    fun `Should apply miscellaneous dependencies`() {
+      assertThat(project.configurations.getByName("implementation").dependencies)
+          .extracting("group", "name", "version")
           .contains(
-              Tuple.tuple("org.springframework.boot", "spring-boot-starter-test")
+              Tuple.tuple("com.github.timpeeters", "spring-boot-graceful-shutdown", "2.2.1"),
+              Tuple.tuple("com.fasterxml.jackson.module", "jackson-module-kotlin", null)
+          )
+    }
+
+    @Test
+    fun `Should apply Test Dependencies`() {
+      assertThat(project.configurations.getByName("testImplementation").dependencies)
+          .extracting("group", "name", "version")
+          .contains(
+              Tuple.tuple("org.springframework.boot", "spring-boot-starter-test", null),
+              Tuple.tuple("com.nhaarman.mockitokotlin2", "mockito-kotlin", "2.2.0")
           )
     }
   }

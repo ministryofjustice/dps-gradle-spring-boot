@@ -102,8 +102,12 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-spring-boot-starter:2.6.0")
     project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-logging-logback:2.6.0")
 
+    project.dependencies.add("implementation", "com.github.timpeeters:spring-boot-graceful-shutdown:2.2.1")
+    project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin")
+
     val springBootTest = project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test") as ExternalModuleDependency
     springBootTest.exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
+    project.dependencies.add("testImplementation", "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 
     project.dependencies.add("agentDeps", "com.microsoft.azure:applicationinsights-agent:2.6.0")
   }
