@@ -7,6 +7,7 @@ import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementConfigurer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.ExternalModuleDependency
 import org.gradle.api.tasks.Copy
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -42,7 +43,6 @@ class DpsSpringBootPlugin : Plugin<Project> {
     addDependencyCheckSuppressionFile(project)
     rejectUnstableDependencyUpdates(project)
     setKotlinCompileJvmVersion(project)
-    excludeJunit4(project)
 
     addDependencies(project)
 
@@ -94,7 +94,8 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
 
-    project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test")
+    val springBootTest = project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test") as ExternalModuleDependency
+    springBootTest.exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
 
     project.dependencies.add("agentDeps", "com.microsoft.azure:applicationinsights-agent:2.6.0")
   }
@@ -177,10 +178,6 @@ class DpsSpringBootPlugin : Plugin<Project> {
       it.into("${project.buildDir}/libs")
     }
     project.tasks.getByName("assemble").dependsOn(copyAgentTask)
-  }
-
-  private fun excludeJunit4(project: Project) {
-    project.configurations.getByName("testImplementation").exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
   }
 
 }

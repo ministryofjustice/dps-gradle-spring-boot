@@ -21,6 +21,20 @@ pluginManagement {
 
 You should find that the project compiles because the dps gradle plugin has imported the Spring Boot plugin on your behalf
 
+## JUnit 4
+
+We have deliberately excluded the transitive JUnit 4 depdendency from Spring Boot Test as JUnit 5 is preferred. Ideally teams should be converting JUnit 4 tests to JUnit 5 as part of their technical debt paydown.
+
+### But I *really* need JUnit 4
+
+If you must use JUnit 4 in your project then add the following to your Gradle build file's dependencies closure:
+
+```
+// Adjust the version number as appropriate
+testImplementation("org.junit.vintage:junit-vintage-engine:5.6.2")
+```
+
+
 ## OWASP Dependency Check and Suppressions
 
 The plugin `org.owasp.dependencycheck` is applied by this plugin.  It has a task `dependencyCheckAnalyze` which is used to check for vulnerabilities in dependencies.
