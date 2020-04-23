@@ -110,6 +110,17 @@ class DpsSpringBootPluginTest {
     }
 
     @Test
+    fun `Should apply springfox libraries`() {
+      assertThat(project.configurations.getByName("implementation").dependencies)
+          .extracting("group", "name", "version")
+          .contains(
+              Tuple.tuple("io.springfox", "springfox-swagger2", "2.9.2"),
+              Tuple.tuple("io.springfox", "springfox-swagger-ui", "2.9.2"),
+              Tuple.tuple("io.springfox", "springfox-bean-validators", "2.9.2")
+          )
+    }
+
+    @Test
     fun `Should apply Spring Boot Test`() {
       assertThat(project.configurations.getByName("testImplementation").dependencies)
           .extracting("group", "name")

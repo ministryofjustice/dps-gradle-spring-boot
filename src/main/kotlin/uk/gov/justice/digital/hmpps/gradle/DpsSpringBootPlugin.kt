@@ -94,6 +94,10 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
 
+    project.dependencies.add("implementation", "io.springfox:springfox-swagger2:2.9.2")
+    project.dependencies.add("implementation", "io.springfox:springfox-swagger-ui:2.9.2")
+    project.dependencies.add("implementation", "io.springfox:springfox-bean-validators:2.9.2")
+
     val springBootTest = project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test") as ExternalModuleDependency
     springBootTest.exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
 

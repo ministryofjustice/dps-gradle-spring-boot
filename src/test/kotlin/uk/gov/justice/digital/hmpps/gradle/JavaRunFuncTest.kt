@@ -50,6 +50,12 @@ class JavaRunFuncTest {
     assertThatJson(infoResponse).node("git.branch").isEqualTo("master")
   }
 
+  // The fact the URL request didn't throw an exception indicates the app is serving up swagger docs
+  @Test
+  fun `Swagger documentation UI should be available`() {
+    URL("http://localhost:8080/swagger-ui.html").readText()
+  }
+
 }
 
 fun javaProjectDetails(projectDir: File) =
