@@ -44,13 +44,14 @@ dependencies {
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.9.RELEASE@pom")
   implementation("org.owasp:dependency-check-gradle:5.3.2.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.28.0")
+  implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.2.2")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
   testImplementation("org.mockito:mockito-junit-jupiter:3.3.3")
   testImplementation("org.assertj:assertj-core:3.15.0")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.17.0")
   testImplementation("com.google.code.gson:gson:2.8.6")
-
+  testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.7.0.202003110725-r")
 }
 
 gradlePlugin {

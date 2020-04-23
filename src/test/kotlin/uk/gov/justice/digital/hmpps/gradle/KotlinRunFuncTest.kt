@@ -43,6 +43,12 @@ class KotlinRunFuncTest {
     val infoResponse = URL("http://localhost:8080/actuator/info").readText()
     assertThatJson(infoResponse).node("build.by").isEqualTo(System.getProperty("user.name"))
   }
+
+  @Test
+  fun `Spring Boot info endpoint contains git info`() {
+    val infoResponse = URL("http://localhost:8080/actuator/info").readText()
+    assertThatJson(infoResponse).node("git.branch").isEqualTo("master")
+  }
 }
 
 fun kotlinProjectDetails(projectDir: File) =
@@ -70,5 +76,18 @@ fun kotlinProjectDetails(projectDir: File) =
             id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
           }
         """.trimIndent(),
-        settingsFileName = "settings.gradle.kts"
+        settingsFileName = "settings.gradle.kts",
+        testClass = """
+          package uk.gov.justice.digital.hmpps.app
+          
+          import org.assertj.core.api.Assertions.assertThat
+          import org.junit.jupiter.api.Test
+          
+          class ApplicationTest {
+              @Test
+              fun `A Test`() {
+                  assertThat("anything").isEqualTo("anything")
+              }
+          }
+        """.trimIndent()
     )

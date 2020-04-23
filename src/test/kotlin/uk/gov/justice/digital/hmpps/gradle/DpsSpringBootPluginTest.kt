@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.gradle
 
 import com.github.benmanes.gradle.versions.VersionsPlugin
+import com.gorylenko.GitPropertiesPlugin
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.groups.Tuple
@@ -68,6 +69,11 @@ class DpsSpringBootPluginTest {
     fun `Should apply the gradle versions check plugin`() {
       project.plugins.getPlugin(VersionsPlugin::class.java)
     }
+
+    @Test
+    fun `Should apply the gradle git properties plugin`() {
+      project.plugins.getPlugin(GitPropertiesPlugin::class.java)
+    }
   }
 
   @Test
@@ -100,6 +106,15 @@ class DpsSpringBootPluginTest {
           .contains(
               Tuple.tuple("org.springframework.boot", "spring-boot-starter-web"),
               Tuple.tuple("org.springframework.boot", "spring-boot-starter-actuator")
+          )
+    }
+
+    @Test
+    fun `Should apply Spring Boot Test`() {
+      assertThat(project.configurations.getByName("testImplementation").dependencies)
+          .extracting("group", "name")
+          .contains(
+              Tuple.tuple("org.springframework.boot", "spring-boot-starter-test")
           )
     }
   }

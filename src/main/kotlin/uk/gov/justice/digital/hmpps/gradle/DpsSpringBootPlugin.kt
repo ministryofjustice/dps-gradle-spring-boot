@@ -2,10 +2,12 @@ package uk.gov.justice.digital.hmpps.gradle
 
 import com.github.benmanes.gradle.versions.VersionsPlugin
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import com.gorylenko.GitPropertiesPlugin
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementConfigurer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.ExternalModuleDependency
 import org.gradle.api.tasks.Copy
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -60,6 +62,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.plugins.apply(DependencyManagementPlugin::class.java)
     project.plugins.apply(DependencyCheckPlugin::class.java)
     project.plugins.apply(VersionsPlugin::class.java)
+    project.plugins.apply(GitPropertiesPlugin::class.java)
   }
 
   private fun applyRepositories(project: Project) {
@@ -90,6 +93,9 @@ class DpsSpringBootPlugin : Plugin<Project> {
 
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
+
+    val springBootTest = project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test") as ExternalModuleDependency
+    springBootTest.exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
 
     project.dependencies.add("agentDeps", "com.microsoft.azure:applicationinsights-agent:2.6.0")
   }
