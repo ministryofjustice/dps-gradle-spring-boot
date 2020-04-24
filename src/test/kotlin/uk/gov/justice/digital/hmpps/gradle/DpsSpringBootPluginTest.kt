@@ -4,6 +4,7 @@ import com.github.benmanes.gradle.versions.VersionsPlugin
 import com.gorylenko.GitPropertiesPlugin
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.tuple
 import org.assertj.core.groups.Tuple
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
@@ -78,7 +79,9 @@ class DpsSpringBootPluginTest {
 
   @Test
   fun `Should apply maven repositories`() {
-    assertThat(project.repositories).extracting("name").containsExactlyInAnyOrder("MavenLocal", "MavenRepo")
+    assertThat(project.repositories)
+        .extracting<String> { it.name }
+        .containsExactlyInAnyOrder("MavenLocal", "MavenRepo")
   }
 
   @Test
@@ -92,49 +95,49 @@ class DpsSpringBootPluginTest {
     @Test
     fun `Should apply Kotlin standard libraries`() {
       assertThat(project.configurations.getByName("implementation").dependencies)
-          .extracting("group", "name")
+          .extracting<Tuple> { tuple(it.group, it.name) }
           .contains(
-              Tuple.tuple("org.jetbrains.kotlin", "kotlin-stdlib-jdk8"),
-              Tuple.tuple("org.jetbrains.kotlin", "kotlin-reflect")
+              tuple("org.jetbrains.kotlin", "kotlin-stdlib-jdk8"),
+              tuple("org.jetbrains.kotlin", "kotlin-reflect")
           )
     }
 
     @Test
     fun `Should apply Spring Boot standard libraries`() {
       assertThat(project.configurations.getByName("implementation").dependencies)
-          .extracting("group", "name")
+          .extracting<Tuple> { tuple(it.group, it.name) }
           .contains(
-              Tuple.tuple("org.springframework.boot", "spring-boot-starter-web"),
-              Tuple.tuple("org.springframework.boot", "spring-boot-starter-actuator")
+              tuple("org.springframework.boot", "spring-boot-starter-web"),
+              tuple("org.springframework.boot", "spring-boot-starter-actuator")
           )
     }
 
     @Test
     fun `Should apply logging libraries`() {
       assertThat(project.configurations.getByName("implementation").dependencies)
-          .extracting("group", "name", "version")
+          .extracting<Tuple> { tuple(it.group, it.name, it.version) }
           .contains(
-              Tuple.tuple("net.logstash.logback", "logstash-logback-encoder", "6.3"),
-              Tuple.tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter", "2.6.0"),
-              Tuple.tuple("com.microsoft.azure", "applicationinsights-logging-logback", "2.6.0")
+              tuple("net.logstash.logback", "logstash-logback-encoder", "6.3"),
+              tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter", "2.6.0"),
+              tuple("com.microsoft.azure", "applicationinsights-logging-logback", "2.6.0")
           )
     }
 
     @Test
     fun `Should apply miscellaneous dependencies`() {
       assertThat(project.configurations.getByName("implementation").dependencies)
-          .extracting("group", "name", "version")
+          .extracting<Tuple> { tuple(it.group, it.name, it.version) }
           .contains(
-              Tuple.tuple("com.github.timpeeters", "spring-boot-graceful-shutdown", "2.2.1"),
-              Tuple.tuple("com.fasterxml.jackson.module", "jackson-module-kotlin", null),
-              Tuple.tuple("com.google.guava", "guava", "29.0-jre")
+              tuple("com.github.timpeeters", "spring-boot-graceful-shutdown", "2.2.1"),
+              tuple("com.fasterxml.jackson.module", "jackson-module-kotlin", null),
+              tuple("com.google.guava", "guava", "29.0-jre")
           )
     }
 
     @Test
     fun `Should apply Test Dependencies`() {
       assertThat(project.configurations.getByName("testImplementation").dependencies)
-          .extracting("group", "name", "version")
+          .extracting<Tuple> { tuple(it.group, it.name, it.version) }
           .contains(
               Tuple.tuple("org.springframework.boot", "spring-boot-starter-test", null),
               Tuple.tuple("com.nhaarman.mockitokotlin2", "mockito-kotlin", "2.2.0")
@@ -207,7 +210,7 @@ class DpsSpringBootPluginTest {
     fun `assemble task should depend on copyAgent task`() {
       val assembleTask = project.tasks.getByName("assemble")
       val dependsOn = assembleTask.taskDependencies.getDependencies(assembleTask)
-      assertThat(dependsOn).extracting("name").contains("copyAgent")
+      assertThat(dependsOn).extracting<String> { it.name}.contains("copyAgent")
     }
   }
 
