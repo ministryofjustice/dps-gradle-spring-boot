@@ -100,7 +100,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
 
     project.dependencies.add("implementation", "com.github.timpeeters:spring-boot-graceful-shutdown:2.2.1")
     project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin")
-    project.dependencies.add("implementation", "com.google.guava:guava:29.0-jre)") // This is only required because the version pulled in a as transitive dependency has CVE vulnerabilities
+    project.dependencies.add("implementation", "com.google.guava:guava:29.0-jre") // This is only required because the version pulled in a as transitive dependency has CVE vulnerabilities
 
     val springBootTest = project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test") as ExternalModuleDependency
     springBootTest.exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
