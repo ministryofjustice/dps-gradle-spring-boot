@@ -79,4 +79,3 @@ You can run the test with command:
 ./gradlew test --tests uk.gov.justice.digital.hmpps.gradle.DependencyUpdatesFuncTest
 ```
 and check the report generated at `build/dependencyUpdates/projectsUsingPlugin/report.txt`
-``
