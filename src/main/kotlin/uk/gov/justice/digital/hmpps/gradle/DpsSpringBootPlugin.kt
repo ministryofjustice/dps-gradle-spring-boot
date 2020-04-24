@@ -94,10 +94,6 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
 
-    project.dependencies.add("implementation", "io.springfox:springfox-swagger2:2.9.2")
-    project.dependencies.add("implementation", "io.springfox:springfox-swagger-ui:2.9.2")
-    project.dependencies.add("implementation", "io.springfox:springfox-bean-validators:2.9.2")
-
     project.dependencies.add("implementation", "net.logstash.logback:logstash-logback-encoder:6.3")
     project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-spring-boot-starter:2.6.0")
     project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-logging-logback:2.6.0")

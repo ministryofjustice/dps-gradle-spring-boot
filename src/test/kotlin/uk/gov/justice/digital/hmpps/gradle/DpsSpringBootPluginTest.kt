@@ -110,26 +110,14 @@ class DpsSpringBootPluginTest {
     }
 
     @Test
-    fun `Should apply springfox libraries`() {
+    fun `Should apply logging libraries`() {
       assertThat(project.configurations.getByName("implementation").dependencies)
           .extracting("group", "name", "version")
           .contains(
-              Tuple.tuple("io.springfox", "springfox-swagger2", "2.9.2"),
-              Tuple.tuple("io.springfox", "springfox-swagger-ui", "2.9.2"),
-              Tuple.tuple("io.springfox", "springfox-bean-validators", "2.9.2")
+              Tuple.tuple("net.logstash.logback", "logstash-logback-encoder", "6.3"),
+              Tuple.tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter", "2.6.0"),
+              Tuple.tuple("com.microsoft.azure", "applicationinsights-logging-logback", "2.6.0")
           )
-
-      @Test
-      fun `Should apply logging libraries`() {
-        assertThat(project.configurations.getByName("implementation").dependencies)
-            .extracting("group", "name", "version")
-            .contains(
-                Tuple.tuple("net.logstash.logback", "logstash-logback-encoder", "6.3"),
-                Tuple.tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter", "2.6.0"),
-                Tuple.tuple("com.microsoft.azure", "applicationinsights-logging-logback", "2.6.0")
-            )
-      }
-
     }
 
     @Test
