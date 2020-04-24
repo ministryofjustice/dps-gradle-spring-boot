@@ -2,6 +2,15 @@ version: 2.1
 
 orbs:
   dps: ministryofjustice/dps@1.2.1
+  owasp: entur/owasp@0.0.10
+
+executors:
+  validator:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    environment:
+      _JAVA_OPTIONS: -Xmx256m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:ParallelGCThreads=2 -Djava.util.concurrent.ForkJoinPool.common.parallelism=2 -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs=-XX:+UseContainerSupport
+    working_directory: ~/app
 
 jobs:
   validate:
@@ -36,3 +45,15 @@ workflows:
           filters:
             tags:
               ignore: /.*/
+
+  scheduled:
+    triggers:
+      - schedule:
+          cron: "0 7 * * 1-5"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - owasp/gradle_owasp_dependency_check:
+          executor: validator
