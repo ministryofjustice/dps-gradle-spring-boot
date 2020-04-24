@@ -34,7 +34,6 @@ If you must use JUnit 4 in your project then add the following to your Gradle bu
 testImplementation("org.junit.vintage:junit-vintage-engine:5.6.2")
 ```
 
-
 ## OWASP Dependency Check and Suppressions
 
 The plugin `org.owasp.dependencycheck` is applied by this plugin.  It has a task `dependencyCheckAnalyze` which is used to check for vulnerabilities in dependencies.
@@ -59,4 +58,25 @@ dependencyCheck {
   suppressionFiles = listOf("<your-suppresion-file>.xml")
 }
 ```
- This will remove the suppressions file supplied by this plugin which is probably not the intention.  
+This will remove the suppressions file supplied by this plugin which is probably not the intention.
+
+## Dependency Update Checks
+
+The plugin `com.github.ben-manes.versions` has task `dependencyUpdates` which checks the main Gradle build file for out of date versions.
+
+However, we also need to know if dependencies applied by the DPS plugin are up to date.
+
+### How to check if dependencies applied by the DPS plugin are up to date
+
+There is a test in class `DependencyUpdatesFuncTest` which:
+* builds a sample project
+* applies the DPS plugin
+* runs the `dependencyUpdates` task against the sample project
+* copies the reports generated into directory `build/dependencyUpdates/projectsUsingPlugin`
+  
+You can run the test with command:
+```
+./gradlew test --tests uk.gov.justice.digital.hmpps.gradle.DependencyUpdatesFuncTest
+```
+and check the report generated at `build/dependencyUpdates/projectsUsingPlugin/report.txt`
+``
