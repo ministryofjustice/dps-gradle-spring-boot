@@ -4,6 +4,14 @@ orbs:
   dps: ministryofjustice/dps@1.2.1
   owasp: entur/owasp@0.0.10
 
+executors:
+  validator:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    environment:
+      _JAVA_OPTIONS: -Xmx256m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:ParallelGCThreads=2 -Djava.util.concurrent.ForkJoinPool.common.parallelism=2 -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs=-XX:+UseContainerSupport
+    working_directory: ~/app
+
 jobs:
   validate:
     executor: dps/java
