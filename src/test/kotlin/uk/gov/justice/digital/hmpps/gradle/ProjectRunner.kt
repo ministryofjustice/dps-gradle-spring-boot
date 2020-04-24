@@ -105,6 +105,12 @@ private fun makeBuildScript(projectDir: File, buildScriptName: String, buildScri
 private fun makeSettingsScript(projectDir: File, settingsFileName: String, projectName: String) {
   val settingsFile = File(projectDir, settingsFileName)
   val settingsScript = """
+        pluginManagement {
+          repositories {
+            mavenLocal()
+            gradlePluginPortal()
+          }
+        }
         rootProject.name = "$projectName"
       """.trimIndent()
   Files.writeString(settingsFile.toPath(), settingsScript)
