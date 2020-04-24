@@ -138,7 +138,8 @@ class DpsSpringBootPluginTest {
           .extracting("group", "name", "version")
           .contains(
               Tuple.tuple("com.github.timpeeters", "spring-boot-graceful-shutdown", "2.2.1"),
-              Tuple.tuple("com.fasterxml.jackson.module", "jackson-module-kotlin", null)
+              Tuple.tuple("com.fasterxml.jackson.module", "jackson-module-kotlin", null),
+              Tuple.tuple("com.google.guava", "guava", "28.2-jre")
           )
     }
 

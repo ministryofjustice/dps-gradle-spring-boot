@@ -104,6 +104,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
 
     project.dependencies.add("implementation", "com.github.timpeeters:spring-boot-graceful-shutdown:2.2.1")
     project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin")
+    project.dependencies.add("implementation", "com.google.guava:guava:28.2-jre)")
 
     val springBootTest = project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test") as ExternalModuleDependency
     springBootTest.exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
