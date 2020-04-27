@@ -4,11 +4,12 @@ import org.gradle.api.Project
 import org.owasp.dependencycheck.gradle.DependencyCheckPlugin
 import org.owasp.dependencycheck.gradle.extension.DependencyCheckExtension
 import org.owasp.dependencycheck.reporting.ReportGenerator
-import uk.gov.justice.digital.hmpps.gradle.DEPENDENCY_SUPPRESSION_FILENAME
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
+
+const val DEPENDENCY_SUPPRESSION_FILENAME = "dps-gradle-spring-boot-suppressions.xml"
 
 class DependencyCheckPluginManager(override val project: Project) : PluginManager<DependencyCheckPlugin> {
 

@@ -36,9 +36,9 @@ class KotlinPluginManagerTest {
   @Test
   fun `Should apply Kotlin test dependencies`() {
     assertThat(project.configurations.getByName("testImplementation").dependencies)
-        .extracting("group", "name", "version")
+        .extracting("group", "name")
         .contains(
-            tuple("com.nhaarman.mockitokotlin2", "mockito-kotlin", "2.2.0")
+            tuple("com.nhaarman.mockitokotlin2", "mockito-kotlin")
         )
   }
 

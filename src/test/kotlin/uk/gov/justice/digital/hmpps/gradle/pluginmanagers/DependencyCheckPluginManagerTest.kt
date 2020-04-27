@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test
 import org.owasp.dependencycheck.gradle.DependencyCheckPlugin
 import org.owasp.dependencycheck.gradle.extension.DependencyCheckExtension
 import org.owasp.dependencycheck.reporting.ReportGenerator
-import uk.gov.justice.digital.hmpps.gradle.DEPENDENCY_SUPPRESSION_FILENAME
 
 class DependencyCheckPluginManagerTest {
 

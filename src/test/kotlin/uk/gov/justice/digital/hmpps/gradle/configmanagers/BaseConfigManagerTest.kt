@@ -33,10 +33,10 @@ class BaseConfigManagerTest {
   @Test
   fun `Should apply miscellaneous dependencies`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting("group", "name", "version")
+        .extracting("group", "name")
         .contains(
-            tuple("com.fasterxml.jackson.module", "jackson-module-kotlin", null),
-            tuple("com.google.guava", "guava", "29.0-jre")
+            tuple("com.fasterxml.jackson.module", "jackson-module-kotlin"),
+            tuple("com.google.guava", "guava")
         )
   }
 

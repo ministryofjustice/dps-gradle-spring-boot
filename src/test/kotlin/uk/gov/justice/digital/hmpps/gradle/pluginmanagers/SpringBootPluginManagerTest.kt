@@ -30,20 +30,20 @@ class SpringBootPluginManagerTest {
   @Test
   fun `Should apply Spring Boot standard libraries`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting("group", "name", "version")
+        .extracting("group", "name")
         .contains(
-            tuple("org.springframework.boot", "spring-boot-starter-web", null),
-            tuple("org.springframework.boot", "spring-boot-starter-actuator", null),
-            tuple("com.github.timpeeters", "spring-boot-graceful-shutdown", "2.2.1")
+            tuple("org.springframework.boot", "spring-boot-starter-web"),
+            tuple("org.springframework.boot", "spring-boot-starter-actuator"),
+            tuple("com.github.timpeeters", "spring-boot-graceful-shutdown")
         )
   }
 
   @Test
   fun `Should apply Spring Boot test Dependencies`() {
     assertThat(project.configurations.getByName("testImplementation").dependencies)
-        .extracting("group", "name", "version")
+        .extracting("group", "name")
         .contains(
-            Tuple.tuple("org.springframework.boot", "spring-boot-starter-test", null)
+            Tuple.tuple("org.springframework.boot", "spring-boot-starter-test")
 
         )
   }

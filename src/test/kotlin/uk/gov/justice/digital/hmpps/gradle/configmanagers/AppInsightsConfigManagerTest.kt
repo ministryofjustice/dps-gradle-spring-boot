@@ -20,11 +20,11 @@ class AppInsightsConfigManagerTest {
   @Test
   fun `Should apply app insights libraries`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting("group", "name", "version")
+        .extracting("group", "name")
         .contains(
-            tuple("net.logstash.logback", "logstash-logback-encoder", "6.3"),
-            tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter", "2.6.0"),
-            tuple("com.microsoft.azure", "applicationinsights-logging-logback", "2.6.0")
+            tuple("net.logstash.logback", "logstash-logback-encoder"),
+            tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter"),
+            tuple("com.microsoft.azure", "applicationinsights-logging-logback")
         )
   }
 

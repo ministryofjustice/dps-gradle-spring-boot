@@ -1,6 +1,5 @@
 package uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.gradle.internal.impldep.org.codehaus.plexus.util.FileUtils
 import org.gradle.testkit.runner.TaskOutcome
@@ -9,13 +8,13 @@ import org.junit.jupiter.api.io.TempDir
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import uk.gov.justice.digital.hmpps.gradle.DEPENDENCY_SUPPRESSION_FILENAME
 import uk.gov.justice.digital.hmpps.gradle.functional.ProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.buildProject
 import uk.gov.justice.digital.hmpps.gradle.functional.findFile
 import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
+import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.DEPENDENCY_SUPPRESSION_FILENAME
 import java.io.File
 
 class DependencyCheckPluginManagerTest {
