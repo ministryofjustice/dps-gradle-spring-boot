@@ -34,13 +34,14 @@ If you must use JUnit 4 in your project then add the following to your Gradle bu
 testImplementation("org.junit.vintage:junit-vintage-engine:5.6.2")
 ```
 
-## OWASP Dependency Check and Suppressions
+
+## OWASP Dependency Check and Suppression Files
 
 The plugin `org.owasp.dependencycheck` is applied by this plugin.  It has a task `dependencyCheckAnalyze` which is used to check for vulnerabilities in dependencies.
 
 Any vulnerabilities introduced by this plugin that have been mitigated can be suppressed in file `src/main/resources/dps-gradle-spring-boot-suppressions.xml`.  See the OWASP dependency check plugin's homepage for further details.
 
-### Additional Suppressions
+### Additional Suppression Files
 
 If you are using this plugin and need additional suppressions for vulnerabilities introduced by your dependencies then you can specify additional suppression xmls in your Gradle build file:
 ```
@@ -58,8 +59,8 @@ dependencyCheck {
   suppressionFiles = listOf("<your-suppresion-file>.xml")
 }
 ```
-This will remove the suppressions file supplied by this plugin which is probably not the intention.
-
+ This will remove the suppression file supplied by this plugin which is probably not the intention.
+ 
 ## Dependency Update Checks
 
 The plugin `com.github.ben-manes.versions` has task `dependencyUpdates` which checks the main Gradle build file for out of date versions.
@@ -79,3 +80,4 @@ You can run the test with command:
 ./gradlew test --tests uk.gov.justice.digital.hmpps.gradle.DependencyUpdatesFuncTest
 ```
 and check the report generated at `build/dependencyUpdates/projectsUsingPlugin/report.txt`
+ 
