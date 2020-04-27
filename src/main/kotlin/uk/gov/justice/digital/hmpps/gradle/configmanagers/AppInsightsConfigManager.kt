@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.gradle.configmanagers
 
 import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
+import uk.gov.justice.digital.hmpps.gradle.ConfigManager
 
 class AppInsightsConfigManager(override val project: Project) : ConfigManager {
 

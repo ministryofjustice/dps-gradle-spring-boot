@@ -1,14 +1,9 @@
-package uk.gov.justice.digital.hmpps.gradle.pluginmanagers
+package uk.gov.justice.digital.hmpps.gradle
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-interface PluginManager<T : Plugin<Project>> {
-
-  val project: Project
-
-  fun configure() {}
-  fun afterEvaluate() {}
+interface PluginManager<T : Plugin<Project>> : ConfigManager {
 
   companion object {
     inline fun <reified T: Plugin<Project>> from(

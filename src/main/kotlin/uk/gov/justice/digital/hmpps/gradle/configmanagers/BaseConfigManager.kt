@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.gradle.configmanagers
 
 import org.gradle.api.Project
+import uk.gov.justice.digital.hmpps.gradle.ConfigManager
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 

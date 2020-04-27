@@ -3,6 +3,7 @@ package uk.gov.justice.digital.hmpps.gradle.pluginmanagers
 import com.github.benmanes.gradle.versions.VersionsPlugin
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.Project
+import uk.gov.justice.digital.hmpps.gradle.PluginManager
 
 class VersionsPluginManager(override val project: Project) : PluginManager<VersionsPlugin> {
 

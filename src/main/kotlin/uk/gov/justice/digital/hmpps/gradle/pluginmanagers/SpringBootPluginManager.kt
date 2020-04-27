@@ -5,6 +5,7 @@ import org.gradle.api.artifacts.ExternalModuleDependency
 import org.springframework.boot.gradle.dsl.SpringBootExtension
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
+import uk.gov.justice.digital.hmpps.gradle.PluginManager
 import java.net.InetAddress
 import java.time.Instant
 
