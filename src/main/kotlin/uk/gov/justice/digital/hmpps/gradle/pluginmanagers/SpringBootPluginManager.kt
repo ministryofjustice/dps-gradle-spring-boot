@@ -10,7 +10,7 @@ import java.time.Instant
 
 class SpringBootPluginManager(override val project: Project) : PluginManager<SpringBootPlugin> {
 
-  override fun configurePlugin() {
+  override fun configure() {
     addDependencies()
     setSpringBootInfo()
     setManifestAttributes()

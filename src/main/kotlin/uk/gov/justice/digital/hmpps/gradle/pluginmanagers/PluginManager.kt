@@ -7,7 +7,7 @@ interface PluginManager<T : Plugin<Project>> {
 
   val project: Project
 
-  fun configurePlugin() {}
+  fun configure() {}
   fun afterEvaluate() {}
 
   companion object {

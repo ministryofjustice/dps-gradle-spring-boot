@@ -7,7 +7,7 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 class DependencyManagementPluginManager(override val project: Project) : PluginManager<DependencyManagementPlugin> {
 
-  override fun configurePlugin() {
+  override fun configure() {
     applyDependencyManagementBom(project)
   }
 

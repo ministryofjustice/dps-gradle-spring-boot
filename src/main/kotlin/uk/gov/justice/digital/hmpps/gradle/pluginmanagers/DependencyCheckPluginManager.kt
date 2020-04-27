@@ -11,7 +11,7 @@ import java.nio.file.StandardCopyOption
 
 class DependencyCheckPluginManager(override val project: Project) : PluginManager<DependencyCheckPlugin> {
 
-  override fun configurePlugin() {
+  override fun configure() {
     setDependencyCheckConfig()
     addDependencyCheckSuppressionFile()
   }

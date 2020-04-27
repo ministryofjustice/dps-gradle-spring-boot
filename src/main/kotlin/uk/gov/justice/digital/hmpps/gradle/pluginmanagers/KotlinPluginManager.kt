@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 class KotlinPluginManager(override val project: Project) : PluginManager<KotlinPluginWrapper> {
 
-  override fun configurePlugin() {
+  override fun configure() {
     setKotlinCompileJvmVersion()
     addDependencies()
   }

@@ -6,7 +6,7 @@ import org.gradle.api.Project
 
 class VersionsPluginManager(override val project: Project) : PluginManager<VersionsPlugin> {
 
-  override fun configurePlugin() {
+  override fun configure() {
     rejectUnstableDependencyUpdates()
   }
 
