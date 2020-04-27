@@ -9,7 +9,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 
-const val DEPENDENCY_SUPPRESSION_FILENAME = "dps-gradle-spring-boot-suppressions.xml"
+internal const val DEPENDENCY_SUPPRESSION_FILENAME = "dps-gradle-spring-boot-suppressions.xml"
 
 class DependencyCheckPluginManager(override val project: Project) : PluginManager<DependencyCheckPlugin> {
 
@@ -19,7 +19,7 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
   }
 
   override fun afterEvaluate() {
-    checkOverriddenSuppressionsFile()
+    checkOverriddenSuppressionFile()
   }
 
   private fun setDependencyCheckConfig() {
@@ -37,7 +37,7 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
   }
 
 
-  private fun checkOverriddenSuppressionsFile() {
+  private fun checkOverriddenSuppressionFile() {
     val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
     if (extension.suppressionFiles.contains(DEPENDENCY_SUPPRESSION_FILENAME).not()) {
       project.logger.warn("""

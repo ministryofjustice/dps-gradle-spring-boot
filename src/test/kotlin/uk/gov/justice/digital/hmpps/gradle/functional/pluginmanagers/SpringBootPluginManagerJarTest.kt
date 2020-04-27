@@ -11,6 +11,30 @@ import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import java.io.File
 import java.net.URL
 
+class JavaSpringBootPluginManagerJarTest : SpringBootPluginManagerJarTest() {
+
+  companion object {
+    @BeforeAll
+    @JvmStatic
+    fun `Create and run project`() {
+      jarProcess = createAndRunJar(javaProjectDetails(projectDir))
+    }
+  }
+
+}
+
+class KotlinSpringBootPluginManagerJarTest : SpringBootPluginManagerJarTest() {
+
+  companion object {
+    @BeforeAll
+    @JvmStatic
+    fun `Create and run project`() {
+      jarProcess = createAndRunJar(kotlinProjectDetails(projectDir))
+    }
+  }
+
+}
+
 abstract class SpringBootPluginManagerJarTest {
 
   companion object {
@@ -45,30 +69,6 @@ abstract class SpringBootPluginManagerJarTest {
   fun `Spring Boot info endpoint contains git info`() {
     val infoResponse = URL("http://localhost:8080/actuator/info").readText()
     assertThatJson(infoResponse).node("git.branch").isEqualTo("master")
-  }
-
-}
-
-class KotlinSpringBootPluginManagerJarTest : SpringBootPluginManagerJarTest() {
-
-  companion object {
-    @BeforeAll
-    @JvmStatic
-    fun `Create and run project`() {
-      jarProcess = createAndRunJar(kotlinProjectDetails(projectDir))
-    }
-  }
-
-}
-
-class JavaSpringBootPluginManagerJarTest : SpringBootPluginManagerJarTest() {
-
-  companion object {
-    @BeforeAll
-    @JvmStatic
-    fun `Create and run project`() {
-      jarProcess = createAndRunJar(javaProjectDetails(projectDir))
-    }
   }
 
 }
