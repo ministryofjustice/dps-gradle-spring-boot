@@ -1,22 +1,13 @@
 package uk.gov.justice.digital.hmpps.gradle.pluginmanagers
 
 import org.assertj.core.api.Assertions
-import org.gradle.api.Project
-import org.gradle.testfixtures.ProjectBuilder
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.owasp.dependencycheck.gradle.DependencyCheckPlugin
 import org.owasp.dependencycheck.gradle.extension.DependencyCheckExtension
 import org.owasp.dependencycheck.reporting.ReportGenerator
+import uk.gov.justice.digital.hmpps.gradle.UnitTest
 
-class DependencyCheckPluginManagerTest {
-
-  private val project: Project = ProjectBuilder.builder().build()
-
-  @BeforeEach
-  fun `Create project`() {
-    project.pluginManager.apply("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot")
-  }
+class DependencyCheckPluginManagerTest : UnitTest() {
 
   @Test
   fun `Should apply the Owasp Dependency check plugin`() {

@@ -3,20 +3,11 @@ package uk.gov.justice.digital.hmpps.gradle.configmanagers
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.tuple
 import org.assertj.core.groups.Tuple
-import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
-import org.gradle.testfixtures.ProjectBuilder
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import uk.gov.justice.digital.hmpps.gradle.UnitTest
 
-class AppInsightsConfigManagerTest {
-
-  private val project: Project = ProjectBuilder.builder().build()
-
-  @BeforeEach
-  fun `Create project`() {
-    project.pluginManager.apply("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot")
-  }
+class AppInsightsConfigManagerTest : UnitTest() {
 
   @Test
   fun `Should apply app insights libraries`() {

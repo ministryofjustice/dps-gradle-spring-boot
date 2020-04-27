@@ -3,25 +3,17 @@ package uk.gov.justice.digital.hmpps.gradle.pluginmanagers
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.tuple
 import org.assertj.core.groups.Tuple
-import org.gradle.api.Project
-import org.gradle.testfixtures.ProjectBuilder
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.buildinfo.BuildInfo
 import org.springframework.boot.gradle.tasks.bundling.BootJar
+import uk.gov.justice.digital.hmpps.gradle.UnitTest
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-class SpringBootPluginManagerTest {
+class SpringBootPluginManagerTest : UnitTest() {
 
-  val project: Project = ProjectBuilder.builder().build()
-
-  @BeforeEach
-  fun `Create project`() {
-    project.pluginManager.apply("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot")
-  }
   @Test
   fun `Should apply the Spring Boot plugin`() {
     project.plugins.getPlugin(SpringBootPlugin::class.java)

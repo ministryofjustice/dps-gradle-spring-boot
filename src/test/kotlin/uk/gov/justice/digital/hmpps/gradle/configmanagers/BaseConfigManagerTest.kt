@@ -4,22 +4,13 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.tuple
 import org.assertj.core.groups.Tuple
 import org.gradle.api.JavaVersion
-import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.internal.extensibility.DefaultConvention
-import org.gradle.testfixtures.ProjectBuilder
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import uk.gov.justice.digital.hmpps.gradle.UnitTest
 
-class BaseConfigManagerTest {
-
-  private val project: Project = ProjectBuilder.builder().build()
-
-  @BeforeEach
-  fun `Create project`() {
-    project.pluginManager.apply("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot")
-  }
+class BaseConfigManagerTest : UnitTest() {
 
   @Test
   fun `Should apply maven repositories`() {
