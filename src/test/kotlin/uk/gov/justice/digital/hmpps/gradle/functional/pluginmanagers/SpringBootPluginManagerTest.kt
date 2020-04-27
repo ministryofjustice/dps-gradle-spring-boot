@@ -12,7 +12,6 @@ import uk.gov.justice.digital.hmpps.gradle.functional.ProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.buildProject
 import uk.gov.justice.digital.hmpps.gradle.functional.buildProjectAndFail
 import uk.gov.justice.digital.hmpps.gradle.functional.findJar
-import uk.gov.justice.digital.hmpps.gradle.functional.getDependencyVersion
 import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
@@ -21,7 +20,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.jar.JarFile
 
-class SpringBootPluginManagerBuildTest {
+class SpringBootPluginManagerTest {
 
   @AfterEach
   fun `Delete project`() {
@@ -49,17 +48,6 @@ class SpringBootPluginManagerBuildTest {
 
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `Spring dependency versions are defaulted from the dependency management plugin`(projectDetails: ProjectDetails) {
-    makeProject(projectDetails)
-
-    val webVersion = getDependencyVersion(projectDir, "spring-boot-starter-web")
-    val actuatorVersion = getDependencyVersion(projectDir, "spring-boot-starter-actuator")
-
-    assertThat(webVersion).isEqualTo(actuatorVersion)
-  }
-
-  @ParameterizedTest
-  @MethodSource("defaultProjectDetails")
   fun `Manifest file contains project name and version`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
@@ -70,17 +58,6 @@ class SpringBootPluginManagerBuildTest {
     val jarFile = JarFile(file)
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(LocalDate.now().format(DateTimeFormatter.ISO_DATE))
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo(projectDetails.projectName)
-  }
-
-  @ParameterizedTest
-  @MethodSource("defaultProjectDetails")
-  fun `The gradle version dependency dependencyUpdates task is available`(projectDetails: ProjectDetails) {
-    makeProject(projectDetails)
-
-    val result = buildProject(projectDir, "dependencyUpdates", "-m")
-    assertThat(result.output)
-        .contains(":dependencyUpdates SKIPPED")
-        .contains("SUCCESSFUL")
   }
 
   @ParameterizedTest

@@ -16,7 +16,7 @@ class VersionsPluginManagerTest {
   }
 
   @Test
-  fun `Should apply the gradle versions check plugin`() {
+  fun `Should apply the versions plugin`() {
     project.plugins.getPlugin(VersionsPlugin::class.java)
   }
 }
