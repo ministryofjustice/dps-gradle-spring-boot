@@ -30,7 +30,7 @@ class SpringBootPluginManagerTest {
   @Test
   fun `Should apply Spring Boot standard libraries`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting("group", "name")
+        .extracting<Tuple> { tuple(it.group, it.name) }
         .contains(
             tuple("org.springframework.boot", "spring-boot-starter-web"),
             tuple("org.springframework.boot", "spring-boot-starter-actuator"),
@@ -41,7 +41,7 @@ class SpringBootPluginManagerTest {
   @Test
   fun `Should apply Spring Boot test Dependencies`() {
     assertThat(project.configurations.getByName("testImplementation").dependencies)
-        .extracting("group", "name")
+        .extracting<Tuple> { tuple(it.group, it.name) }
         .contains(
             Tuple.tuple("org.springframework.boot", "spring-boot-starter-test")
 

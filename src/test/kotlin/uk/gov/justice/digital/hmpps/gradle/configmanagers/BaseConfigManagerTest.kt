@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.gradle.configmanagers
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.tuple
+import org.assertj.core.groups.Tuple
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
@@ -22,7 +23,7 @@ class BaseConfigManagerTest {
 
   @Test
   fun `Should apply maven repositories`() {
-    assertThat(project.repositories).extracting("name").containsExactlyInAnyOrder("MavenLocal", "MavenRepo")
+    assertThat(project.repositories).extracting<String> { it.name }.containsExactlyInAnyOrder("MavenLocal", "MavenRepo")
   }
 
   @Test
@@ -33,7 +34,7 @@ class BaseConfigManagerTest {
   @Test
   fun `Should apply miscellaneous dependencies`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting("group", "name")
+        .extracting<Tuple> { tuple(it.group, it.name) }
         .contains(
             tuple("com.fasterxml.jackson.module", "jackson-module-kotlin"),
             tuple("com.google.guava", "guava")

@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.gradle.pluginmanagers
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.tuple
+import org.assertj.core.groups.Tuple
 import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
@@ -26,7 +27,7 @@ class KotlinPluginManagerTest {
   @Test
   fun `Should apply Kotlin dependencies`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting("group", "name")
+        .extracting<Tuple> { tuple(it.group, it.name) }
         .contains(
             tuple("org.jetbrains.kotlin", "kotlin-stdlib-jdk8"),
             tuple("org.jetbrains.kotlin", "kotlin-reflect")
@@ -36,7 +37,7 @@ class KotlinPluginManagerTest {
   @Test
   fun `Should apply Kotlin test dependencies`() {
     assertThat(project.configurations.getByName("testImplementation").dependencies)
-        .extracting("group", "name")
+        .extracting<Tuple> { tuple(it.group, it.name) }
         .contains(
             tuple("com.nhaarman.mockitokotlin2", "mockito-kotlin")
         )

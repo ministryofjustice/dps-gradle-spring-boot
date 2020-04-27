@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.gradle.configmanagers
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.tuple
+import org.assertj.core.groups.Tuple
 import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
 import org.gradle.testfixtures.ProjectBuilder
@@ -20,7 +21,7 @@ class AppInsightsConfigManagerTest {
   @Test
   fun `Should apply app insights libraries`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting("group", "name")
+        .extracting<Tuple> { tuple(it.group, it.name) }
         .contains(
             tuple("net.logstash.logback", "logstash-logback-encoder"),
             tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter"),
@@ -45,7 +46,7 @@ class AppInsightsConfigManagerTest {
   fun `assemble task should depend on copyAgent task`() {
     val assembleTask = project.tasks.getByName("assemble")
     val dependsOn = assembleTask.taskDependencies.getDependencies(assembleTask)
-    assertThat(dependsOn).extracting("name").contains("copyAgent")
+    assertThat(dependsOn).extracting<String> { it.name }.contains("copyAgent")
   }
 
 }

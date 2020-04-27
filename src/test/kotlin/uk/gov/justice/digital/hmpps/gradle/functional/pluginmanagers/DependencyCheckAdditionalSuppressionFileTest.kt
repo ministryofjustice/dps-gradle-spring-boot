@@ -25,7 +25,7 @@ class DependencyCheckAdditionalSuppressionFileTest {
     @JvmStatic
     fun `Create and run project with additional dependency check suppression file`() {
       makeAdditionalSuppressionFile(projectDir)
-      makeProject(javaProjectDetails(projectDir).copy(buildScript = buildScriptWithVulnerableDependencies(projectDir)))
+      makeProject(javaProjectDetails(projectDir).copy(buildScript = buildScriptWithNimbusVulnerability(projectDir)))
     }
   }
 
@@ -53,7 +53,7 @@ private fun makeAdditionalSuppressionFile(projectDir: File) {
   """.trimIndent())
 }
 
-private fun buildScriptWithVulnerableDependencies(projectDir: File): String {
+private fun buildScriptWithNimbusVulnerability(projectDir: File): String {
   return """
       plugins {
         id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
