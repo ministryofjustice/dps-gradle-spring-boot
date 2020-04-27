@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.gradle
+package uk.gov.justice.digital.hmpps.gradle.functional
 
 import org.assertj.core.api.Assertions.assertThat
 import org.eclipse.jgit.api.Git

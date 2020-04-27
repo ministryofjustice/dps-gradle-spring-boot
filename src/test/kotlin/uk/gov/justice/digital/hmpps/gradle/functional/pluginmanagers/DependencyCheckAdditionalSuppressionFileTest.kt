@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.gradle
+package uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers
 
 import org.assertj.core.api.Assertions.assertThat
 import org.gradle.internal.impldep.org.codehaus.plexus.util.FileUtils
@@ -6,12 +6,15 @@ import org.gradle.testkit.runner.TaskOutcome
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
+import uk.gov.justice.digital.hmpps.gradle.functional.buildProject
+import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
+import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.io.File
 import java.nio.file.Files
 
 private const val ADDITIONAL_SUPPRESSION_FILENAME = "jose-nimbus-suppression.xml"
 
-class DependencySuppressionFuncTest {
+class DependencyCheckAdditionalSuppressionFileTest {
 
   @TempDir
   lateinit var projectDir: File
