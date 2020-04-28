@@ -106,7 +106,7 @@ There is a test in class `DependencyUpdatesFuncTest` which:
   
 You can run the test with command:
 ```
-./gradlew test --tests uk.gov.justice.digital.hmpps.gradle.DependencyUpdatesFuncTest
+./gradlew test --tests uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers.DependencyCheckPluginManagerTest
 ```
 and check the report generated at `build/dependencyUpdates/projectsUsingPlugin/report.txt`
 

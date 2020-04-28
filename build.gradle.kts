@@ -47,6 +47,7 @@ dependencies {
   implementation("com.github.ben-manes:gradle-versions-plugin:0.28.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.2.2")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:2.0.0")
+  implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.13")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
   testImplementation("org.mockito:mockito-junit-jupiter:3.3.3")
