@@ -18,6 +18,14 @@ class BaseConfigManagerTest : GradleBuildTest() {
 
     val result = buildProject(projectDir, "test")
     assertThat(result.task(":test")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+    assertThat(checkTestsWereExecuted(result.output)).isTrue()
+  }
+
+  // Note that this relies on the output from the TestLoggerPlugin
+  private fun checkTestsWereExecuted(buildOutput: String): Boolean {
+    val (numberOfTestsExecuted) = """Executed (\d) test""".toRegex().find(buildOutput)!!.destructured
+    val tests = numberOfTestsExecuted.toIntOrNull()?: 0
+    return tests > 0
   }
 
 }

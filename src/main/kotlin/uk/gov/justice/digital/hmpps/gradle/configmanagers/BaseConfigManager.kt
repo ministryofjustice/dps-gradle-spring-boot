@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.gradle.configmanagers
 
 import org.gradle.api.Project
+import org.gradle.api.tasks.testing.Test
 import uk.gov.justice.digital.hmpps.gradle.ConfigManager
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -11,6 +12,7 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
     setGroupAndVersion()
     applyRepositories()
     addDependencies()
+    setJunit5()
   }
 
   private fun setGroupAndVersion() {
@@ -33,6 +35,11 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
   private fun addDependencies() {
     project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin")
     project.dependencies.add("implementation", "com.google.guava:guava:29.0-jre") // This is only required because the version pulled in as a transitive dependency has CVE vulnerabilities
+  }
+
+  private fun setJunit5() {
+    val testTask = project.tasks.getByName("test") as Test
+    testTask.useJUnitPlatform()
   }
 
 }

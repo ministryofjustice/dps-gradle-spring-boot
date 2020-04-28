@@ -9,6 +9,7 @@ import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.DependencyManagementPl
 import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.GitPropertiesPluginManager
 import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.KotlinPluginManager
 import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.SpringBootPluginManager
+import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.TestLoggerPluginManager
 import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.VersionsPluginManager
 
 class DpsSpringBootPlugin : Plugin<Project> {
@@ -33,7 +34,8 @@ class DpsSpringBootPlugin : Plugin<Project> {
         PluginManager.from(::DependencyManagementPluginManager, project),
         PluginManager.from(::DependencyCheckPluginManager, project),
         PluginManager.from(::VersionsPluginManager, project),
-        PluginManager.from(::GitPropertiesPluginManager, project)
+        PluginManager.from(::GitPropertiesPluginManager, project),
+        PluginManager.from(::TestLoggerPluginManager, project)
     )
   }
 
