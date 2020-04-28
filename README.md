@@ -1,31 +1,8 @@
-# DPS Spring Boot Gradle Plugin
+# DPS Spring Boot Gradle Plugin (WIP) 
 
-##THIS IS A WORK IN PROGRESS
 
-To test this plugin:
 
-* Check out this repo and run command `./gradlew publishToMavenLocal`
-* Check out the `prison-estate` repo and switch to branch `mh-DT-727-dps-gradle-plugin`
-* Compare with the master branch to see what has changed in `build.gradle.kts`
-* Run the project and test - it should behave as now (bugs and all - `/prisons/gp-practise/{}` doesn't work in live!)
-* Check that the health and info endpoints still work
-* Check that existing tasks still work
-
-And for the adventurous:
-* Make a change to the `dps-gradle-spring-boot` project and publish
-* E.g. You could revert back to Spring Boot version `2.2.0.RELEASE` in `build.gradle.kts`
-* Then publish with command `./gradlew publishToMavenLocal`
-* Then back in the `prison-estate` run task `./gradlew dependencyCheckAnalyze`
-* And you should see you now have loads of vulnerabilities
-* That's almost exactly the same as happens each time we move to the next Spring Boot version - but now we have a single place to mitigate them
-
-###TODO
-* Get feedback from the wider team
-* Work out somewhere to publish the plugin to (possibly Maven Central or Github Packages)
-* Automate incremental version numbers (we could manage this manually but safer if it is impossible overwrite previous versions)
-* Publish version 1
-
-##Overview
+## Overview
 
 This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 * All projects use a common set of plugins at versions that have been tested together
@@ -33,7 +10,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 * Any common build configuration shared by projects is performed in this plugin and not the project itself (removing duplication and subsequent drift)
 * CVEs causing `dependencyCheckAnalyze` failures are mitigated in a single place rather than in each and every project
 
-##How to use this plugin
+## How to use this plugin
 In your `build.gradle.kts` (or `build.gradle` for Java) add the following line to the plugin section:
 ```
 plugins {
@@ -52,23 +29,23 @@ This plugin provides various build logic that may already exist in your project,
 
 Either way you will need to remove some of this duplications from your `build.gradle.kts` file `TODO when we have published our first version, point to a PR that implements the plugin as an example of what to remove`
 
-##How do I find out what this plugin is doing?
+## How do I find out what this plugin is doing?
 
 Read the code!
 
 In the main you will probably need to know the following so you don't duplicate in your own build script:
 
-####The plugins and versions automatically applied by this plugin 
-Look in the file `build.gradle.kts` in the `dependencies/implementation` section.  There you can find each plugin applied by the project and its version.
+#### The plugins and versions automatically applied by this plugin 
+The class DpsSpringBootPlugin contains all 3rd party plugins that are applied by the DPS plugin - check there first.  Then look in the file `build.gradle.kts` in the `dependencies/implementation` section.  There you can find each plugin and its version.
 
 E.g. `org.springframework.boot:spring-boot-gradle-plugin` is the Spring Boot plugin and its version is part of the configuration
 
-####Any configuration relating to those plugins
+#### Any configuration relating to those plugins
 Look in the package `uk.gov.justice.digital.hmpps.gradle.pluginmanagers` and you should find the class that orchestrates each plugin.
 
 E.g. Class `SpringBootPluginManager` has a method called `setSpringBootInfo` which controls the contents of the `/info` endpoint
 
-####Any dependencies applied by this plugin automatically
+#### Any dependencies applied by this plugin automatically
 Search the package `uk.gov.justice.digital.hmpps.gradle` for `project.dependencies.add`.  This should list all dependencies this plugin automatically applies.
 
 E.g. Class `SpringBootPluginManager` applies `spring-boot-starter-actuator` (amongst others) so you do not need to declare that dependency in your project's `build.gradle.kts` file.
@@ -132,4 +109,28 @@ You can run the test with command:
 ./gradlew test --tests uk.gov.justice.digital.hmpps.gradle.DependencyUpdatesFuncTest
 ```
 and check the report generated at `build/dependencyUpdates/projectsUsingPlugin/report.txt`
- 
+
+# THIS IS A WORK IN PROGRESS
+
+To test this plugin:
+
+* Check out this repo and run command `./gradlew publishToMavenLocal`
+* Check out the `prison-estate` repo and switch to branch `mh-DT-727-dps-gradle-plugin`
+* Compare with the master branch to see what has changed in `build.gradle.kts`
+* Run the project and test - it should behave as now
+* Check that the health and info endpoints still work
+* Check that existing tasks still work
+
+And for the adventurous:
+* Make a change to the `dps-gradle-spring-boot` project and publish
+* E.g. You could revert back to Spring Boot version `2.2.0.RELEASE` in `build.gradle.kts`
+* Then publish with command `./gradlew publishToMavenLocal`
+* Then back in the `prison-estate` run task `./gradlew dependencyCheckAnalyze`
+* And you should see you now have loads of vulnerabilities
+* That's almost exactly the same as happens each time we move to the next Spring Boot version - but now we have a single place to mitigate them
+
+### TODO
+* Get feedback from the wider team
+* Work out somewhere to publish the plugin to (possibly Maven Central or Github Packages) - see [DT-787](https://dsdmoj.atlassian.net/browse/DT-787)
+* Automate incremental version numbers (we could manage this manually but safer if it is impossible overwrite previous versions)
+* Publish version 1
