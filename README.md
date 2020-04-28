@@ -129,7 +129,7 @@ And for the adventurous:
 * And you should see you now have loads of vulnerabilities
 * That's almost exactly the same as happens each time we move to the next Spring Boot version - but now we have a single place to mitigate them
 
-###TODO
+### TODO
 * Get feedback from the wider team
 * Work out somewhere to publish the plugin to (possibly Maven Central or Github Packages) - see [DT-787](https://dsdmoj.atlassian.net/browse/DT-787)
 * Automate incremental version numbers (we could manage this manually but safer if it is impossible overwrite previous versions)
