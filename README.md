@@ -35,7 +35,7 @@ Read the code!
 
 In the main you will probably need to know the following so you don't duplicate in your own build script:
 
-####The plugins and versions automatically applied by this plugin 
+#### The plugins and versions automatically applied by this plugin 
 The class DpsSpringBootPlugin contains all 3rd party plugins that are applied by the DPS plugin - check there first.  Then look in the file `build.gradle.kts` in the `dependencies/implementation` section.  There you can find each plugin and its version.
 
 E.g. `org.springframework.boot:spring-boot-gradle-plugin` is the Spring Boot plugin and its version is part of the configuration
