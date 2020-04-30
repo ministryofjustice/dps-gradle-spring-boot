@@ -15,9 +15,7 @@ import kotlin.streams.asStream
 data class ProjectDetails(
     val projectDir: File, val projectName: String, val packageDir: String, val mainClassName: String, val mainClass: String,
     val buildScriptName: String, val buildScript: String, val settingsFileName: String, val testClass: String) {
-  override fun toString(): String {
-    return "ProjectDetails(projectName='$projectName')"
-  }
+  override fun toString(): String = projectName
 }
 
 fun createAndRunJar(projectDetails: ProjectDetails): Process {
@@ -45,23 +43,21 @@ fun getDependencyVersion(projectDir: File, dependency: String): String {
   return version
 }
 
-fun findJar(projectDir: File, partialJarName: String): File {
-  return Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
-    paths.filter { path -> path.toString().contains(partialJarName) }
-        .findFirst()
-        .map { jarPath -> jarPath.toFile() }
-        .orElseThrow()
-  }
-}
+fun findJar(projectDir: File, partialJarName: String) =
+    Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
+      paths.filter { path -> path.toString().contains(partialJarName) }
+          .findFirst()
+          .map { jarPath -> jarPath.toFile() }
+          .orElseThrow()
+    }
 
-fun findFile(projectDir: File, fileName: String): File {
-  return Files.walk(Paths.get(projectDir.absolutePath)).use { paths ->
-    paths.filter { path -> path.toString().contains(fileName) }
-        .findFirst()
-        .map { filePath -> filePath.toFile() }
-        .orElseThrow()
-  }
-}
+fun findFile(projectDir: File, fileName: String) =
+    Files.walk(Paths.get(projectDir.absolutePath)).use { paths ->
+      paths.filter { path -> path.toString().contains(fileName) }
+          .findFirst()
+          .map { filePath -> filePath.toFile() }
+          .orElseThrow()
+    }
 
 private fun createJar(projectDir: File, projectName: String): File {
   val result = buildProject(projectDir, "bootJar")

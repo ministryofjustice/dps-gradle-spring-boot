@@ -10,6 +10,6 @@ abstract class UnitTest {
 
   @BeforeEach
   fun `Create project`() {
-    project.pluginManager.apply("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot")
+    project.pluginManager.apply("uk.gov.justice.hmpps.gradle-spring-boot")
   }
 }
