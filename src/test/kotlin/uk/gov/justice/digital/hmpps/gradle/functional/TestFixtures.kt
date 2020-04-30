@@ -25,7 +25,7 @@ fun javaProjectDetails(projectDir: File) =
         buildScriptName = "build.gradle",
         buildScript = """
           plugins {
-            id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
+            id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
           }
         """.trimIndent(),
         settingsFileName = "settings.gradle",
