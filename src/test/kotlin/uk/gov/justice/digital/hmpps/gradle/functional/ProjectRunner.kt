@@ -3,7 +3,6 @@ package uk.gov.justice.digital.hmpps.gradle.functional
 import org.assertj.core.api.Assertions.assertThat
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
-import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
 import java.io.BufferedReader
@@ -15,8 +14,11 @@ import kotlin.streams.asStream
 
 data class ProjectDetails(
     val projectDir: File, val projectName: String, val packageDir: String, val mainClassName: String, val mainClass: String,
-    val buildScriptName: String, val buildScript: String, val settingsFileName: String, val testClass: String
-)
+    val buildScriptName: String, val buildScript: String, val settingsFileName: String, val testClass: String) {
+  override fun toString(): String {
+    return "ProjectDetails(projectName='$projectName')"
+  }
+}
 
 fun createAndRunJar(projectDetails: ProjectDetails): Process {
   makeProject(projectDetails)
@@ -121,20 +123,17 @@ private fun makeGitRepo(projectDir: File) {
   repo.create()
   val git = Git(repo)
   git.add().addFilepattern("*").call()
-  git.commit().setMessage("Commit everything").call()
+  git.commit().setSign(false).setMessage("Commit everything").call()
 }
 
-fun buildProject(projectDir: File, vararg arguments: String): BuildResult {
-  return projectBuilder(projectDir, *arguments).build()
-}
+fun buildProject(projectDir: File, vararg arguments: String) =
+    projectBuilder(projectDir, *arguments).build()
 
-fun buildProjectAndFail(projectDir: File, vararg arguments: String): BuildResult {
-  return projectBuilder(projectDir, *arguments).buildAndFail()
-}
+fun buildProjectAndFail(projectDir: File, vararg arguments: String) =
+    projectBuilder(projectDir, *arguments).buildAndFail()
 
-private fun projectBuilder(projectDir: File, vararg arguments: String): GradleRunner {
-  return GradleRunner.create()
-      .withProjectDir(projectDir)
-      .withArguments("clean", *arguments)
-      .withPluginClasspath()
-}
+private fun projectBuilder(projectDir: File, vararg arguments: String) =
+    GradleRunner.create()
+        .withProjectDir(projectDir)
+        .withArguments("clean", *arguments)
+        .withPluginClasspath()
