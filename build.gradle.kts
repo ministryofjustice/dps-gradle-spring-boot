@@ -7,6 +7,7 @@ plugins {
   id("com.github.ben-manes.versions") version "0.28.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.13"
   id("org.owasp.dependencycheck") version "5.3.2.1"
+  id("com.adarshr.test-logger") version "2.0.0"
 }
 
 repositories {
@@ -18,16 +19,6 @@ repositories {
   }
 }
 
-tasks.withType<KotlinCompile> {
-  kotlinOptions {
-    jvmTarget = "11"
-  }
-}
-
-tasks.withType<Test> {
-  useJUnitPlatform()
-}
-
 java {
   sourceCompatibility = JavaVersion.VERSION_11
   targetCompatibility = JavaVersion.VERSION_11
@@ -37,8 +28,8 @@ group = "uk.gov.justice.digital.hmpps.gradle"
 version = "0.0.1-SNAPSHOT"
 
 dependencies {
-  implementation("org.jetbrains.kotlin:kotlin-stdlib")
-  implementation("org.jetbrains.kotlin:kotlin-reflect")
+  implementation(kotlin("stdlib-jdk8"))
+  implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.2.6.RELEASE")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
@@ -68,5 +59,11 @@ gradlePlugin {
 tasks {
   test {
     useJUnitPlatform()
+  }
+
+  withType<KotlinCompile> {
+    kotlinOptions {
+      jvmTarget = JavaVersion.VERSION_11.toString()
+    }
   }
 }
