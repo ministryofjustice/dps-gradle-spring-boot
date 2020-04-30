@@ -56,7 +56,7 @@ private fun makeAdditionalSuppressionFile(projectDir: File) {
 private fun buildScriptWithNimbusVulnerability(projectDir: File): String {
   return """
       plugins {
-        id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
+        id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
       }
        
       dependencies {

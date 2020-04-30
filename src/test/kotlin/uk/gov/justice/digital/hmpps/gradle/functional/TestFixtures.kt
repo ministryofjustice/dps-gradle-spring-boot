@@ -25,7 +25,7 @@ fun javaProjectDetails(projectDir: File) =
         buildScriptName = "build.gradle",
         buildScript = """
           plugins {
-            id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
+            id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
           }
         """.trimIndent(),
         settingsFileName = "settings.gradle",
@@ -67,7 +67,7 @@ fun kotlinProjectDetails(projectDir: File) =
         buildScriptName = "build.gradle.kts",
         buildScript = """
           plugins {
-            id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "0.0.1-SNAPSHOT"
+            id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
           }
         """.trimIndent(),
         settingsFileName = "settings.gradle.kts",

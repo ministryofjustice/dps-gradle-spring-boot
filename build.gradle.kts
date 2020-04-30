@@ -19,13 +19,20 @@ repositories {
   }
 }
 
-java {
-  sourceCompatibility = JavaVersion.VERSION_11
-  targetCompatibility = JavaVersion.VERSION_11
-}
+group = "uk.gov.justice.hmpps.gradle"
+version = "0.1"
 
-group = "uk.gov.justice.digital.hmpps.gradle"
-version = "0.0.1-SNAPSHOT"
+gradlePlugin {
+  plugins {
+    create("dpsSpringBootPlugin") {
+      id = "uk.gov.justice.hmpps.gradle-spring-boot"
+      implementationClass = "uk.gov.justice.digital.hmpps.gradle.DpsSpringBootPlugin"
+
+      displayName = "HMPPS Spring Boot Plugin"
+      description = "Plugin for HMPPS Spring Boot microservice configuration"
+    }
+  }
+}
 
 dependencies {
   implementation(kotlin("stdlib-jdk8"))
@@ -48,14 +55,6 @@ dependencies {
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.7.0.202003110725-r")
 }
 
-gradlePlugin {
-  plugins {
-    create("DpsSpringBoot") {
-      id = "uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot"
-      implementationClass = "uk.gov.justice.digital.hmpps.gradle.DpsSpringBootPlugin"
-    }
-  }
-}
 tasks {
   test {
     useJUnitPlatform()
