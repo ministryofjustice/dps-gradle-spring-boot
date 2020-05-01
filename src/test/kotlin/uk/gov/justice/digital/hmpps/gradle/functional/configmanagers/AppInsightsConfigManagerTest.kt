@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.gradle.functional.configmanagers
 
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.gradle.testkit.runner.TaskOutcome
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
@@ -18,10 +19,10 @@ class AppInsightsConfigManagerTest : GradleBuildTest() {
     makeProject(projectDetails)
 
     val result = buildProject(projectDir, "assemble")
-    Assertions.assertThat(result.task(":assemble")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+    assertThat(result.task(":assemble")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
     val file = findJar(projectDir, "applicationinsights-agent")
-    Assertions.assertThat(file).exists()
+    assertThat(file).exists()
   }
 
 }

@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   kotlin("jvm") version "1.3.72"
+  id("com.gradle.plugin-publish") version "0.11.0"
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.28.0"
@@ -32,6 +33,12 @@ gradlePlugin {
       description = "Plugin for HMPPS Spring Boot microservice configuration"
     }
   }
+}
+
+pluginBundle {
+  website = "https://github.com/ministryofjustice/dps-gradle-spring-boot"
+  vcsUrl = "https://github.com/ministryofjustice/dps-gradle-spring-boot"
+  tags = listOf("hmpps", "spring-boot")
 }
 
 dependencies {
