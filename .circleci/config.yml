@@ -60,7 +60,7 @@ workflows:
           filters:
             tags:
               ignore: /.*/
-        publish:
+      - publish:
           requires:
             - validate
           filters:
