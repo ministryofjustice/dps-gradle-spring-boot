@@ -67,10 +67,10 @@ workflows:
       - publish:
           requires:
             - validate
-  #          filters:
-  #            branches:
-  #              only:
-  #                - master
+          filters:
+            branches:
+              only:
+                - master
 
   scheduled:
     triggers:
