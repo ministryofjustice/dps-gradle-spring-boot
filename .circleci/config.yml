@@ -1,20 +1,12 @@
 version: 2.1
 
 orbs:
-  dps: ministryofjustice/dps@1.2.1
+  hmpps: ministryofjustice/hmpps@1.0.0
   owasp: entur/owasp@0.0.10
-
-executors:
-  validator:
-    docker:
-      - image: circleci/openjdk:11-jdk
-    environment:
-      _JAVA_OPTIONS: -Xmx256m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:ParallelGCThreads=2 -Djava.util.concurrent.ForkJoinPool.common.parallelism=2 -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs=-XX:+UseContainerSupport
-    working_directory: ~/app
 
 jobs:
   validate:
-    executor: dps/java
+    executor: hmpps/java
     steps:
       - checkout
       - restore_cache:
@@ -37,6 +29,29 @@ jobs:
             - build/libs
             - build.gradle.kts
 
+  publish:
+    executor: hmpps/java
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - gradle-{{ checksum "build.gradle.kts" }}
+            - gradle-
+      - run:
+          command: ./gradlew publishPlugins
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: gradle-{{ checksum "build.gradle.kts" }}
+      - store_test_results:
+          path: build/test-results
+      - store_artifacts:
+          path: build/reports/tests
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build.gradle.kts
+
 workflows:
   version: 2
   build-and-test:
@@ -45,6 +60,13 @@ workflows:
           filters:
             tags:
               ignore: /.*/
+      - publish:
+          requires:
+            - validate
+          filters:
+            branches:
+              only:
+                - master
 
   scheduled:
     triggers:
@@ -56,4 +78,4 @@ workflows:
                 - master
     jobs:
       - owasp/gradle_owasp_dependency_check:
-          executor: validator
+          executor: hmpps/java
