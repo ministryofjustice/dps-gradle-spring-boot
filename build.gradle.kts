@@ -1,3 +1,4 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -18,6 +19,13 @@ repositories {
   maven {
     url = uri("https://plugins.gradle.org/m2/")
   }
+}
+
+fun isNonStable(version: String): Boolean {
+  val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+  val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+  val isStable = stableKeyword || regex.matches(version)
+  return isStable.not()
 }
 
 group = "uk.gov.justice.hmpps.gradle"
@@ -70,6 +78,12 @@ tasks {
   withType<KotlinCompile> {
     kotlinOptions {
       jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+  }
+
+  withType<DependencyUpdatesTask> {
+    rejectVersionIf {
+      isNonStable(candidate.version) && !isNonStable(currentVersion)
     }
   }
 }
