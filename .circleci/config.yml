@@ -38,6 +38,10 @@ jobs:
             - gradle-{{ checksum "build.gradle.kts" }}
             - gradle-
       - run:
+          command: |
+            echo "gradle.publish.key=$PUBLISH_KEY" > "$HOME/.gradle/gradle.properties"
+            echo "gradle.publish.secret=$PUBLISH_SECRET" >> "$HOME/.gradle/gradle.properties"
+      - run:
           command: ./gradlew publishPlugins
       - save_cache:
           paths:
