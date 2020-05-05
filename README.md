@@ -1,4 +1,4 @@
-# DPS Spring Boot Gradle Plugin (WIP) 
+# DPS Spring Boot Gradle Plugin
 
 
 
@@ -15,11 +15,11 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.digital.hmpps.gradle.DpsSpringBoot") version "<plugin-version>"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.1"
   ...
 }
 ``` 
-Where the `plugin-version` is `TODO when we start publishing versions indicate how to find latest version here`
+Where the `plugin-version` can be found by going to https://plugins.gradle.org/plugin/uk.gov.justice.hmpps.gradle-spring-boot
 
 ### Duplicated build logic
 
@@ -110,27 +110,17 @@ You can run the test with command:
 ```
 and check the report generated at `build/dependencyUpdates/projectsUsingPlugin/report.txt`
 
-# THIS IS A WORK IN PROGRESS
+## Releasing the plugin
 
-To test this plugin:
+At present the version number increment is a manual step in `build.gradle.kts`.  Increment that at the same time
+as making changes.
 
-* Check out this repo and run command `./gradlew publishToMavenLocal`
-* Check out the `prison-estate` repo and switch to branch `mh-DT-727-dps-gradle-plugin`
-* Compare with the master branch to see what has changed in `build.gradle.kts`
-* Run the project and test - it should behave as now
-* Check that the health and info endpoints still work
-* Check that existing tasks still work
+When the plugin is ready to be released and PR approved, merge into master.  Then go into circleci at
+https://app.circleci.com/pipelines/github/ministryofjustice/dps-gradle-spring-boot and approve the publish step.  This
+will publish the plugin to the gradle plugins repository.
 
-And for the adventurous:
-* Make a change to the `dps-gradle-spring-boot` project and publish
-* E.g. You could revert back to Spring Boot version `2.2.0.RELEASE` in `build.gradle.kts`
-* Then publish with command `./gradlew publishToMavenLocal`
-* Then back in the `prison-estate` run task `./gradlew dependencyCheckAnalyze`
-* And you should see you now have loads of vulnerabilities
-* That's almost exactly the same as happens each time we move to the next Spring Boot version - but now we have a single place to mitigate them
+## TODO
 
-### TODO
 * Get feedback from the wider team
-* Work out somewhere to publish the plugin to (possibly Maven Central or Github Packages) - see [DT-787](https://dsdmoj.atlassian.net/browse/DT-787)
 * Automate incremental version numbers (we could manage this manually but safer if it is impossible overwrite previous versions)
 * Publish version 1

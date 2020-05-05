@@ -64,9 +64,13 @@ workflows:
           filters:
             tags:
               ignore: /.*/
-      - publish:
+      - publish-approval:
+          type: approval
           requires:
             - validate
+      - publish:
+          requires:
+            - publish-approval
           filters:
             branches:
               only:
