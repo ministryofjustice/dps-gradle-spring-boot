@@ -60,7 +60,7 @@ If you must use JUnit 4 in your project then add the following to your Gradle bu
 
 ```
 // Adjust the version number as appropriate
-testImplementation("org.junit.vintage:junit-vintage-engine:5.6.2")
+testImplementation("junit:junit:4.12")
 ```
 
 
