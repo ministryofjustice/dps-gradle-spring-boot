@@ -68,6 +68,10 @@ workflows:
           type: approval
           requires:
             - validate
+          filters:
+            branches:
+              only:
+                - master
       - publish:
           requires:
             - publish-approval
