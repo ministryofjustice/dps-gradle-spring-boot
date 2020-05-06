@@ -23,7 +23,7 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
     project.dependencies.add("implementation", "com.github.timpeeters:spring-boot-graceful-shutdown:2.2.2")
 
     val springBootTest = project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test") as ExternalModuleDependency
-    springBootTest.exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
+    springBootTest.exclude(mapOf("group" to "junit", "module" to "junit"))
   }
 
   private fun setSpringBootInfo() {
