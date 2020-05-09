@@ -15,10 +15,10 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.1"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.3.0"
   ...
 }
-``` 
+```
 Where the `plugin-version` can be found by going to https://plugins.gradle.org/plugin/uk.gov.justice.hmpps.gradle-spring-boot
 
 ### Duplicated build logic
@@ -35,7 +35,7 @@ Read the code!
 
 In the main you will probably need to know the following so you don't duplicate in your own build script:
 
-#### The plugins and versions automatically applied by this plugin 
+#### The plugins and versions automatically applied by this plugin
 The class DpsSpringBootPlugin contains all 3rd party plugins that are applied by the DPS plugin - check there first.  Then look in the file `build.gradle.kts` in the `dependencies/implementation` section.  There you can find each plugin and its version.
 
 E.g. `org.springframework.boot:spring-boot-gradle-plugin` is the Spring Boot plugin and its version is part of the configuration
@@ -89,7 +89,7 @@ dependencyCheck {
 }
 ```
  This will remove the suppression file supplied by this plugin which is probably not the intention.
- 
+
 ## Dependency Update Checks
 
 The plugin `com.github.ben-manes.versions` has task `dependencyUpdates` which checks the main Gradle build file for out of date versions.
@@ -103,12 +103,31 @@ There is a test in class `DependencyUpdatesFuncTest` which:
 * applies the DPS plugin
 * runs the `dependencyUpdates` task against the sample project
 * copies the reports generated into directory `build/dependencyUpdates/projectsUsingPlugin`
-  
+
 You can run the test with command:
 ```
 ./gradlew test --tests uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers.DependencyCheckPluginManagerTest
 ```
 and check the report generated at `build/dependencyUpdates/projectsUsingPlugin/report.txt`
+
+## Testing the plugin locally on other projects
+
+* Firstly bump the version of the plugin.
+* The publish the plugin to local maven
+```
+./gradlew publishToMavenLocal
+```
+* Then change the settings of the dependent project to read plugins from local storage.  In settings.gradle.kts
+```
+pluginManagement {
+  repositories {
+    mavenLocal()
+    gradlePluginPortal()
+  }
+}
+```
+* Last
+
 
 ## Releasing the plugin
 
