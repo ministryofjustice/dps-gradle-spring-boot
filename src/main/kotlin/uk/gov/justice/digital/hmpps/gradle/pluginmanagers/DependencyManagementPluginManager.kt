@@ -18,5 +18,4 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
       it.mavenBom(SpringBootPlugin.BOM_COORDINATES)
     }
   }
-
 }

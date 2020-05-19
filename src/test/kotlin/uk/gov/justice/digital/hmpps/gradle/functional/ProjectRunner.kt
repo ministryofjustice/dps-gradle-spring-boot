@@ -39,8 +39,9 @@ fun makeProject(projectDetails: ProjectDetails) {
 fun getDependencyVersion(projectDir: File, dependency: String): String {
   val result = buildProject(projectDir, "dependencyInsight", "--dependency", dependency)
   assertThat(result.task(":dependencyInsight")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
-  val (version) = Regex("org.springframework.boot:$dependency:(.*)\\s\\(selected by rule\\)").find(result.output)!!.destructured
-  return version
+  val (version) = Regex("org.springframework.boot:$dependency:(.*)\\s").find(result.output.replace("\n", " "))!!.destructured
+
+  return version.takeWhile { it != ' ' }
 }
 
 fun findJar(projectDir: File, partialJarName: String) =

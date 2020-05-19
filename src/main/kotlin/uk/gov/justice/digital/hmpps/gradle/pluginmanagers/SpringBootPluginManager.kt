@@ -20,6 +20,7 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
   private fun addDependencies() {
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
+    project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-validation")
     project.dependencies.add("implementation", "com.github.timpeeters:spring-boot-graceful-shutdown:2.2.2")
 
     val springBootTest = project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test") as ExternalModuleDependency
