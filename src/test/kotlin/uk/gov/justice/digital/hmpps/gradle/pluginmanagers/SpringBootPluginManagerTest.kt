@@ -26,8 +26,10 @@ class SpringBootPluginManagerTest : UnitTest() {
         .contains(
             tuple("org.springframework.boot", "spring-boot-starter-web"),
             tuple("org.springframework.boot", "spring-boot-starter-actuator"),
-            tuple("com.github.timpeeters", "spring-boot-graceful-shutdown")
-        )
+            tuple("com.github.timpeeters", "spring-boot-graceful-shutdown"),
+            tuple("org.springframework.boot", "spring-boot-starter-validation")
+
+    )
   }
 
   @Test

@@ -113,7 +113,7 @@ and check the report generated at `build/dependencyUpdates/projectsUsingPlugin/r
 ## Testing the plugin locally on other projects
 
 * Firstly bump the version of the plugin.
-* The publish the plugin to local maven
+* Then publish the plugin to local maven
 ```
 ./gradlew publishToMavenLocal
 ```
@@ -130,6 +130,9 @@ pluginManagement {
 
 
 ## Releasing the plugin
+
+Semantic versioning is used for the plugin i.e. `MAJOR.MINOR.PATCH`. A `MAJOR` change is a breaking change and will
+require changes to any existing projects that wish to adopt the `MAJOR` change.
 
 At present the version number increment is a manual step in `build.gradle.kts`.  Increment that at the same time
 as making changes.
