@@ -4,7 +4,7 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
 import uk.gov.justice.digital.hmpps.gradle.ConfigManager
 
-private const val APP_INSIGHTS_VERSION = "2.6.0"
+private const val APP_INSIGHTS_VERSION = "2.6.1"
 
 class AppInsightsConfigManager(override val project: Project) : ConfigManager {
 
@@ -27,7 +27,7 @@ class AppInsightsConfigManager(override val project: Project) : ConfigManager {
   }
 
   private fun addDependencies() {
-    project.dependencies.add("implementation", "net.logstash.logback:logstash-logback-encoder:6.3")
+    project.dependencies.add("implementation", "net.logstash.logback:logstash-logback-encoder:6.4")
     project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-spring-boot-starter:$APP_INSIGHTS_VERSION")
     project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-logging-logback:$APP_INSIGHTS_VERSION")
 

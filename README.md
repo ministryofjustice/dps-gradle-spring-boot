@@ -13,6 +13,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 ## Release Notes
 
 ### [0.4.0](release-notes/0.4.0.md)
+### [0.4.1](release-notes/0.4.1.md)
 
 ## How to use this plugin
 In your `build.gradle.kts` (or `build.gradle` for Java) add the following line to the plugin section:
@@ -102,7 +103,7 @@ However, we also need to know if dependencies applied by the DPS plugin are up t
 
 ### How to check if dependencies applied by the DPS plugin are up to date
 
-There is a test in class `DependencyUpdatesFuncTest` which:
+There is a test in class `VersionsPluginManagerTest` which:
 * builds a sample project
 * applies the DPS plugin
 * runs the `dependencyUpdates` task against the sample project
@@ -110,7 +111,7 @@ There is a test in class `DependencyUpdatesFuncTest` which:
 
 You can run the test with command:
 ```
-./gradlew test --tests uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers.VersionsPluginManagerTest
+./gradlew clean test --tests uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers.VersionsPluginManagerTest
 ```
 and check the report generated at `build/dependencyUpdates/projectsUsingPlugin/report.txt`
 
