@@ -10,6 +10,7 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
 
   override fun configure() {
     applyDependencyManagementBom(project)
+    forceTransitiveVersions(project)
   }
 
   private fun applyDependencyManagementBom(project: Project) {
@@ -18,4 +19,13 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
       it.mavenBom(SpringBootPlugin.BOM_COORDINATES)
     }
   }
+
+  private fun forceTransitiveVersions(project: Project) {
+    val depManConfigurer = project.extensions.getByName("dependencyManagement") as DependencyManagementConfigurer
+    depManConfigurer.dependencies {
+      // Overriding 0.9.8.RELEASE introduced by Spring Boot 2.3.1 - remove when Spring Boot upgrades to > 0.9.8.RELEASE (along with tests in functional/DependencyManagementPluginManagerTest)
+      it.dependency("io.projectreactor.netty:reactor-netty:0.9.9.RELEASE")
+    }
+  }
+
 }
