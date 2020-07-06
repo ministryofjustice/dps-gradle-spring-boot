@@ -12,8 +12,10 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 
-### [0.4.0](release-notes/0.4.0.md)
-### [0.4.1](release-notes/0.4.1.md)
+##### [0.4.3](release-notes/0.4.3.md)
+##### [0.4.2](release-notes/0.4.2.md)
+##### [0.4.1](release-notes/0.4.1.md)
+##### [0.4.0](release-notes/0.4.0.md)
 
 ## How to use this plugin
 In your `build.gradle.kts` (or `build.gradle` for Java) add the following line to the plugin section:
@@ -131,8 +133,6 @@ pluginManagement {
   }
 }
 ```
-* Last
-
 
 ## Releasing the plugin
 
