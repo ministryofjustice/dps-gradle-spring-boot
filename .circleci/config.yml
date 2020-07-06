@@ -71,14 +71,14 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
       - publish:
           requires:
             - publish-approval
           filters:
             branches:
               only:
-                - master
+                - main
 
   scheduled:
     triggers:
@@ -87,7 +87,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - owasp/gradle_owasp_dependency_check:
           executor: hmpps/java

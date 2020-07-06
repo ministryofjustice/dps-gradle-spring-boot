@@ -68,7 +68,7 @@ abstract class SpringBootPluginManagerJarTest {
   @Test
   fun `Spring Boot info endpoint contains git info`() {
     val infoResponse = URL("http://localhost:8080/actuator/info").readText()
-    assertThatJson(infoResponse).node("git.branch").isEqualTo("master")
+    assertThatJson(infoResponse).node("git.branch").isEqualTo("main")
   }
 
 }

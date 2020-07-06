@@ -142,7 +142,7 @@ require changes to any existing projects that wish to adopt the `MAJOR` change.
 At present the version number increment is a manual step in `build.gradle.kts`.  Increment that at the same time
 as making changes.
 
-When the plugin is ready to be released and PR approved, merge into master.  Then go into circleci at
+When the plugin is ready to be released and PR approved, merge into main.  Then go into circleci at
 https://app.circleci.com/pipelines/github/ministryofjustice/dps-gradle-spring-boot and approve the publish step.  This
 will publish the plugin to the gradle plugins repository.
 
