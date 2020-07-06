@@ -60,6 +60,19 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
     assertThat(jarContainsNettyVersion(jarFile, "0.9.9")).isTrue()
   }
 
+  @ParameterizedTest
+  @MethodSource("defaultProjectDetails")
+  fun `Reactor-netty is not imported by the plugin for no reason`(projectDetails: ProjectDetails) {
+    makeProject(projectDetails.copy())
+
+    val result = buildProject(projectDir, "bootJar")
+    assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+
+    val file = findJar(projectDir, projectDetails.projectName)
+    val jarFile = JarFile(file)
+    assertThat(jarContainsNettyVersion(jarFile, "0.9.9")).isFalse()
+  }
+
   // Demonstrates that you can still override the forced version by explicitly declaring in your build script
   @ParameterizedTest
   @MethodSource("wrongExplicitReactorNettyVersion")
