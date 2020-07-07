@@ -12,6 +12,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 
+##### [0.4.4](release-notes/0.4.4.md)
 ##### [0.4.3](release-notes/0.4.3.md)
 ##### [0.4.2](release-notes/0.4.2.md)
 ##### [0.4.1](release-notes/0.4.1.md)
@@ -59,17 +60,15 @@ E.g. Class `SpringBootPluginManager` applies `spring-boot-starter-actuator` (amo
 
 ## JUnit 4
 
-We have deliberately excluded the transitive JUnit 4 dependency from Spring Boot Test as JUnit 5 is preferred. Ideally teams should be converting JUnit 4 tests to JUnit 5 as part of their technical debt paydown.
-
-### But I *really* need JUnit 4
-
-If you must use JUnit 4 in your project then add the following to your Gradle build file's dependencies closure:
+We no longer exclude JUnit 4 as part of this plugin as it wasn't compatible with Gradle 6.4.  If you want to exclude it from your project then add the following to your Gradle build file:
 
 ```
-// Adjust the version number as appropriate
-testImplementation("junit:junit:4.12")
+configurations {
+  testImplementation { exclude(mapOf("group" to "org.junit.vintage", "group" to "junit")) }
+}
 ```
 
+This will ensure that code that includes junit `@Test` annotation doesn't compile and also that the junit vintage engine isn't included.
 
 ## OWASP Dependency Check and Suppression Files
 
