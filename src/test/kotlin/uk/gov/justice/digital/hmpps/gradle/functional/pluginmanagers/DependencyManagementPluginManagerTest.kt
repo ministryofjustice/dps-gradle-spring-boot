@@ -29,6 +29,18 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
         Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaWrongExplicitReactorNettyVersion())),
         Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinWrongExplicitReactorNettyVersion()))
     )
+
+    @JvmStatic
+    fun wrongTransitiveHibernateCoreVersion() = listOf(
+        Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaWrongTransitiveHibernateCoreVersion())),
+        Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinWrongTransitiveHibernateCoreVersion()))
+    )
+
+    @JvmStatic
+    fun wrongExplicitHibernateCoreVersion() = listOf(
+        Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaWrongExplicitHibernateCoreVersion())),
+        Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinWrongExplicitHibernateCoreVersion()))
+    )
   }
 
   @ParameterizedTest
@@ -91,6 +103,50 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
   private fun jarContainsNettyVersion(jar: JarFile, version: String): Boolean =
       jar.getJarEntry("BOOT-INF/lib/reactor-netty-$version.RELEASE.jar") != null
 
+  @ParameterizedTest
+  @MethodSource("wrongTransitiveHibernateCoreVersion")
+  fun `Wrong transitive version of hibernate core (Spring data jpa) should be overridden by the plugin`(projectDetails: ProjectDetails) {
+    makeProject(projectDetails.copy())
+
+    val result = buildProject(projectDir, "bootJar")
+    assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+
+    val file = findJar(projectDir, projectDetails.projectName)
+    val jarFile = JarFile(file)
+    assertThat(jarContainsHibernateCoreVersion(jarFile, "5.4.17")).isFalse()
+    assertThat(jarContainsHibernateCoreVersion(jarFile, "5.4.18")).isTrue()
+  }
+
+  @ParameterizedTest
+  @MethodSource("defaultProjectDetails")
+  fun `hibernate core is not imported by the plugin for no reason`(projectDetails: ProjectDetails) {
+    makeProject(projectDetails.copy())
+
+    val result = buildProject(projectDir, "bootJar")
+    assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+
+    val file = findJar(projectDir, projectDetails.projectName)
+    val jarFile = JarFile(file)
+    assertThat(jarContainsHibernateCoreVersion(jarFile, "5.4.17")).isFalse()
+  }
+
+  // Demonstrates that you can still override the forced version by explicitly declaring in your build script
+  @ParameterizedTest
+  @MethodSource("wrongExplicitHibernateCoreVersion")
+  fun `If explicitly requested the version of hibernate core is not forced`(projectDetails: ProjectDetails) {
+    makeProject(projectDetails.copy())
+
+    val result = buildProject(projectDir, "bootJar")
+    assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+
+    val file = findJar(projectDir, projectDetails.projectName)
+    val jarFile = JarFile(file)
+    assertThat(jarContainsHibernateCoreVersion(jarFile, "5.4.17")).isTrue()
+    assertThat(jarContainsHibernateCoreVersion(jarFile, "5.4.18")).isFalse()
+  }
+
+  private fun jarContainsHibernateCoreVersion(jar: JarFile, version: String): Boolean =
+      jar.getJarEntry("BOOT-INF/lib/hibernate-core-$version.Final.jar") != null
 }
 
 private fun javaWrongTransitiveReactorNettyVersion(): String {
@@ -133,6 +189,50 @@ private fun kotlinWrongExplicitReactorNettyVersion(): String {
     }
     dependencies {
       implementation("io.projectreactor.netty:reactor-netty:0.9.8.RELEASE")
+    }
+  """.trimIndent()
+}
+
+private fun javaWrongTransitiveHibernateCoreVersion(): String {
+  return """
+    plugins {
+      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+    }
+    dependencies {
+      implementation "org.springframework.boot:spring-boot-starter-data-jpa" // This imports org.hibernate:hibernate-core -> 5.4.17.Final
+    }
+  """.trimIndent()
+}
+
+private fun kotlinWrongTransitiveHibernateCoreVersion(): String {
+  return """
+    plugins {
+      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
+    }
+    dependencies {
+      implementation("org.springframework.boot:spring-boot-starter-data-jpa") // This imports org.hibernate:hibernate-core -> 5.4.17.Final
+    }
+  """.trimIndent()
+}
+
+private fun javaWrongExplicitHibernateCoreVersion(): String {
+  return """
+    plugins {
+      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+    }
+    dependencies {
+      implementation "org.hibernate:hibernate-core:5.4.17.Final"
+    }
+  """.trimIndent()
+}
+
+private fun kotlinWrongExplicitHibernateCoreVersion(): String {
+  return """
+    plugins {
+      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
+    }
+    dependencies {
+      implementation("org.hibernate:hibernate-core:5.4.17.Final")
     }
   """.trimIndent()
 }
