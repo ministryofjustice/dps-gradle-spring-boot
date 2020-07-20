@@ -22,12 +22,20 @@ class SpringBootPluginManagerTest : UnitTest() {
   @Test
   fun `Should apply Spring Boot standard libraries`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
+        .extracting<Tuple> { tuple(it.group, it.name) }
+        .contains(
+            tuple("org.springframework.boot", "spring-boot-starter-web"),
+            tuple("org.springframework.boot", "spring-boot-starter-actuator"),
+            tuple("com.github.timpeeters", "spring-boot-graceful-shutdown"),
+            tuple("org.springframework.boot", "spring-boot-starter-validation")
+        )
+  }
+
+  @Test
+  fun `Should pin tomcat embed core and websocket versions`() {
+    assertThat(project.configurations.getByName("implementation").dependencies)
         .extracting<Tuple> { tuple(it.group, it.name, it.version) }
         .contains(
-            tuple("org.springframework.boot", "spring-boot-starter-web", null),
-            tuple("org.springframework.boot", "spring-boot-starter-actuator", null),
-            tuple("com.github.timpeeters", "spring-boot-graceful-shutdown", "2.2.2"),
-            tuple("org.springframework.boot", "spring-boot-starter-validation", null),
             tuple("org.apache.tomcat.embed", "tomcat-embed-core", "9.0.37"),
             tuple("org.apache.tomcat.embed", "tomcat-embed-websocket", "9.0.37")
         )
