@@ -18,28 +18,32 @@ import java.util.jar.JarFile
 class DependencyManagementPluginManagerTest : GradleBuildTest() {
 
   companion object {
+    @Suppress("unused")
     @JvmStatic
     fun wrongTransitiveReactorNettyVersion() = listOf(
-        Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaWrongTransitiveReactorNettyVersion())),
-        Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinWrongTransitiveReactorNettyVersion()))
+        Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveReactorNettyVersionBuildFile())),
+        Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveReactorNettyVersionBuildFile()))
     )
 
+    @Suppress("unused")
     @JvmStatic
     fun wrongExplicitReactorNettyVersion() = listOf(
-        Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaWrongExplicitReactorNettyVersion())),
-        Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinWrongExplicitReactorNettyVersion()))
+        Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongExplicitReactorNettyVersionBuildFile())),
+        Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongExplicitReactorNettyVersionBuildFile()))
     )
 
+    @Suppress("unused")
     @JvmStatic
     fun wrongTransitiveHibernateCoreVersion() = listOf(
-        Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaWrongTransitiveHibernateCoreVersion())),
-        Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinWrongTransitiveHibernateCoreVersion()))
+        Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveHibernateCoreVersionBuildFile())),
+        Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveHibernateCoreVersionBuildFile()))
     )
 
+    @Suppress("unused")
     @JvmStatic
     fun wrongExplicitHibernateCoreVersion() = listOf(
-        Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaWrongExplicitHibernateCoreVersion())),
-        Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinWrongExplicitHibernateCoreVersion()))
+        Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongExplicitHibernateCoreVersionBuildFile())),
+        Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongExplicitHibernateCoreVersionBuildFile()))
     )
   }
 
@@ -149,19 +153,7 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
       jar.getJarEntry("BOOT-INF/lib/hibernate-core-$version.Final.jar") != null
 }
 
-private fun javaWrongTransitiveReactorNettyVersion(): String {
-  return """
-    plugins {
-      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
-    }
-    dependencies {
-      implementation "org.springframework.boot:spring-boot-starter-webflux" // This imports reactor netty 0.9.8.RELEASE
-    }
-  """.trimIndent()
-}
-
-private fun kotlinWrongTransitiveReactorNettyVersion(): String {
-  return """
+private fun wrongTransitiveReactorNettyVersionBuildFile() = """
     plugins {
       id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
     }
@@ -169,21 +161,8 @@ private fun kotlinWrongTransitiveReactorNettyVersion(): String {
       implementation("org.springframework.boot:spring-boot-starter-webflux") // This imports reactor netty 0.9.8.RELEASE
     }
   """.trimIndent()
-}
 
-private fun javaWrongExplicitReactorNettyVersion(): String {
-  return """
-    plugins {
-      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
-    }
-    dependencies {
-      implementation "io.projectreactor.netty:reactor-netty:0.9.8.RELEASE"
-    }
-  """.trimIndent()
-}
-
-private fun kotlinWrongExplicitReactorNettyVersion(): String {
-  return """
+private fun wrongExplicitReactorNettyVersionBuildFile() = """
     plugins {
       id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
     }
@@ -191,21 +170,8 @@ private fun kotlinWrongExplicitReactorNettyVersion(): String {
       implementation("io.projectreactor.netty:reactor-netty:0.9.8.RELEASE")
     }
   """.trimIndent()
-}
 
-private fun javaWrongTransitiveHibernateCoreVersion(): String {
-  return """
-    plugins {
-      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
-    }
-    dependencies {
-      implementation "org.springframework.boot:spring-boot-starter-data-jpa" // This imports org.hibernate:hibernate-core -> 5.4.17.Final
-    }
-  """.trimIndent()
-}
-
-private fun kotlinWrongTransitiveHibernateCoreVersion(): String {
-  return """
+private fun wrongTransitiveHibernateCoreVersionBuildFile() = """
     plugins {
       id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
     }
@@ -213,21 +179,8 @@ private fun kotlinWrongTransitiveHibernateCoreVersion(): String {
       implementation("org.springframework.boot:spring-boot-starter-data-jpa") // This imports org.hibernate:hibernate-core -> 5.4.17.Final
     }
   """.trimIndent()
-}
 
-private fun javaWrongExplicitHibernateCoreVersion(): String {
-  return """
-    plugins {
-      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
-    }
-    dependencies {
-      implementation "org.hibernate:hibernate-core:5.4.17.Final"
-    }
-  """.trimIndent()
-}
-
-private fun kotlinWrongExplicitHibernateCoreVersion(): String {
-  return """
+private fun wrongExplicitHibernateCoreVersionBuildFile() = """
     plugins {
       id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
     }
@@ -235,4 +188,3 @@ private fun kotlinWrongExplicitHibernateCoreVersion(): String {
       implementation("org.hibernate:hibernate-core:5.4.17.Final")
     }
   """.trimIndent()
-}

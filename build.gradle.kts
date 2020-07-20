@@ -6,7 +6,7 @@ plugins {
   id("com.gradle.plugin-publish") version "0.12.0"
   id("java-gradle-plugin")
   id("maven-publish")
-  id("com.github.ben-manes.versions") version "0.28.0"
+  id("com.github.ben-manes.versions") version "0.29.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.14"
   id("org.owasp.dependencycheck") version "5.3.2.1"
   id("com.adarshr.test-logger") version "2.1.0"
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "0.4.5"
+version = "0.4.5.1"
 
 gradlePlugin {
   plugins {
@@ -58,13 +58,13 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.9.RELEASE")
   implementation("org.owasp:dependency-check-gradle:5.3.2.1")
-  implementation("com.github.ben-manes:gradle-versions-plugin:0.28.0")
+  implementation("com.github.ben-manes:gradle-versions-plugin:0.29.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.2.2")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:2.1.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.14")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
-  testImplementation("org.mockito:mockito-junit-jupiter:3.4.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:3.4.4")
   testImplementation("org.assertj:assertj-core:3.16.1")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.18.1")
   testImplementation("com.google.code.gson:gson:2.8.6")
