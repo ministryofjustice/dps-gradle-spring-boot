@@ -23,7 +23,7 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-validation")
     project.dependencies.add("implementation", "com.github.timpeeters:spring-boot-graceful-shutdown:2.2.2")
 
-    // Overriding 9.0.36 included by Spring Boot 2.3.1 - remove when Spring Boot upgrades to > 9.0.36 (along with tests in functional/DependencyManagementPluginManagerTest)
+    // Overriding 9.0.36 included by Spring Boot 2.3.1 - remove when Spring Boot upgrades to > 9.0.36 (along with test in pluginmanagers/SpringBootPluginManagerTest)
     project.dependencies.add("implementation", "org.apache.tomcat.embed:tomcat-embed-core:9.0.37")
     project.dependencies.add("implementation", "org.apache.tomcat.embed:tomcat-embed-websocket:9.0.37")
 
