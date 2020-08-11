@@ -1,5 +1,6 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.owasp.dependencycheck.reporting.ReportGenerator.Format.ALL
 
 plugins {
   kotlin("jvm") version "1.3.72"
@@ -87,4 +88,10 @@ tasks {
       isNonStable(candidate.version) && !isNonStable(currentVersion)
     }
   }
+}
+
+dependencyCheck {
+  failBuildOnCVSS = 5F
+  format = ALL
+  analyzers.assemblyEnabled = false
 }
