@@ -31,7 +31,7 @@ fun isNonStable(version: String): Boolean {
 
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "0.4.7"
+version = "0.4.8"
 
 gradlePlugin {
   plugins {
@@ -57,7 +57,7 @@ dependencies {
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.3.2.RELEASE")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
-  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.9.RELEASE")
+  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.10.RELEASE")
   implementation("org.owasp:dependency-check-gradle:5.3.2.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.29.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.2.3")
@@ -65,7 +65,7 @@ dependencies {
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.14")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
-  testImplementation("org.mockito:mockito-junit-jupiter:3.4.4")
+  testImplementation("org.mockito:mockito-junit-jupiter:3.4.6")
   testImplementation("org.assertj:assertj-core:3.16.1")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.18.1")
   testImplementation("com.google.code.gson:gson:2.8.6")
@@ -88,10 +88,4 @@ tasks {
       isNonStable(candidate.version) && !isNonStable(currentVersion)
     }
   }
-}
-
-dependencyCheck {
-  failBuildOnCVSS = 5F
-  format = ALL
-  analyzers.assemblyEnabled = false
 }
