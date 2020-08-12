@@ -54,4 +54,131 @@
     </packageUrl>
     <cve>CVE-2018-1258</cve>
   </suppress>
+
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-compiler-embeddable-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-compiler\-embeddable@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-daemon-embeddable-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-daemon\-embeddable@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-reflect-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-reflect@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-script-runtime-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-script\-runtime@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-scripting-common-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-scripting\-common@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-scripting-compiler-embeddable-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-scripting\-compiler\-embeddable@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-scripting-compiler-impl-embeddable-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-scripting\-compiler\-impl\-embeddable@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-scripting-jvm-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-scripting\-jvm@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-stdlib-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-stdlib-common-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib\-common@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-stdlib-jdk7-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib\-jdk7@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-stdlib-jdk8-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib\-jdk8@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-allopen-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-allopen@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-gradle-plugin-api-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-gradle\-plugin\-api@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-gradle-plugin-model-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-gradle\-plugin\-model@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-native-utils-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-native\-utils@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-noarg-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-noarg@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-util-io-1.3.72.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-util\-io@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
 </suppressions>
