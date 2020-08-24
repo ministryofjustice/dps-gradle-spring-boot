@@ -52,8 +52,8 @@ pluginBundle {
 }
 
 dependencies {
-  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.0")
-  implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.0")
+  implementation(kotlin("stdlib-jdk8"))
+  implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.3.3.RELEASE")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.0")
