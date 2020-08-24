@@ -33,7 +33,7 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
   }
 
   private fun addDependencies() {
-    project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin:2.11.1")
+    project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin:2.11.2")
     project.dependencies.add("implementation", "com.google.guava:guava:29.0-jre") // This is only required because the version pulled in as a transitive dependency has CVE vulnerabilities
   }
 
