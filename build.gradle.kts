@@ -52,7 +52,6 @@ pluginBundle {
 }
 
 dependencies {
-  implementation(kotlin("stdlib-jdk8"))
   implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.3.3.RELEASE")
@@ -65,8 +64,8 @@ dependencies {
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.14")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
-  testImplementation("org.mockito:mockito-junit-jupiter:3.5.5")
-  testImplementation("org.assertj:assertj-core:3.17.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:3.5.9")
+  testImplementation("org.assertj:assertj-core:3.17.1")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.18.1")
   testImplementation("com.google.code.gson:gson:2.8.6")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.8.1.202007141445-r")
