@@ -180,4 +180,11 @@
     <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-util\-io@.*$</packageUrl>
     <cve>CVE-2020-15824</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: kotlin-klib-commonizer-embeddable-1.4.0.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-klib\-commonizer\-embeddable@.*$</packageUrl>
+    <cve>CVE-2020-15824</cve>
+  </suppress>
 </suppressions>
