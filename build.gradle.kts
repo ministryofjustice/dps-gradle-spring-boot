@@ -1,13 +1,12 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.owasp.dependencycheck.reporting.ReportGenerator.Format.ALL
 
 plugins {
-  kotlin("jvm") version "1.4.0"
+  kotlin("jvm") version "1.4.10"
   id("com.gradle.plugin-publish") version "0.12.0"
   id("java-gradle-plugin")
   id("maven-publish")
-  id("com.github.ben-manes.versions") version "0.29.0"
+  id("com.github.ben-manes.versions") version "0.31.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.14"
   id("org.owasp.dependencycheck") version "5.3.2.1"
   id("com.adarshr.test-logger") version "2.1.0"
@@ -31,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "1.0.2"
+version = "1.0.3"
 
 gradlePlugin {
   plugins {
@@ -55,18 +54,18 @@ dependencies {
   implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.3.3.RELEASE")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.0")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.10.RELEASE")
   implementation("org.owasp:dependency-check-gradle:5.3.2.1")
-  implementation("com.github.ben-manes:gradle-versions-plugin:0.29.0")
+  implementation("com.github.ben-manes:gradle-versions-plugin:0.31.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.2.3")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:2.1.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.14")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
-  testImplementation("org.mockito:mockito-junit-jupiter:3.5.9")
-  testImplementation("org.assertj:assertj-core:3.17.1")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.18.1")
+  testImplementation("org.mockito:mockito-junit-jupiter:3.5.10")
+  testImplementation("org.assertj:assertj-core:3.17.2")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.19.0")
   testImplementation("com.google.code.gson:gson:2.8.6")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.8.1.202007141445-r")
 }
