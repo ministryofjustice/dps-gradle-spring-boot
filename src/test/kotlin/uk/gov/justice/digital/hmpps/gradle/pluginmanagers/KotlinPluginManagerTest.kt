@@ -20,7 +20,6 @@ class KotlinPluginManagerTest : UnitTest() {
     assertThat(project.configurations.getByName("implementation").dependencies)
         .extracting<Tuple> { tuple(it.group, it.name) }
         .contains(
-            tuple("org.jetbrains.kotlin", "kotlin-stdlib-jdk8"),
             tuple("org.jetbrains.kotlin", "kotlin-reflect")
         )
   }
