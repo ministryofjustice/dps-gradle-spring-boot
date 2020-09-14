@@ -86,13 +86,4 @@ tasks {
       isNonStable(candidate.version) && !isNonStable(currentVersion)
     }
   }
-
-  val copySonar by register<Copy>("copySonar") {
-    from("sonar-project.properties")
-    into("$buildDir/resources/main")
-  }
-
-  processResources {
-    dependsOn(copySonar)
-  }
 }
