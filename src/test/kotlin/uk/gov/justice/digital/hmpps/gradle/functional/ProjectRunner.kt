@@ -14,7 +14,7 @@ import kotlin.streams.asStream
 
 data class ProjectDetails(
     val projectDir: File, val projectName: String, val packageDir: String, val mainClassName: String, val mainClass: String,
-    val buildScriptName: String, val buildScript: String, val settingsFileName: String, val testClass: String) {
+    val buildScriptName: String, val buildScript: String, val settingsFileName: String, val testClass: String, val properties: String) {
   override fun toString(): String = projectName
 }
 
@@ -32,6 +32,7 @@ fun makeProject(projectDetails: ProjectDetails) {
     makeSrcFile(projectDir, packageDir, mainClassName, mainClass)
     makeTestSrcFile(projectDir, packageDir, mainClassName, testClass)
     makeSettingsScript(projectDir, settingsFileName, projectName)
+    makePropertiesFile(projectDir, properties)
     makeGitRepo(projectDir)
   }
 }
@@ -113,6 +114,11 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
         rootProject.name = "$projectName"
       """.trimIndent()
   Files.writeString(settingsFile.toPath(), settingsScript)
+}
+
+private fun makePropertiesFile(projectDir: File, properties: String) {
+  val propertiesFile = File(projectDir, "gradle.properties")
+  Files.writeString(propertiesFile.toPath(), properties)
 }
 
 private fun makeGitRepo(projectDir: File) {

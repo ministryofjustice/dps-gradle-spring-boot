@@ -42,7 +42,8 @@ fun javaProjectDetails(projectDir: File) =
                   assertThat("anything").isEqualTo("anything");
               }
           }
-        """.trimIndent()
+        """.trimIndent(),
+        properties = ""
     )
 
 fun kotlinProjectDetails(projectDir: File) =
@@ -83,5 +84,6 @@ fun kotlinProjectDetails(projectDir: File) =
                   assertThat("anything").isEqualTo("anything")
               }
           }
-        """.trimIndent()
+        """.trimIndent(),
+        properties = ""
     )
