@@ -5,6 +5,7 @@ import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
+import uk.gov.justice.digital.hmpps.gradle.PROJECT_PROPERTY_FILE
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
@@ -117,7 +118,8 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
 }
 
 private fun makePropertiesFile(projectDir: File, properties: String) {
-  val propertiesFile = File(projectDir, "gradle.properties")
+  if (properties.isEmpty()) return
+  val propertiesFile = File(projectDir, PROJECT_PROPERTY_FILE)
   Files.writeString(propertiesFile.toPath(), properties)
 }
 

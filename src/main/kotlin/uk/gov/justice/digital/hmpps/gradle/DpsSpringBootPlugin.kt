@@ -2,7 +2,6 @@ package uk.gov.justice.digital.hmpps.gradle
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import uk.gov.justice.digital.hmpps.gradle.ProjectProperties.IS_KOTLIN_PROJECT
 import uk.gov.justice.digital.hmpps.gradle.configmanagers.AppInsightsConfigManager
 import uk.gov.justice.digital.hmpps.gradle.configmanagers.BaseConfigManager
 import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.DependencyCheckPluginManager
@@ -14,18 +13,12 @@ import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.SpringBootPluginManage
 import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.TestLoggerPluginManager
 import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.UseLatestVersionsPluginManager
 import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.VersionsPluginManager
-import java.io.FileInputStream
-import java.util.Properties
-
-enum class ProjectProperties(val key: String, val defaultValue: Any) {
-  IS_KOTLIN_PROJECT("kotlinProject", true)
-}
 
 class DpsSpringBootPlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
 
-    loadProperties(project)
+    loadPluginProperties(project)
 
     val configManagers = configManagers(project)
 
@@ -34,14 +27,6 @@ class DpsSpringBootPlugin : Plugin<Project> {
     project.afterEvaluate {
       configManagers.forEach { it.afterEvaluate() }
     }
-  }
-
-  private fun loadProperties(project: Project) {
-    val properties = Properties()
-    try { properties.load(FileInputStream(project.file("gradle.properties"))) }
-    catch (ex: Exception) { project.logger.info("No gradle.properties file found, using defaults")}
-
-    project.extensions.extraProperties[IS_KOTLIN_PROJECT.name] = properties.getProperty(IS_KOTLIN_PROJECT.name)?.equals("true") ?: IS_KOTLIN_PROJECT.defaultValue
   }
 
   private fun configManagers(project: Project): List<ConfigManager> {
@@ -56,7 +41,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
         PluginManager.from(::UseLatestVersionsPluginManager, project),
         PluginManager.from(::TestLoggerPluginManager, project)
     )
-    if (project.extensions.extraProperties[IS_KOTLIN_PROJECT.name] as Boolean) {
+    if (project.kotlinProject()) {
       managers.add(PluginManager.from(::KotlinPluginManager, project))
     } else {
       managers.add(PluginManager.from(::JavaPluginManager, project))
