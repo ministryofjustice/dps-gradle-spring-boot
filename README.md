@@ -39,6 +39,16 @@ plugins {
 ```
 Where the `plugin-version` can be found by going to https://plugins.gradle.org/plugin/uk.gov.justice.hmpps.gradle-spring-boot
 
+### Plugin Configuration
+It is now possible to control which 3rd party plugins are applied by this plugin.
+
+In your project you can add the following properties to a file called dps-gradle-spring-boot.properties in `key=value` pairs.
+
+| Property Name | Default Value | Description |
+| ------------- | ------------- | ----------- |
+| kotlinProject | true          | Decides whether to apply the Koktlin plugin or the Java plugin | 
+
+
 ### Duplicated build logic
 
 This plugin provides various build logic that may already exist in your project, and using this plugin may:
