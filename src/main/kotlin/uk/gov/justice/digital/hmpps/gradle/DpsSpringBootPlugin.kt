@@ -18,8 +18,6 @@ class DpsSpringBootPlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
 
-    loadPluginProperties(project)
-
     val configManagers = configManagers(project)
 
     configManagers.forEach { it.configure() }
@@ -48,4 +46,12 @@ class DpsSpringBootPlugin : Plugin<Project> {
     }
     return managers.toList()
   }
+
+  private fun Project.kotlinProject(): Boolean =
+    if (this.hasProperty("kotlinProject")) {
+      this.property("kotlinProject") == "true"
+    } else {
+       true
+    }
+
 }

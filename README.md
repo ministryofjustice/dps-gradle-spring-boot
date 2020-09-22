@@ -38,16 +38,15 @@ plugins {
 }
 ```
 Where the `plugin-version` can be found by going to https://plugins.gradle.org/plugin/uk.gov.justice.hmpps.gradle-spring-boot
-
 ### Plugin Configuration
-It is now possible to control which 3rd party plugins are applied by this plugin.
+It is now possible to omit Kotlin from the project if it is not required.
 
-In your project you can add the following properties to a file called dps-gradle-spring-boot.properties in `key=value` pairs.
+In your project add a `gradle.properties` file with the following contents
+```
+kotlinProject=false
+```
 
-| Property Name | Default Value | Description |
-| ------------- | ------------- | ----------- |
-| kotlinProject | true          | Decides whether to apply the Kotlin plugin or the Java plugin | 
-
+Note that by default we assume that this is a Kotlin project, so adding `kotlinProject=true` would be redundant.
 
 ### Duplicated build logic
 

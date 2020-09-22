@@ -5,7 +5,6 @@ import org.gradle.testkit.runner.TaskOutcome
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import uk.gov.justice.digital.hmpps.gradle.PluginProperty.IS_KOTLIN_PROJECT
 import uk.gov.justice.digital.hmpps.gradle.functional.GradleBuildTest
 import uk.gov.justice.digital.hmpps.gradle.functional.ProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.buildProject
@@ -19,7 +18,7 @@ class KotlinPluginManagerTest : GradleBuildTest() {
   companion object {
     @JvmStatic
     fun javaProjectWithKotlinTurnedOff() = listOf(
-        Arguments.of(javaProjectDetails(projectDir).copy(properties = """${IS_KOTLIN_PROJECT.key}=false""")),
+        Arguments.of(javaProjectDetails(projectDir).copy(properties = "kotlinProject=false")),
     )
   }
 
