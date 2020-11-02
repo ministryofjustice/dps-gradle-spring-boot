@@ -12,6 +12,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 
+##### [1.0.7](release-notes/1.0.7.md)
 ##### [1.0.6](release-notes/1.0.6.md)
 ##### [1.0.5](release-notes/1.0.5.md)
 ##### [1.0.4](release-notes/1.0.4.md)
@@ -19,15 +20,6 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 ##### [1.0.2](release-notes/1.0.2.md)
 ##### [1.0.1](release-notes/1.0.1.md)
 ##### [1.0.0](release-notes/1.0.0.md)
-##### [0.4.8](release-notes/0.4.8.md)
-##### [0.4.7](release-notes/0.4.7.md)
-##### [0.4.6](release-notes/0.4.6.md)
-##### [0.4.5](release-notes/0.4.5.md)
-##### [0.4.4](release-notes/0.4.4.md)
-##### [0.4.3](release-notes/0.4.3.md)
-##### [0.4.2](release-notes/0.4.2.md)
-##### [0.4.1](release-notes/0.4.1.md)
-##### [0.4.0](release-notes/0.4.0.md)
 
 ## How to use this plugin
 In your `build.gradle.kts` (or `build.gradle` for Java) add the following line to the plugin section:
