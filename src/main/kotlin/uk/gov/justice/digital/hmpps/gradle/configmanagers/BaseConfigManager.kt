@@ -56,5 +56,4 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
     val testTask = project.tasks.getByName("test") as Test
     testTask.useJUnitPlatform()
   }
-
 }

@@ -22,23 +22,23 @@ class SpringBootPluginManagerTest : UnitTest() {
   @Test
   fun `Should apply Spring Boot standard libraries`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting<Tuple> { tuple(it.group, it.name) }
-        .contains(
-            tuple("org.springframework.boot", "spring-boot-starter-web"),
-            tuple("org.springframework.boot", "spring-boot-starter-actuator"),
-            tuple("com.github.timpeeters", "spring-boot-graceful-shutdown"),
-            tuple("org.springframework.boot", "spring-boot-starter-validation")
-        )
+      .extracting<Tuple> { tuple(it.group, it.name) }
+      .contains(
+        tuple("org.springframework.boot", "spring-boot-starter-web"),
+        tuple("org.springframework.boot", "spring-boot-starter-actuator"),
+        tuple("com.github.timpeeters", "spring-boot-graceful-shutdown"),
+        tuple("org.springframework.boot", "spring-boot-starter-validation")
+      )
   }
 
   @Test
   fun `Should apply Spring Boot test Dependencies`() {
     assertThat(project.configurations.getByName("testImplementation").dependencies)
-        .extracting<Tuple> { tuple(it.group, it.name) }
-        .contains(
-            Tuple.tuple("org.springframework.boot", "spring-boot-starter-test")
+      .extracting<Tuple> { tuple(it.group, it.name) }
+      .contains(
+        Tuple.tuple("org.springframework.boot", "spring-boot-starter-test")
 
-        )
+      )
   }
 
   @Test
@@ -59,5 +59,4 @@ class SpringBootPluginManagerTest : UnitTest() {
 
     assertThat(manifestAttributes).extracting("Implementation-Version", "Implementation-Title").contains(project.version, project.name)
   }
-
 }

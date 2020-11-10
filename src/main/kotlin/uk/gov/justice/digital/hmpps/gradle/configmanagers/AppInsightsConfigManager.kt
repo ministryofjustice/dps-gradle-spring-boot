@@ -33,5 +33,4 @@ class AppInsightsConfigManager(override val project: Project) : ConfigManager {
 
     project.dependencies.add("agentDeps", "com.microsoft.azure:applicationinsights-agent:$APP_INSIGHTS_VERSION")
   }
-
 }

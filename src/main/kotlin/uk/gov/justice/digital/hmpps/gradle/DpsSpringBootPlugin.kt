@@ -28,17 +28,16 @@ class DpsSpringBootPlugin : Plugin<Project> {
 
   private fun configManagers(project: Project): List<ConfigManager> {
     return listOf(
-        BaseConfigManager(project),
-        AppInsightsConfigManager(project),
-        PluginManager.from(::SpringBootPluginManager, project),
-        PluginManager.from(::KotlinPluginManager, project),
-        PluginManager.from(::DependencyManagementPluginManager, project),
-        PluginManager.from(::DependencyCheckPluginManager, project),
-        PluginManager.from(::VersionsPluginManager, project),
-        PluginManager.from(::GitPropertiesPluginManager, project),
-        PluginManager.from(::UseLatestVersionsPluginManager, project),
-        PluginManager.from(::TestLoggerPluginManager, project)
+      BaseConfigManager(project),
+      AppInsightsConfigManager(project),
+      PluginManager.from(::SpringBootPluginManager, project),
+      PluginManager.from(::KotlinPluginManager, project),
+      PluginManager.from(::DependencyManagementPluginManager, project),
+      PluginManager.from(::DependencyCheckPluginManager, project),
+      PluginManager.from(::VersionsPluginManager, project),
+      PluginManager.from(::GitPropertiesPluginManager, project),
+      PluginManager.from(::UseLatestVersionsPluginManager, project),
+      PluginManager.from(::TestLoggerPluginManager, project)
     )
   }
-
 }

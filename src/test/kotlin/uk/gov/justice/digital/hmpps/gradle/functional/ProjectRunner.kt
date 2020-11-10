@@ -13,8 +13,16 @@ import java.nio.file.Paths
 import kotlin.streams.asStream
 
 data class ProjectDetails(
-    val projectDir: File, val projectName: String, val packageDir: String, val mainClassName: String, val mainClass: String,
-    val buildScriptName: String, val buildScript: String, val settingsFileName: String, val testClass: String) {
+  val projectDir: File,
+  val projectName: String,
+  val packageDir: String,
+  val mainClassName: String,
+  val mainClass: String,
+  val buildScriptName: String,
+  val buildScript: String,
+  val settingsFileName: String,
+  val testClass: String
+) {
   override fun toString(): String = projectName
 }
 
@@ -45,20 +53,20 @@ fun getDependencyVersion(projectDir: File, dependency: String): String {
 }
 
 fun findJar(projectDir: File, partialJarName: String) =
-    Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
-      paths.filter { path -> path.toString().contains(partialJarName) }
-          .findFirst()
-          .map { jarPath -> jarPath.toFile() }
-          .orElseThrow()
-    }
+  Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
+    paths.filter { path -> path.toString().contains(partialJarName) }
+      .findFirst()
+      .map { jarPath -> jarPath.toFile() }
+      .orElseThrow()
+  }
 
 fun findFile(projectDir: File, fileName: String) =
-    Files.walk(Paths.get(projectDir.absolutePath)).use { paths ->
-      paths.filter { path -> path.toString().contains(fileName) }
-          .findFirst()
-          .map { filePath -> filePath.toFile() }
-          .orElseThrow()
-    }
+  Files.walk(Paths.get(projectDir.absolutePath)).use { paths ->
+    paths.filter { path -> path.toString().contains(fileName) }
+      .findFirst()
+      .map { filePath -> filePath.toFile() }
+      .orElseThrow()
+  }
 
 private fun createJar(projectDir: File, projectName: String): File {
   val result = buildProject(projectDir, "bootJar")
@@ -75,8 +83,8 @@ private fun runJar(jar: File, mainClassName: String): Process {
   val outputReader = BufferedReader(InputStreamReader(process.inputStream))
   val startedOk = outputReader.useLines {
     it.asStream()
-        .peek { line -> println(line) }
-        .anyMatch { line -> line.contains("Started ${mainClassName.substringBefore(".")}") }
+      .peek { line -> println(line) }
+      .anyMatch { line -> line.contains("Started ${mainClassName.substringBefore(".")}") }
   }
   assertThat(startedOk).isTrue().withFailMessage("Unable to start the Spring Boot jar")
   return process
@@ -103,7 +111,8 @@ private fun makeBuildScript(projectDir: File, buildScriptName: String, buildScri
 
 private fun makeSettingsScript(projectDir: File, settingsFileName: String, projectName: String) {
   val settingsFile = File(projectDir, settingsFileName)
-  val settingsScript = """
+  val settingsScript =
+    """
         pluginManagement {
           repositories {
             mavenLocal()
@@ -111,7 +120,7 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
           }
         }
         rootProject.name = "$projectName"
-      """.trimIndent()
+    """.trimIndent()
   Files.writeString(settingsFile.toPath(), settingsScript)
 }
 
@@ -124,13 +133,13 @@ private fun makeGitRepo(projectDir: File) {
 }
 
 fun buildProject(projectDir: File, vararg arguments: String) =
-    projectBuilder(projectDir, *arguments).build()
+  projectBuilder(projectDir, *arguments).build()
 
 fun buildProjectAndFail(projectDir: File, vararg arguments: String) =
-    projectBuilder(projectDir, *arguments).buildAndFail()
+  projectBuilder(projectDir, *arguments).buildAndFail()
 
 private fun projectBuilder(projectDir: File, vararg arguments: String) =
-    GradleRunner.create()
-        .withProjectDir(projectDir)
-        .withArguments("clean", *arguments)
-        .withPluginClasspath()
+  GradleRunner.create()
+    .withProjectDir(projectDir)
+    .withArguments("clean", *arguments)
+    .withPluginClasspath()

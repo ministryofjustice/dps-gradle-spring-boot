@@ -25,5 +25,4 @@ class KotlinPluginManager(override val project: Project) : PluginManager<KotlinP
 
     project.dependencies.add("testImplementation", "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
   }
-
 }

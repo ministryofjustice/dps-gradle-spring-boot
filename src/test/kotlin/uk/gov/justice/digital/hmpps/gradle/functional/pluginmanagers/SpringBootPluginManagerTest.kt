@@ -22,8 +22,8 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
   companion object {
     @JvmStatic
     fun projectDetailsWithJunit4Tests() = listOf(
-        Arguments.of(javaProjectDetails(projectDir).copy(testClass = javaJunit4Test())),
-        Arguments.of(kotlinProjectDetails(projectDir).copy(testClass = kotlinJunit4Test()))
+      Arguments.of(javaProjectDetails(projectDir).copy(testClass = javaJunit4Test())),
+      Arguments.of(kotlinProjectDetails(projectDir).copy(testClass = kotlinJunit4Test()))
     )
   }
 
@@ -48,7 +48,6 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
 
     buildProjectAndFail(projectDir, "compileTest")
   }
-
 }
 
 private fun javaJunit4Test(): String {
