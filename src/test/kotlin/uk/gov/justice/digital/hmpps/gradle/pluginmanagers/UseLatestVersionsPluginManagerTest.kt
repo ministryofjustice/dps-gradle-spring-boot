@@ -10,5 +10,4 @@ class UseLatestVersionsPluginManagerTest : UnitTest() {
   fun `Should apply the use latest versions plugin`() {
     project.plugins.getPlugin(UseLatestVersionsPlugin::class.java)
   }
-
 }

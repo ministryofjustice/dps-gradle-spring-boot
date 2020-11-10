@@ -10,5 +10,4 @@ class GitPropertiesPluginManagerTest : UnitTest() {
   fun `Should apply the gradle git properties plugin`() {
     project.plugins.getPlugin(GitPropertiesPlugin::class.java)
   }
-
 }

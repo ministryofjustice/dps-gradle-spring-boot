@@ -20,7 +20,6 @@ class JavaSpringBootPluginManagerJarTest : SpringBootPluginManagerJarTest() {
       jarProcess = createAndRunJar(javaProjectDetails(projectDir))
     }
   }
-
 }
 
 class KotlinSpringBootPluginManagerJarTest : SpringBootPluginManagerJarTest() {
@@ -32,7 +31,6 @@ class KotlinSpringBootPluginManagerJarTest : SpringBootPluginManagerJarTest() {
       jarProcess = createAndRunJar(kotlinProjectDetails(projectDir))
     }
   }
-
 }
 
 abstract class SpringBootPluginManagerJarTest {
@@ -50,7 +48,6 @@ abstract class SpringBootPluginManagerJarTest {
     fun `End running jar`() {
       jarProcess?.destroyForcibly()
     }
-
   }
 
   @Test
@@ -70,5 +67,4 @@ abstract class SpringBootPluginManagerJarTest {
     val infoResponse = URL("http://localhost:8080/actuator/info").readText()
     assertThatJson(infoResponse).node("git.branch").isNotNull
   }
-
 }

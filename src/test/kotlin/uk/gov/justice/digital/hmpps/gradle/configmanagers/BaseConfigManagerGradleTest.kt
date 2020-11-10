@@ -30,7 +30,8 @@ class BaseConfigManagerGradleTest : GradleBuildTest() {
   fun `The sonar properties file is not copied into the project`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
-    val sonarScript = """
+    val sonarScript =
+      """
 # some coverage rules
 sonar.coverage.exclusions=**/*.java,**/*.kt
       """.trimIndent()
@@ -49,7 +50,8 @@ sonar.coverage.exclusions=**/*.java,**/*.kt
   @MethodSource("defaultProjectDetails")
   fun `The sonar properties file is overwritten in the project if WARNING exists`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
-    val sonarScript = """
+    val sonarScript =
+      """
 # WARNING - contents will be overwritten
 sonar.coverage.exclusions=**/*.java,**/*.kt
       """.trimIndent()

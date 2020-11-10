@@ -20,8 +20,8 @@ class DependencyCheckPluginManagerTest : GradleBuildTest() {
 
     val result = buildProject(projectDir, "dependencyCheckAnalyze", "-m")
     assertThat(result.output)
-        .contains(":dependencyCheckAnalyze SKIPPED")
-        .contains("SUCCESSFUL")
+      .contains(":dependencyCheckAnalyze SKIPPED")
+      .contains("SUCCESSFUL")
   }
 
   @ParameterizedTest
@@ -35,5 +35,4 @@ class DependencyCheckPluginManagerTest : GradleBuildTest() {
     val suppressionFile = findFile(projectDir, DEPENDENCY_SUPPRESSION_FILENAME)
     assertThat(suppressionFile).exists()
   }
-
 }

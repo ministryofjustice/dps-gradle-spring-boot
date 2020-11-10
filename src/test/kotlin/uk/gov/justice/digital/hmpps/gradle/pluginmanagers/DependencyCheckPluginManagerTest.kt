@@ -22,5 +22,4 @@ class DependencyCheckPluginManagerTest : UnitTest() {
     Assertions.assertThat(extension.format).isEqualTo(ReportGenerator.Format.ALL)
     Assertions.assertThat(extension.analyzers.assemblyEnabled).isFalse()
   }
-
 }

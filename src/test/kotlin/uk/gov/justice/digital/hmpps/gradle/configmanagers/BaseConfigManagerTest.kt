@@ -25,11 +25,11 @@ class BaseConfigManagerTest : UnitTest() {
   @Test
   fun `Should apply miscellaneous dependencies`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting<Tuple> { tuple(it.group, it.name) }
-        .contains(
-            tuple("com.fasterxml.jackson.module", "jackson-module-kotlin"),
-            tuple("com.google.guava", "guava")
-        )
+      .extracting<Tuple> { tuple(it.group, it.name) }
+      .contains(
+        tuple("com.fasterxml.jackson.module", "jackson-module-kotlin"),
+        tuple("com.google.guava", "guava")
+      )
   }
 
   @Test
@@ -43,5 +43,4 @@ class BaseConfigManagerTest : UnitTest() {
     val javaPluginConvention = javaConvention.plugins["java"] as JavaPluginConvention
     assertThat(javaPluginConvention.sourceCompatibility).isEqualTo(JavaVersion.VERSION_11)
   }
-
 }

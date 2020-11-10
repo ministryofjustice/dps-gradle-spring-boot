@@ -12,12 +12,12 @@ class AppInsightsConfigManagerTest : UnitTest() {
   @Test
   fun `Should apply app insights libraries`() {
     assertThat(project.configurations.getByName("implementation").dependencies)
-        .extracting<Tuple> { tuple(it.group, it.name) }
-        .contains(
-            tuple("net.logstash.logback", "logstash-logback-encoder"),
-            tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter"),
-            tuple("com.microsoft.azure", "applicationinsights-logging-logback")
-        )
+      .extracting<Tuple> { tuple(it.group, it.name) }
+      .contains(
+        tuple("net.logstash.logback", "logstash-logback-encoder"),
+        tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter"),
+        tuple("com.microsoft.azure", "applicationinsights-logging-logback")
+      )
   }
 
   // The test fails if an exception is thrown
@@ -39,5 +39,4 @@ class AppInsightsConfigManagerTest : UnitTest() {
     val dependsOn = assembleTask.taskDependencies.getDependencies(assembleTask)
     assertThat(dependsOn).extracting<String> { it.name }.contains("copyAgent")
   }
-
 }

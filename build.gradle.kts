@@ -10,6 +10,7 @@ plugins {
   id("se.patrikerdes.use-latest-versions") version "0.2.15"
   id("org.owasp.dependencycheck") version "6.0.2"
   id("com.adarshr.test-logger") version "2.1.1"
+  id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
 }
 
 repositories {
@@ -27,7 +28,6 @@ fun isNonStable(version: String): Boolean {
   val isStable = stableKeyword || regex.matches(version)
   return isStable.not()
 }
-
 
 group = "uk.gov.justice.hmpps.gradle"
 version = "1.0.7"
@@ -86,4 +86,8 @@ tasks {
       isNonStable(candidate.version) && !isNonStable(currentVersion)
     }
   }
+}
+
+tasks.named("check") {
+  dependsOn(":ktlintCheck")
 }

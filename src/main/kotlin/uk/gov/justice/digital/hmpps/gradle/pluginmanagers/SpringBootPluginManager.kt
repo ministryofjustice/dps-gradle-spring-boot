@@ -39,9 +39,10 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
 
   private fun getAdditionalBuildInfo(): Map<String, String> {
     return mapOf(
-        "by" to System.getProperty("user.name"),
-        "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
-        "machine" to InetAddress.getLocalHost().hostName)
+      "by" to System.getProperty("user.name"),
+      "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
+      "machine" to InetAddress.getLocalHost().hostName
+    )
   }
 
   private fun setManifestAttributes() {
@@ -49,5 +50,4 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
     manifest.attributes["Implementation-Version"] = project.version
     manifest.attributes["Implementation-Title"] = project.name
   }
-
 }

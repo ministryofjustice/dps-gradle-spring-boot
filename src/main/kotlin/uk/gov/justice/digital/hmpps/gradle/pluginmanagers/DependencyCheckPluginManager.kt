@@ -36,17 +36,16 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
     Files.copy(inputStream, newFile, StandardCopyOption.REPLACE_EXISTING)
   }
 
-
   private fun checkOverriddenSuppressionFile() {
     val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
     if (extension.suppressionFiles.isNotEmpty() && extension.suppressionFiles.contains(DEPENDENCY_SUPPRESSION_FILENAME).not()) {
-      project.logger.warn("""
+      project.logger.warn(
+        """
         
         INFO: The default dependency checker suppression file has not been applied. Did you accidentally set suppressionFiles = listOf("<file>") instead of suppressionFiles.add("<file>") in your Gradle build script?
 
-      """.trimIndent()
+        """.trimIndent()
       )
     }
   }
-
 }

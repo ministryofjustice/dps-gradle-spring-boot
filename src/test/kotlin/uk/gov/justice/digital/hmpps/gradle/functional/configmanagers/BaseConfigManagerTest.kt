@@ -23,7 +23,8 @@ class BaseConfigManagerTest : GradleBuildTest() {
 
   // Note that this relies on the output from the TestLoggerPlugin
   private fun checkTestsWereExecuted(buildOutput: String): Int {
-    val (numberOfTestsExecuted) = """Executed (\d) test""".toRegex().find(buildOutput)!!.destructured
+    val (numberOfTestsExecuted) =
+      """Executed (\d) test""".toRegex().find(buildOutput)!!.destructured
     return numberOfTestsExecuted.toIntOrNull() ?: 0
   }
 }

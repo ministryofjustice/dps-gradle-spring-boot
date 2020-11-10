@@ -10,6 +10,4 @@ class DependencyManagementPluginManagerTest : UnitTest() {
   fun `Should apply the Spring Dependency Management plugin`() {
     project.plugins.getPlugin(DependencyManagementPlugin::class.java)
   }
-
-
 }

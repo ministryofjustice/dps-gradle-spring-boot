@@ -19,8 +19,8 @@ class VersionsPluginManagerTest : GradleBuildTest() {
 
     val result = buildProject(projectDir, "dependencyUpdates", "-m")
     assertThat(result.output)
-        .contains(":dependencyUpdates SKIPPED")
-        .contains("SUCCESSFUL")
+      .contains(":dependencyUpdates SKIPPED")
+      .contains("SUCCESSFUL")
   }
 
   @ParameterizedTest
@@ -36,5 +36,4 @@ class VersionsPluginManagerTest : GradleBuildTest() {
     reportDir.copyRecursively(File("build/dependencyUpdates/projectsUsingPlugin"), overwrite = true)
     assertThat(File("build/dependencyUpdates/projectsUsingPlugin/report.txt")).exists()
   }
-
 }
