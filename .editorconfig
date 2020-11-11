@@ -1,14 +1,4 @@
-[*.kt]
-indent_size = 2
-
-[*.kts]
-indent_size = 2
-
-[*.java]
-ij_java_class_count_to_use_import_on_demand = 99
-ij_java_names_count_to_use_import_on_demand = 99
-ij_java_use_single_class_imports = true
-ij_java_insert_inner_class_imports = true
-
-[*.html]
+# This file is only specific to this project.
+# To change the template that is copied to dependent projects please see src/main/resources/.editorconfig
+[{*.kt,*.kts}]
 indent_size = 2

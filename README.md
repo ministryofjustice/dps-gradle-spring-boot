@@ -12,6 +12,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 
+##### [1.1.0](release-notes/1.1.0.md)
 ##### [1.0.7](release-notes/1.0.7.md)
 ##### [1.0.6](release-notes/1.0.6.md)
 ##### [1.0.5](release-notes/1.0.5.md)
@@ -26,7 +27,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "1.0.6"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "1.1.0"
   ...
 }
 ```
@@ -63,7 +64,7 @@ E.g. Class `SpringBootPluginManager` applies `spring-boot-starter-actuator` (amo
 
 ## JUnit 4
 
-We no longer exclude JUnit 4 as part of this plugin as it wasn't compatible with Gradle 6.4.  If you want to exclude it from your project then add the following to your Gradle build file:
+We no longer exclude JUnit 4 as part of this plugin as it wasn't compatible with Gradle 6.7.  If you want to exclude it from your project then add the following to your Gradle build file:
 
 ```
 configurations {
@@ -148,8 +149,19 @@ When the plugin is ready to be released and PR approved, merge into main.  Then 
 https://app.circleci.com/pipelines/github/ministryofjustice/dps-gradle-spring-boot and approve the publish step.  This
 will publish the plugin to the gradle plugins repository.
 
+### Code style & formatting
+```bash
+./gradlew ktlintApplyToIdea addKtlintFormatGitPreCommitHook
+```
+will apply ktlint styles to intellij and also add a pre-commit hook to format all changed kotlin files.
+
+Note that the .editorconfig in the root of this project is for this project only, the one in src/main/resources will be copied to other projects to enforce style.
+
+To setup dependent projects with ktlint:
+1. (Optional) run the above gradle command to apply to intellij and add the pre commit hook.
+2. If you don't plan on making changes to .editorconfig (created on first run) then add to .gitignore.
+3. Ensure that the continuous integration tool runs the `check` task instead of `test`.
+
 ## TODO
 
-* Get feedback from the wider team
 * Automate incremental version numbers (we could manage this manually but safer if it is impossible overwrite previous versions)
-* Publish version 1
