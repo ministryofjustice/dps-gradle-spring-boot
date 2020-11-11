@@ -45,6 +45,7 @@ fun javaProjectDetails(projectDir: File) =
                   assertThat("anything").isEqualTo("anything");
               }
           }
+
       """.trimIndent()
   )
 
@@ -56,17 +57,18 @@ fun kotlinProjectDetails(projectDir: File) =
     mainClassName = "Application.kt",
     mainClass =
       """
-          package uk.gov.justice.digital.hmpps.app
-    
-          import org.springframework.boot.autoconfigure.SpringBootApplication
-          import org.springframework.boot.runApplication
-    
-          @SpringBootApplication
-          open class Application
-    
-          fun main(args: Array<String>) {
-            runApplication<Application>(*args)
-          }
+        package uk.gov.justice.digital.hmpps.app
+  
+        import org.springframework.boot.autoconfigure.SpringBootApplication
+        import org.springframework.boot.runApplication
+  
+        @SpringBootApplication
+        open class Application
+  
+        fun main(args: Array<String>) {
+          runApplication<Application>(*args)
+        }
+
       """.trimIndent(),
     buildScriptName = "build.gradle.kts",
     buildScript =
@@ -74,20 +76,22 @@ fun kotlinProjectDetails(projectDir: File) =
           plugins {
             id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
           }
+
       """.trimIndent(),
     settingsFileName = "settings.gradle.kts",
     testClass =
       """
-          package uk.gov.justice.digital.hmpps.app
-          
-          import org.assertj.core.api.Assertions.assertThat
-          import org.junit.jupiter.api.Test
-          
-          class ApplicationTest {
-              @Test
-              fun `A Test`() {
-                  assertThat("anything").isEqualTo("anything")
-              }
+        package uk.gov.justice.digital.hmpps.app
+        
+        import org.assertj.core.api.Assertions.assertThat
+        import org.junit.jupiter.api.Test
+        
+        class ApplicationTest {
+          @Test
+          fun `A Test`() {
+            assertThat("anything").isEqualTo("anything")
           }
+        }
+
       """.trimIndent()
   )

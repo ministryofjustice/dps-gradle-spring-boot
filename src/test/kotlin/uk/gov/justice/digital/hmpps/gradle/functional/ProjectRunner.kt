@@ -120,6 +120,7 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
           }
         }
         rootProject.name = "$projectName"
+
     """.trimIndent()
   Files.writeString(settingsFile.toPath(), settingsScript)
 }

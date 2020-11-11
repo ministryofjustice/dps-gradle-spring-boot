@@ -3,9 +3,6 @@ package uk.gov.justice.digital.hmpps.gradle.configmanagers
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import uk.gov.justice.digital.hmpps.gradle.ConfigManager
-import java.io.File
-import java.nio.file.Files
-import java.nio.file.StandardCopyOption
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -15,19 +12,7 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
     applyRepositories()
     addDependencies()
     setJunit5()
-    copySonarProperties()
-  }
-
-  private fun copySonarProperties() {
-    val inputStream = javaClass.classLoader.getResourceAsStream("sonar-project.properties")
-    val destination = File("${project.projectDir.absolutePath}/sonar-project.properties")
-    val line = if (destination.exists()) destination.useLines { it.firstOrNull() } else null
-    if (line == null || line.startsWith("# WARNING")) {
-      project.logger.info("Copying sonar project properties as file doesn't exist or still has warning as first line")
-      Files.copy(inputStream!!, destination.toPath(), StandardCopyOption.REPLACE_EXISTING)
-    } else {
-      project.logger.info("Not copying sonar project properties as file doesn't have warning as first line")
-    }
+    copyResourcesFile("sonar-project.properties")
   }
 
   private fun setGroupAndVersion() {
