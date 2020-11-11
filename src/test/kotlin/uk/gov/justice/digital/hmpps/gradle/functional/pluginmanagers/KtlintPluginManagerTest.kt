@@ -53,13 +53,13 @@ class KtlintPluginManagerTest : GradleBuildTest() {
 
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `The sonar properties file is copied into the project`(projectDetails: ProjectDetails) {
+  fun `The editor config file is copied into the project`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
     val result = buildProject(Companion.projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val sonarFile = findFile(projectDir, "sonar-project.properties")
-    assertThat(sonarFile).exists()
+    val editorConfig = findFile(projectDir, ".editorconfig")
+    assertThat(editorConfig).exists()
   }
 }
