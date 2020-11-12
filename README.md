@@ -1,7 +1,5 @@
 # DPS Spring Boot Gradle Plugin
 
-
-
 ## Overview
 
 This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
@@ -12,6 +10,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 
+##### [1.1.1](release-notes/1.1.1.md)
 ##### [1.1.0](release-notes/1.1.0.md)
 ##### [1.0.7](release-notes/1.0.7.md)
 ##### [1.0.6](release-notes/1.0.6.md)
@@ -27,7 +26,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "1.1.0"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "1.1.1"
   ...
 }
 ```
