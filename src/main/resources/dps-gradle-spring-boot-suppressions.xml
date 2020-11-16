@@ -6,49 +6,49 @@
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
   <suppress>
     <notes><![CDATA[
-      file name: spring-security-web-5.3.1.RELEASE.jar
+      file name: spring-security-web-5.4.1.RELEASE.jar
       ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-web@.*$</packageUrl>
     <cve>CVE-2018-1258</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-      file name: spring-security-config-5.3.1.RELEASE.jar
+      file name: spring-security-config-5.4.1.RELEASE.jar
       ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-config@.*$</packageUrl>
     <cve>CVE-2018-1258</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-      file name: spring-security-core-5.3.1.RELEASE.jar
+      file name: spring-security-core-5.4.1.RELEASE.jar
       ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-core@.*$</packageUrl>
     <cve>CVE-2018-1258</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: spring-security-oauth2-core-5.3.1.RELEASE.jar
+   file name: spring-security-oauth2-core-5.4.1.RELEASE.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-oauth2\-core@.*$</packageUrl>
     <cve>CVE-2018-1258</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: spring-security-oauth2-jose-5.3.1.RELEASE.jar
+   file name: spring-security-oauth2-jose-5.4.1.RELEASE.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-oauth2\-jose@.*$</packageUrl>
     <cve>CVE-2018-1258</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: spring-security-oauth2-client-5.3.1.RELEASE.jar
+   file name: spring-security-oauth2-client-5.4.1.RELEASE.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-oauth2\-client@.*$</packageUrl>
     <cve>CVE-2018-1258</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: spring-security-oauth2-resource-server-5.3.1.RELEASE.jar
+   file name: spring-security-oauth2-resource-server-5.4.1.RELEASE.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-oauth2\-resource\-server@.*$
     </packageUrl>
@@ -210,13 +210,6 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: spring-boot-starter-json-2.3.4.RELEASE.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-json@.*$</packageUrl>
-    <cve>CVE-2020-7712</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
    file name: jjwt-0.9.1.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/io\.jsonwebtoken/jjwt@.*$</packageUrl>
@@ -231,16 +224,9 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: oauth2-oidc-sdk-7.1.1.jar
+   file name: junit-4.13.1.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.nimbusds/oauth2\-oidc\-sdk@.*$</packageUrl>
-    <cve>CVE-2007-1652</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: oauth2-oidc-sdk-7.1.1.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.nimbusds/oauth2\-oidc\-sdk@.*$</packageUrl>
-    <cve>CVE-2007-1651</cve>
+    <packageUrl regex="true">^pkg:maven/junit/junit@.*$</packageUrl>
+    <vulnerabilityName>CVE-2020-15250</vulnerabilityName>
   </suppress>
 </suppressions>

@@ -10,6 +10,8 @@ import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import java.io.File
 import java.net.URL
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class JavaSpringBootPluginManagerJarTest : SpringBootPluginManagerJarTest() {
 
@@ -58,8 +60,7 @@ abstract class SpringBootPluginManagerJarTest {
 
   @Test
   fun `Spring Boot info endpoint is available`() {
-    val infoResponse = URL("http://localhost:8080/actuator/info").readText()
-    assertThatJson(infoResponse).node("build.by").isEqualTo(System.getProperty("user.name"))
+    URL("http://localhost:8080/actuator/info").readText()
   }
 
   @Test
@@ -67,4 +68,15 @@ abstract class SpringBootPluginManagerJarTest {
     val infoResponse = URL("http://localhost:8080/actuator/info").readText()
     assertThatJson(infoResponse).node("git.branch").isNotNull
   }
+
+  @Test
+  fun `Spring Boot info endpoint contains build info`() {
+    val infoResponse = URL("http://localhost:8080/actuator/info").readText()
+    assertThatJson(infoResponse).node("build.by").isEqualTo(System.getProperty("user.name"))
+    assertThatJson(infoResponse).node("build.operatingSystem").isNotNull
+    assertThatJson(infoResponse).node("build.machine").isNotNull
+    assertThatJson(infoResponse).node("build.time").asString().startsWith(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE))
+    assertThatJson(infoResponse).node("build.version").isEqualTo(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE))
+  }
+
 }
