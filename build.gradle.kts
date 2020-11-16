@@ -65,7 +65,7 @@ dependencies {
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
   testImplementation("org.mockito:mockito-junit-jupiter:3.6.0")
-  testImplementation("org.assertj:assertj-core:3.18.0")
+  testImplementation("org.assertj:assertj-core:3.18.1")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.21.0")
   testImplementation("com.google.code.gson:gson:2.8.6")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.9.0.202009080501-r")
