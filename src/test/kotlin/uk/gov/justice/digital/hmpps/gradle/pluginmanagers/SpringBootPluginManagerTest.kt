@@ -42,18 +42,6 @@ class SpringBootPluginManagerTest : UnitTest() {
   }
 
   @Test
-  fun `Should set build info`() {
-    val properties = (project.tasks.getByPath("bootBuildInfo") as BuildInfo).properties
-    assertThat(properties.additional).extracting("by").isEqualTo(System.getProperty("user.name"))
-    assertThat(properties.additional).extracting("operatingSystem").isNotNull()
-    assertThat(properties.additional).extracting("machine").isNotNull()
-
-    assertThat(LocalDate.ofInstant(properties.time, ZoneId.systemDefault())).isEqualTo(LocalDate.now())
-
-    assertThat(properties.version).isEqualTo(LocalDate.now().format(DateTimeFormatter.ISO_DATE))
-  }
-
-  @Test
   fun `Should set manifest version and title in BootJar`() {
     val manifestAttributes = (project.tasks.getByName("bootJar") as BootJar).manifest.attributes
 
