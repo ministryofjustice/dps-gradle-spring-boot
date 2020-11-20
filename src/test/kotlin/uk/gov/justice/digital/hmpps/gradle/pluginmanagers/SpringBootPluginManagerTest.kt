@@ -5,12 +5,8 @@ import org.assertj.core.api.Assertions.tuple
 import org.assertj.core.groups.Tuple
 import org.junit.jupiter.api.Test
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
-import org.springframework.boot.gradle.tasks.buildinfo.BuildInfo
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 import uk.gov.justice.digital.hmpps.gradle.UnitTest
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 class SpringBootPluginManagerTest : UnitTest() {
 
