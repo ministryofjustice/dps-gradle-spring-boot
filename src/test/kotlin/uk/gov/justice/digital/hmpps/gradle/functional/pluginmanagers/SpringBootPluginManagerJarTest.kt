@@ -78,5 +78,4 @@ abstract class SpringBootPluginManagerJarTest {
     assertThatJson(infoResponse).node("build.time").asString().startsWith(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE))
     assertThatJson(infoResponse).node("build.version").isEqualTo(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE))
   }
-
 }
