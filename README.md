@@ -8,10 +8,13 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 * Any common build configuration shared by projects is performed in this plugin and not the project itself (removing duplication and subsequent drift)
 * CVEs causing `dependencyCheckAnalyze` failures are mitigated in a single place rather than in each and every project
 
+## Recommended version
+Currently we recommend 1.1.2 due to issues with Application Insights Agent V3 in 2.0.0
+
 ## Release Notes
 
 ##### [2.0.0](release-notes/2.0.0.md)
-##### [1.1.2](release-notes/1.1.2.md)
+##### [1.1.2  - recommended version](release-notes/1.1.2.md)
 ##### [1.1.1](release-notes/1.1.1.md)
 ##### [1.1.0](release-notes/1.1.0.md)
 ##### [1.0.7](release-notes/1.0.7.md)
