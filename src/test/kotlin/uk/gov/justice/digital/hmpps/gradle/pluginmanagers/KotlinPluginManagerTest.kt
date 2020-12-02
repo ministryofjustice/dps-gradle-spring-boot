@@ -32,10 +32,4 @@ class KotlinPluginManagerTest : UnitTest() {
         tuple("com.nhaarman.mockitokotlin2", "mockito-kotlin")
       )
   }
-
-  @Test
-  fun `Should set jvm target for Kotlin tasks`() {
-    assertThat((project.tasks.getByPath("compileKotlin") as KotlinCompile).kotlinOptions.jvmTarget).isEqualTo("11")
-    assertThat((project.tasks.getByPath("compileTestKotlin") as KotlinCompile).kotlinOptions.jvmTarget).isEqualTo("11")
-  }
 }
