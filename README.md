@@ -13,6 +13,7 @@ Currently we recommend 1.1.2 due to issues with Application Insights Agent V3 in
 
 ## Release Notes
 
+##### [2.0.1](release-notes/2.0.1.md)
 ##### [2.0.0](release-notes/2.0.0.md)
 ##### [1.1.2  - recommended version](release-notes/1.1.2.md)
 ##### [1.1.1](release-notes/1.1.1.md)

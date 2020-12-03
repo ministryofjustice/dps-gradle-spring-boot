@@ -8,8 +8,11 @@ import uk.gov.justice.digital.hmpps.gradle.PluginManager
 class KotlinPluginManager(override val project: Project) : PluginManager<KotlinPluginWrapper> {
 
   override fun configure() {
-    setKotlinCompileJvmVersion()
     addDependencies()
+  }
+
+  override fun afterEvaluate() {
+    setKotlinCompileJvmVersion()
   }
 
   private fun setKotlinCompileJvmVersion() {
