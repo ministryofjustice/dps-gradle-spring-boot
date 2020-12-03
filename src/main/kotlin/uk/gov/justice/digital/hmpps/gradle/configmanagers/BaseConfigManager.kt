@@ -11,8 +11,11 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
     setGroupAndVersion()
     applyRepositories()
     addDependencies()
-    setJunit5()
     copyResourcesFile("sonar-project.properties")
+  }
+
+  override fun afterEvaluate() {
+    setJunit5()
   }
 
   private fun setGroupAndVersion() {
@@ -38,7 +41,8 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
   }
 
   private fun setJunit5() {
-    val testTask = project.tasks.getByName("test") as Test
-    testTask.useJUnitPlatform()
+    project.tasks.withType(Test::class.java) {
+      it.useJUnitPlatform()
+    }
   }
 }
