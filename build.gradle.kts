@@ -2,7 +2,7 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.4.10"
+  kotlin("jvm") version "1.4.21"
   id("com.gradle.plugin-publish") version "0.12.0"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -54,7 +54,7 @@ dependencies {
   implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.0")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.21")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.10.RELEASE")
   implementation("org.owasp:dependency-check-gradle:6.0.3")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.36.0")
@@ -64,9 +64,9 @@ dependencies {
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:9.4.1")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
-  testImplementation("org.mockito:mockito-junit-jupiter:3.6.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:3.6.28")
   testImplementation("org.assertj:assertj-core:3.18.1")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.21.0")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.22.0")
   testImplementation("com.google.code.gson:gson:2.8.6")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.9.0.202009080501-r")
 }
