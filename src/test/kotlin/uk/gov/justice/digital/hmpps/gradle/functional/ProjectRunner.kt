@@ -53,7 +53,7 @@ fun buildProject(projectDir: File, vararg arguments: String): BuildResult =
 fun buildProjectAndFail(projectDir: File, vararg arguments: String): BuildResult =
   projectBuilder(projectDir, *arguments).buildAndFail()
 
-@Suppress("ComplexRedundantLet")
+@Suppress("SimpleRedundantLet")
 fun getDependencyVersion(projectDir: File, dependency: String): String =
   buildProject(projectDir, "dependencyInsight", "--dependency", dependency)
     .also { result -> assertThat(result.task(":dependencyInsight")?.outcome).isEqualTo(TaskOutcome.SUCCESS) }
@@ -62,7 +62,7 @@ fun getDependencyVersion(projectDir: File, dependency: String): String =
     .let { (version) -> version.takeWhile { it != ' ' } }
 
 private fun findVersion(dependency: String, flattenedResult: String): MatchResult.Destructured =
-  Regex("org.springframework.boot:$dependency:(.*)\\s").find(flattenedResult)!!.destructured
+  Regex("$dependency:(.*)\\s").find(flattenedResult)!!.destructured
 
 fun findJar(projectDir: File, partialJarName: String): File =
   Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
