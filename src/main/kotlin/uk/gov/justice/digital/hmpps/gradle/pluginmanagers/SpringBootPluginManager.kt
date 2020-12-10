@@ -1,7 +1,6 @@
 package uk.gov.justice.digital.hmpps.gradle.pluginmanagers
 
 import org.gradle.api.Project
-import org.gradle.api.artifacts.ExternalModuleDependency
 import org.springframework.boot.gradle.dsl.SpringBootExtension
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar

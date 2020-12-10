@@ -20,6 +20,6 @@ class DependencyCheckPluginManagerTest : UnitTest() {
     Assertions.assertThat(extension.failBuildOnCVSS).isEqualTo(5f)
     Assertions.assertThat(extension.suppressionFiles).containsExactly(DEPENDENCY_SUPPRESSION_FILENAME)
     Assertions.assertThat(extension.format).isEqualTo(ReportGenerator.Format.ALL)
-    Assertions.assertThat(extension.analyzers.assemblyEnabled).isFalse()
+    Assertions.assertThat(extension.analyzers.assemblyEnabled).isFalse
   }
 }

@@ -21,7 +21,7 @@ class BaseConfigManagerGradleTest : GradleBuildTest() {
     val result = buildProject(Companion.projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val sonarFile = findFile(GradleBuildTest.projectDir, "sonar-project.properties")
+    val sonarFile = findFile(projectDir, "sonar-project.properties")
     assertThat(sonarFile).exists()
   }
 
@@ -35,12 +35,12 @@ class BaseConfigManagerGradleTest : GradleBuildTest() {
 # some coverage rules
 sonar.coverage.exclusions=**/*.java,**/*.kt
       """.trimIndent()
-    makeSonarFile(projectDetails, sonarScript)
+    makeSonarFile(sonarScript)
 
     val result = buildProject(Companion.projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val sonarFile = findFile(GradleBuildTest.projectDir, "sonar-project.properties")
+    val sonarFile = findFile(projectDir, "sonar-project.properties")
     assertThat(sonarFile).exists()
     val firstLine = sonarFile.useLines { it.firstOrNull() }
     assertThat(firstLine).startsWith("# some coverage rules")
@@ -55,18 +55,18 @@ sonar.coverage.exclusions=**/*.java,**/*.kt
 # WARNING - contents will be overwritten
 sonar.coverage.exclusions=**/*.java,**/*.kt
       """.trimIndent()
-    makeSonarFile(projectDetails, sonarScript)
+    makeSonarFile(sonarScript)
 
     val result = buildProject(Companion.projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val sonarFile = findFile(GradleBuildTest.projectDir, "sonar-project.properties")
+    val sonarFile = findFile(projectDir, "sonar-project.properties")
     assertThat(sonarFile).exists()
     val firstLine = sonarFile.useLines { it.firstOrNull() }
     assertThat(firstLine).startsWith("# WARNING - THIS FILE WAS GENERATED")
   }
 
-  private fun makeSonarFile(projectDetails: ProjectDetails, sonarScript: String) {
+  private fun makeSonarFile(sonarScript: String) {
     val sonarFile = File(projectDir, "sonar-project.properties")
     Files.writeString(sonarFile.toPath(), sonarScript)
   }

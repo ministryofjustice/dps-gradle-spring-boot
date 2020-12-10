@@ -16,7 +16,7 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
 
     val webVersion = getDependencyVersion(projectDir, "spring-boot-starter-web")
 
-    assertThat(webVersion).isNotBlank()
+    assertThat(webVersion).isNotBlank
 
     val actuatorVersion = getDependencyVersion(projectDir, "spring-boot-starter-actuator")
     val validatorVersion = getDependencyVersion(projectDir, "spring-boot-starter-validation")
