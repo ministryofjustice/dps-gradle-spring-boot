@@ -45,7 +45,7 @@ This plugin provides various build logic that may already exist in your project,
 * Have no effect - maybe your project's build logic overrides the plugin
 * Cause an error - maybe something in the plugin recognises the duplication and complains
 
-Either way you will need to remove some of this duplications from your `build.gradle.kts` file `TODO when we have published our first version, point to a PR that implements the plugin as an example of what to remove`
+Either way you will need to remove some of this duplication from your `build.gradle.kts` file
 
 ## How do I find out what this plugin is doing?
 

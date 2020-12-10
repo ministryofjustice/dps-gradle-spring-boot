@@ -23,7 +23,7 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-validation")
     project.dependencies.add("implementation", "com.github.timpeeters:spring-boot-graceful-shutdown:2.2.2")
 
-    project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test") as ExternalModuleDependency
+    project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test")
   }
 
   private fun setSpringBootInfo() {

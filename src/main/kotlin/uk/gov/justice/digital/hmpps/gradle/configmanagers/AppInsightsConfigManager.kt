@@ -28,7 +28,7 @@ class AppInsightsConfigManager(override val project: Project) : ConfigManager {
   }
 
   private fun addDependencies() {
-    project.dependencies.add("implementation", "net.logstash.logback:logstash-logback-encoder:6.4")
+    project.dependencies.add("implementation", "net.logstash.logback:logstash-logback-encoder:6.5")
     project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-spring-boot-starter:$APP_INSIGHTS_SDK_VERSION")
     project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-logging-logback:$APP_INSIGHTS_SDK_VERSION")
 
