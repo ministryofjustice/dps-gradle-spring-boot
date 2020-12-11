@@ -121,9 +121,9 @@ private fun makeBuildScript(projectDir: File, buildScriptName: String, buildScri
   File(projectDir, buildScriptName)
     .also { buildFile -> Files.writeString(buildFile.toPath(), buildScript) }
 
-private fun makeSettingsScript(projectDir: File, settingsFileName: String, projectName: String): Path =
-  (
-    File(projectDir, settingsFileName) to
+private fun makeSettingsScript(projectDir: File, settingsFileName: String, projectName: String): Path {
+  val settingsFile = File(projectDir, settingsFileName)
+  val settingsScript =
       """
         pluginManagement {
           repositories {
@@ -134,8 +134,8 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
         rootProject.name = "$projectName"
 
       """.trimIndent()
-    )
-    .let { (settingsFile, settingsScript) -> Files.writeString(settingsFile.toPath(), settingsScript) }
+    return Files.writeString(settingsFile.toPath(), settingsScript)
+}
 
 private fun makeGitRepo(projectDir: File) {
   FileRepositoryBuilder.create(File(projectDir, ".git"))
