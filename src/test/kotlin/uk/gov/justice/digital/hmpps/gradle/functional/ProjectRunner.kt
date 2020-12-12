@@ -124,7 +124,7 @@ private fun makeBuildScript(projectDir: File, buildScriptName: String, buildScri
 private fun makeSettingsScript(projectDir: File, settingsFileName: String, projectName: String): Path {
   val settingsFile = File(projectDir, settingsFileName)
   val settingsScript =
-      """
+    """
         pluginManagement {
           repositories {
             mavenLocal()
@@ -133,8 +133,8 @@ private fun makeSettingsScript(projectDir: File, settingsFileName: String, proje
         }
         rootProject.name = "$projectName"
 
-      """.trimIndent()
-    return Files.writeString(settingsFile.toPath(), settingsScript)
+    """.trimIndent()
+  return Files.writeString(settingsFile.toPath(), settingsScript)
 }
 
 private fun makeGitRepo(projectDir: File) {

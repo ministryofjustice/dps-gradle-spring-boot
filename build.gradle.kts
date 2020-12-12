@@ -53,7 +53,7 @@ pluginBundle {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.0")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.1")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.21")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.10.RELEASE")
   implementation("org.owasp:dependency-check-gradle:6.0.3")
@@ -68,7 +68,7 @@ dependencies {
   testImplementation("org.assertj:assertj-core:3.18.1")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.22.0")
   testImplementation("com.google.code.gson:gson:2.8.6")
-  testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.9.0.202009080501-r")
+  testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.10.0.202012080955-r")
 }
 
 tasks {
