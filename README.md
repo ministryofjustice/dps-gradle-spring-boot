@@ -8,15 +8,13 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 * Any common build configuration shared by projects is performed in this plugin and not the project itself (removing duplication and subsequent drift)
 * CVEs causing `dependencyCheckAnalyze` failures are mitigated in a single place rather than in each and every project
 
-## Recommended version
-Currently we recommend 1.1.2 due to issues with Application Insights Agent V3 in 2.0.0
-
 ## Release Notes
 
+##### [2.1.0](release-notes/2.1.0.md)
 ##### [2.0.2](release-notes/2.0.2.md)
 ##### [2.0.1](release-notes/2.0.1.md)
 ##### [2.0.0](release-notes/2.0.0.md)
-##### [1.1.2  - recommended version](release-notes/1.1.2.md)
+##### [1.1.2](release-notes/1.1.2.md)
 ##### [1.1.1](release-notes/1.1.1.md)
 ##### [1.1.0](release-notes/1.1.0.md)
 ##### [1.0.7](release-notes/1.0.7.md)
@@ -33,7 +31,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "1.1.1"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "2.1.0"
   ...
 }
 ```
@@ -45,7 +43,7 @@ This plugin provides various build logic that may already exist in your project,
 * Have no effect - maybe your project's build logic overrides the plugin
 * Cause an error - maybe something in the plugin recognises the duplication and complains
 
-Either way you will need to remove some of this duplications from your `build.gradle.kts` file `TODO when we have published our first version, point to a PR that implements the plugin as an example of what to remove`
+Either way you will need to remove some of this duplication from your `build.gradle.kts` file
 
 ## How do I find out what this plugin is doing?
 

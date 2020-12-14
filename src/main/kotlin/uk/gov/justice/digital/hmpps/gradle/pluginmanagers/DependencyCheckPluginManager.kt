@@ -31,7 +31,7 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
   }
 
   private fun addDependencyCheckSuppressionFile() {
-    val inputStream = javaClass.classLoader.getResourceAsStream(DEPENDENCY_SUPPRESSION_FILENAME)
+    val inputStream = javaClass.classLoader.getResourceAsStream(DEPENDENCY_SUPPRESSION_FILENAME)!!
     val newFile = Paths.get(project.projectDir.absolutePath + "/$DEPENDENCY_SUPPRESSION_FILENAME")
     Files.copy(inputStream, newFile, StandardCopyOption.REPLACE_EXISTING)
   }

@@ -11,7 +11,7 @@ import uk.gov.justice.digital.hmpps.gradle.functional.buildProject
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 
-class KotlinPluginManagerTest : GradleBuildTest(){
+class KotlinPluginManagerTest : GradleBuildTest() {
 
   companion object {
     @JvmStatic
@@ -29,5 +29,4 @@ class KotlinPluginManagerTest : GradleBuildTest(){
     val result = buildProject(projectDir, "compileKotlin")
     Assertions.assertThat(result.task(":compileKotlin")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
   }
-
 }
