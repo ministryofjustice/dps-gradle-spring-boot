@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers
 
 import org.assertj.core.api.Assertions.assertThat
 import org.gradle.testkit.runner.TaskOutcome
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -20,11 +21,6 @@ import java.util.jar.JarFile
 class SpringBootPluginManagerTest : GradleBuildTest() {
 
   companion object {
-    @JvmStatic
-    fun projectDetailsWithJunit4Tests() = listOf(
-      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaExcludeJunit4Dependency(), testClass = javaJunit4Test())),
-      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinExcludeJunit4Dependency(), testClass = kotlinJunit4Test()))
-    )
     @JvmStatic
     fun projectDetailsWithJunit4TestsAndDependency() = listOf(
       Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaJunit4Dependency(), testClass = javaJunit4Test())),
@@ -46,12 +42,18 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo(projectDetails.projectName)
   }
 
-  @ParameterizedTest
-  @MethodSource("projectDetailsWithJunit4Tests")
-  fun `Junit 4 tests will not even compile`(projectDetails: ProjectDetails) {
-    makeProject(projectDetails)
+  @Test
+  fun `Java - Junit 4 tests will not even compile`() {
+    makeProject(javaProjectDetails(projectDir).copy(buildScript = javaExcludeJunit4Dependency(), testClass = javaJunit4Test()))
 
-    buildProjectAndFail(projectDir, "compileTest")
+    buildProjectAndFail(projectDir, "compileTestJava")
+  }
+
+  @Test
+  fun `Kotlin - Junit 4 tests will not even compile`() {
+    makeProject(kotlinProjectDetails(projectDir).copy(buildScript = kotlinExcludeJunit4Dependency(), testClass = kotlinJunit4Test()))
+
+    buildProjectAndFail(projectDir, "compileTestKotlin")
   }
 
   @ParameterizedTest
