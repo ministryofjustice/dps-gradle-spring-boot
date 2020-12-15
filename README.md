@@ -77,7 +77,7 @@ configuration {
 }
 ```
 
-Note that this plugin will automatically apply the junit vintage dependency to ensure compatibility with JUnit 45.
+Note that this plugin will automatically apply the junit vintage dependency to ensure compatibility with JUnit 5.
 
 ## Excluding JUnit 4
 
