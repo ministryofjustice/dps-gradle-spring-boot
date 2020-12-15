@@ -14,7 +14,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.streams.asStream
 
-private const val DEBUG_TESTS = true // To debug functional tests change this to true
+private const val DEBUG_TESTS = false // To debug functional tests change this to true
 
 data class ProjectDetails(
   val projectDir: File,

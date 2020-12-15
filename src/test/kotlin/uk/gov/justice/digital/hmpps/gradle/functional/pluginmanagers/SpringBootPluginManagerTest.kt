@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import uk.gov.justice.digital.hmpps.gradle.functional.GradleBuildTest
 import uk.gov.justice.digital.hmpps.gradle.functional.ProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.buildProject
+import uk.gov.justice.digital.hmpps.gradle.functional.buildProjectAndFail
 import uk.gov.justice.digital.hmpps.gradle.functional.findJar
 import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
@@ -19,6 +20,11 @@ import java.util.jar.JarFile
 class SpringBootPluginManagerTest : GradleBuildTest() {
 
   companion object {
+    @JvmStatic
+    fun projectDetailsWithJunit4Tests() = listOf(
+      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaExcludeJunit4Dependency(), testClass = javaJunit4Test())),
+      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinExcludeJunit4Dependency(), testClass = kotlinJunit4Test()))
+    )
     @JvmStatic
     fun projectDetailsWithJunit4TestsAndDependency() = listOf(
       Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaJunit4Dependency(), testClass = javaJunit4Test())),
@@ -41,6 +47,14 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
   }
 
   @ParameterizedTest
+  @MethodSource("projectDetailsWithJunit4Tests")
+  fun `Junit 4 tests will not even compile`(projectDetails: ProjectDetails) {
+    makeProject(projectDetails)
+
+    buildProjectAndFail(projectDir, "compileTest")
+  }
+
+  @ParameterizedTest
   @MethodSource("projectDetailsWithJunit4TestsAndDependency")
   fun `Junit 4 tests will compile and run if Junit 4 dependency added`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
@@ -52,6 +66,31 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
       .contains("1 tests")
   }
 }
+
+private fun javaExcludeJunit4Dependency(): String =
+  """
+      plugins {
+          id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+      }
+      
+      configurations {
+          testImplementation { 
+              exclude(group = "org.junit.vintage")) 
+              exclude(group = "junit")) 
+          }
+      }
+  """.trimIndent()
+
+private fun kotlinExcludeJunit4Dependency(): String =
+  """
+      plugins {
+          id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+      }
+      
+      configurations {
+          testImplementation { exclude(mapOf("group" to "org.junit.vintage", "group" to "junit")) }
+      }
+  """.trimIndent()
 
 private fun javaJunit4Dependency(): String =
   """
