@@ -10,6 +10,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 
+##### [2.1.1](release-notes/2.1.1.md)
 ##### [2.1.0](release-notes/2.1.0.md)
 ##### [2.0.2](release-notes/2.0.2.md)
 ##### [2.0.1](release-notes/2.0.1.md)
@@ -66,7 +67,19 @@ Search the package `uk.gov.justice.digital.hmpps.gradle` for `project.dependenci
 
 E.g. Class `SpringBootPluginManager` applies `spring-boot-starter-actuator` (amongst others) so you do not need to declare that dependency in your project's `build.gradle.kts` file.
 
-## JUnit 4
+## Using JUnit 4
+
+JUnit 4 is no longer included by Spring Boot.  If you have tests running on JUnit 4 make sure to explicitly declare the dependency (check for latest version):
+
+```
+configuration {
+    testImplementation 'junit:junit:4.13.1'
+}
+```
+
+Note that this plugin will automatically apply the junit vintage dependency to ensure compatibility with JUnit 45.
+
+## Excluding JUnit 4
 
 We no longer exclude JUnit 4 as part of this plugin as it wasn't compatible with Gradle 6.7.  If you want to exclude it from your project then add the following to your Gradle build file:
 

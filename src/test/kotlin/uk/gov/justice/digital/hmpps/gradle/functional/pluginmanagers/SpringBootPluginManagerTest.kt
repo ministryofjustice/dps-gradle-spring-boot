@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource
 import uk.gov.justice.digital.hmpps.gradle.functional.GradleBuildTest
 import uk.gov.justice.digital.hmpps.gradle.functional.ProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.buildProject
-import uk.gov.justice.digital.hmpps.gradle.functional.buildProjectAndFail
 import uk.gov.justice.digital.hmpps.gradle.functional.findJar
 import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
@@ -21,9 +20,9 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
 
   companion object {
     @JvmStatic
-    fun projectDetailsWithJunit4Tests() = listOf(
-      Arguments.of(javaProjectDetails(projectDir).copy(testClass = javaJunit4Test())),
-      Arguments.of(kotlinProjectDetails(projectDir).copy(testClass = kotlinJunit4Test()))
+    fun projectDetailsWithJunit4TestsAndDependency() = listOf(
+      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaJunit4Dependency(), testClass = javaJunit4Test())),
+      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinJunit4Dependency(), testClass = kotlinJunit4Test()))
     )
   }
 
@@ -42,13 +41,39 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
   }
 
   @ParameterizedTest
-  @MethodSource("projectDetailsWithJunit4Tests")
-  fun `Junit 4 tests will not even compile`(projectDetails: ProjectDetails) {
+  @MethodSource("projectDetailsWithJunit4TestsAndDependency")
+  fun `Junit 4 tests will compile and run if Junit 4 dependency added`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
-    buildProjectAndFail(projectDir, "compileTest")
+    val result = buildProject(projectDir, "test")
+    assertThat(result.output)
+      .contains("Task :test")
+      .contains("BUILD SUCCESSFUL")
+      .contains("1 tests")
   }
 }
+
+private fun javaJunit4Dependency(): String =
+  """
+      plugins {
+          id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+      }
+      
+      dependencies {
+        testImplementation 'junit:junit:4.13'
+      }
+  """.trimIndent()
+
+private fun kotlinJunit4Dependency(): String =
+  """
+      plugins {
+          id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+      }
+      
+      dependencies {
+        testImplementation("junit:junit:4.13")
+      }
+  """.trimIndent()
 
 private fun javaJunit4Test(): String {
   return """
