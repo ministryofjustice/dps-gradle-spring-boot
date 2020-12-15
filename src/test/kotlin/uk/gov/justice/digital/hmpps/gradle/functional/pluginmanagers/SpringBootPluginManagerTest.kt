@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers
 
 import org.assertj.core.api.Assertions.assertThat
 import org.gradle.testkit.runner.TaskOutcome
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -21,9 +22,9 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
 
   companion object {
     @JvmStatic
-    fun projectDetailsWithJunit4Tests() = listOf(
-      Arguments.of(javaProjectDetails(projectDir).copy(testClass = javaJunit4Test())),
-      Arguments.of(kotlinProjectDetails(projectDir).copy(testClass = kotlinJunit4Test()))
+    fun projectDetailsWithJunit4TestsAndDependency() = listOf(
+      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaJunit4Dependency(), testClass = javaJunit4Test())),
+      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinJunit4Dependency(), testClass = kotlinJunit4Test()))
     )
   }
 
@@ -41,14 +42,79 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo(projectDetails.projectName)
   }
 
+  @Test
+  fun `Java - Junit 4 tests will not even compile`() {
+    makeProject(javaProjectDetails(projectDir).copy(buildScript = javaExcludeJunit4Dependency(), testClass = javaJunit4Test()))
+
+    buildProjectAndFail(projectDir, "compileTestJava")
+  }
+
+  @Test
+  fun `Kotlin - Junit 4 tests will not even compile`() {
+    makeProject(kotlinProjectDetails(projectDir).copy(buildScript = kotlinExcludeJunit4Dependency(), testClass = kotlinJunit4Test()))
+
+    buildProjectAndFail(projectDir, "compileTestKotlin")
+  }
+
   @ParameterizedTest
-  @MethodSource("projectDetailsWithJunit4Tests")
-  fun `Junit 4 tests will not even compile`(projectDetails: ProjectDetails) {
+  @MethodSource("projectDetailsWithJunit4TestsAndDependency")
+  fun `Junit 4 tests will compile and run if Junit 4 dependency added`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
-    buildProjectAndFail(projectDir, "compileTest")
+    val result = buildProject(projectDir, "test")
+    assertThat(result.output)
+      .contains("Task :test")
+      .contains("BUILD SUCCESSFUL")
+      .contains("1 tests")
   }
 }
+
+private fun javaExcludeJunit4Dependency(): String =
+  """
+      plugins {
+          id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+      }
+      
+      configurations {
+          testImplementation { 
+              exclude(group = "org.junit.vintage") 
+              exclude(group = "junit")
+          }
+      }
+  """.trimIndent()
+
+private fun kotlinExcludeJunit4Dependency(): String =
+  """
+      plugins {
+          id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+      }
+      
+      configurations {
+          testImplementation { exclude(mapOf("group" to "org.junit.vintage", "group" to "junit")) }
+      }
+  """.trimIndent()
+
+private fun javaJunit4Dependency(): String =
+  """
+      plugins {
+          id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+      }
+      
+      dependencies {
+        testImplementation 'junit:junit:4.13'
+      }
+  """.trimIndent()
+
+private fun kotlinJunit4Dependency(): String =
+  """
+      plugins {
+          id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+      }
+      
+      dependencies {
+        testImplementation("junit:junit:4.13")
+      }
+  """.trimIndent()
 
 private fun javaJunit4Test(): String {
   return """

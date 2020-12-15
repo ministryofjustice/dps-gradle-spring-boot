@@ -14,6 +14,8 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.streams.asStream
 
+private const val DEBUG_TESTS = false // To debug functional tests change this to true
+
 data class ProjectDetails(
   val projectDir: File,
   val projectName: String,
@@ -145,8 +147,7 @@ private fun makeGitRepo(projectDir: File) {
     .also { git -> git.commit().setSign(false).setMessage("Commit everything").call() }
 }
 
-// To debug functional tests change the default value of debug to true
-private fun projectBuilder(projectDir: File, vararg arguments: String, debug: Boolean = false): GradleRunner =
+private fun projectBuilder(projectDir: File, vararg arguments: String, debug: Boolean = DEBUG_TESTS): GradleRunner =
   GradleRunner.create()
     .withProjectDir(projectDir)
     .withArguments("clean", *arguments)
