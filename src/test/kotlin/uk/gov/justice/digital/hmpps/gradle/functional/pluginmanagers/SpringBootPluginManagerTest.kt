@@ -75,8 +75,8 @@ private fun javaExcludeJunit4Dependency(): String =
       
       configurations {
           testImplementation { 
-              exclude(group = "org.junit.vintage")) 
-              exclude(group = "junit")) 
+              exclude(group = "org.junit.vintage") 
+              exclude(group = "junit")
           }
       }
   """.trimIndent()
