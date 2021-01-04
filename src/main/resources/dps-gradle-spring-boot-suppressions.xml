@@ -229,4 +229,11 @@
     <packageUrl regex="true">^pkg:maven/junit/junit@.*$</packageUrl>
     <vulnerabilityName>CVE-2020-15250</vulnerabilityName>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+    file name: lang-tag-1.4.4.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.nimbusds/lang\-tag@.*$</packageUrl>
+    <cpe>cpe:/a:tag_project:tag</cpe>
+  </suppress>
 </suppressions>
