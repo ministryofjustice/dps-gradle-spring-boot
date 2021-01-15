@@ -8,7 +8,7 @@ plugins {
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.36.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.15"
-  id("org.owasp.dependencycheck") version "6.0.4"
+  id("org.owasp.dependencycheck") version "6.0.5"
   id("com.adarshr.test-logger") version "2.1.1"
   id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
 }
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "3.0.0-BETA"
+version = "3.0.0-BETA-2"
 
 gradlePlugin {
   plugins {
@@ -53,10 +53,10 @@ pluginBundle {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.1")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.21")
-  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.10.RELEASE")
-  implementation("org.owasp:dependency-check-gradle:6.0.4")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.2")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.21-2")
+  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
+  implementation("org.owasp:dependency-check-gradle:6.0.5")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.36.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.2.4")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:2.1.1")
@@ -64,7 +64,7 @@ dependencies {
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:9.4.1")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
-  testImplementation("org.mockito:mockito-junit-jupiter:3.6.28")
+  testImplementation("org.mockito:mockito-junit-jupiter:3.7.0")
   testImplementation("org.assertj:assertj-core:3.18.1")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.22.0")
   testImplementation("com.google.code.gson:gson:2.8.6")
