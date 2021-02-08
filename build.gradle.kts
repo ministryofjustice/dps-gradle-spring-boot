@@ -2,13 +2,13 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.4.21"
+  kotlin("jvm") version "1.4.30"
   id("com.gradle.plugin-publish") version "0.12.0"
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.36.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.15"
-  id("org.owasp.dependencycheck") version "6.0.5"
+  id("org.owasp.dependencycheck") version "6.1.0"
   id("com.adarshr.test-logger") version "2.1.1"
   id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
 }
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "3.0.1"
+version = "3.1.0"
 
 gradlePlugin {
   plugins {
@@ -54,16 +54,16 @@ dependencies {
   implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.2")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.21-2")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.30")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
-  implementation("org.owasp:dependency-check-gradle:6.0.5")
+  implementation("org.owasp:dependency-check-gradle:6.1.0")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.36.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.2.4")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:2.1.1")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.15")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:9.4.1")
 
-  testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
   testImplementation("org.mockito:mockito-junit-jupiter:3.7.7")
   testImplementation("org.assertj:assertj-core:3.19.0")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.24.0")
