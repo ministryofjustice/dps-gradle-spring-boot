@@ -4,7 +4,8 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
 import uk.gov.justice.digital.hmpps.gradle.ConfigManager
 
-private const val APP_INSIGHTS_SDK_VERSION = "2.6.2"
+private const val APP_INSIGHTS_SDK_VERSION = "2.6.3"
+private const val APP_INSIGHTS_LOGBACK_VERSION = "2.6.2"
 private const val APP_INSIGHTS_AGENT_VERSION = "3.0.2"
 
 class AppInsightsConfigManager(override val project: Project) : ConfigManager {
@@ -30,7 +31,7 @@ class AppInsightsConfigManager(override val project: Project) : ConfigManager {
   private fun addDependencies() {
     project.dependencies.add("implementation", "net.logstash.logback:logstash-logback-encoder:6.6")
     project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-spring-boot-starter:$APP_INSIGHTS_SDK_VERSION")
-    project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-logging-logback:$APP_INSIGHTS_SDK_VERSION")
+    project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-logging-logback:$APP_INSIGHTS_LOGBACK_VERSION")
 
     project.dependencies.add("agentDeps", "com.microsoft.azure:applicationinsights-agent:$APP_INSIGHTS_AGENT_VERSION")
   }
