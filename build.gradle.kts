@@ -3,13 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   kotlin("jvm") version "1.4.32"
-  id("com.gradle.plugin-publish") version "0.13.0"
+  id("com.gradle.plugin-publish") version "0.14.0"
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.38.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.15"
-  id("org.owasp.dependencycheck") version "6.1.4"
-  id("com.adarshr.test-logger") version "2.1.1"
+  id("org.owasp.dependencycheck") version "6.1.5"
+  id("com.adarshr.test-logger") version "3.0.0"
   id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
 }
 
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "3.1.4"
+version = "3.1.5"
 
 gradlePlugin {
   plugins {
@@ -56,10 +56,10 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.4")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
-  implementation("org.owasp:dependency-check-gradle:6.1.4")
+  implementation("org.owasp:dependency-check-gradle:6.1.5")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.38.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.2.4")
-  implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:2.1.1")
+  implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:3.0.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.15")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:10.0.0")
 
