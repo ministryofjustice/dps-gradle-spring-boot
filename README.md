@@ -10,6 +10,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 
+##### [3.1.5](release-notes/3.1.5.md)
 ##### [3.1.4](release-notes/3.1.4.md)
 ##### [3.1.3](release-notes/3.1.3.md)
 ##### [3.1.2](release-notes/3.1.2.md)
@@ -40,7 +41,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "3.1.1"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "3.1.5"
   ...
 }
 ```
