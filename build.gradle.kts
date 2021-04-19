@@ -7,7 +7,7 @@ plugins {
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.38.0"
-  id("se.patrikerdes.use-latest-versions") version "0.2.15"
+  id("se.patrikerdes.use-latest-versions") version "0.2.16"
   id("org.owasp.dependencycheck") version "6.1.5"
   id("com.adarshr.test-logger") version "3.0.0"
   id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "3.1.6"
+version = "3.1.7"
 
 gradlePlugin {
   plugins {
@@ -53,18 +53,18 @@ pluginBundle {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.4")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.5")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
   implementation("org.owasp:dependency-check-gradle:6.1.5")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.38.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.2.4")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:3.0.0")
-  implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.15")
+  implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.16")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:10.0.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
-  testImplementation("org.mockito:mockito-junit-jupiter:3.8.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:3.9.0")
   testImplementation("org.assertj:assertj-core:3.19.0")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.25.0")
   testImplementation("com.google.code.gson:gson:2.8.6")

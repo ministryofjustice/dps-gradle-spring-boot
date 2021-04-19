@@ -9,9 +9,6 @@ class KotlinPluginManager(override val project: Project) : PluginManager<KotlinP
 
   override fun configure() {
     addDependencies()
-  }
-
-  override fun afterEvaluate() {
     setKotlinCompileJvmVersion()
   }
 
