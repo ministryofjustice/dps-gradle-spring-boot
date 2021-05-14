@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "3.2.0"
+version = "3.2.1"
 
 gradlePlugin {
   plugins {
@@ -64,11 +64,11 @@ dependencies {
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:10.0.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
-  testImplementation("org.mockito:mockito-junit-jupiter:3.9.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:3.10.0")
   testImplementation("org.assertj:assertj-core:3.19.0")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.25.0")
   testImplementation("com.google.code.gson:gson:2.8.6")
-  testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.11.0.202103091610-r")
+  testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.11.1.202105131744-r")
 }
 
 tasks {
