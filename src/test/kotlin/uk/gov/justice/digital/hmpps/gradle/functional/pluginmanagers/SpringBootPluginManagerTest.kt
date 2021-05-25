@@ -14,17 +14,31 @@ import uk.gov.justice.digital.hmpps.gradle.functional.findJar
 import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
+import java.nio.file.Files
+import java.nio.file.Paths
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.jar.JarFile
+import kotlin.streams.toList
 
 class SpringBootPluginManagerTest : GradleBuildTest() {
 
   companion object {
     @JvmStatic
     fun projectDetailsWithJunit4TestsAndDependency() = listOf(
-      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = javaJunit4Dependency(), testClass = javaJunit4Test())),
-      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = kotlinJunit4Dependency(), testClass = kotlinJunit4Test()))
+      Arguments.of(
+        javaProjectDetails(projectDir).copy(
+          buildScript = javaJunit4Dependency(),
+          testClass = javaJunit4Test()
+        )
+      ),
+      Arguments.of(
+        kotlinProjectDetails(projectDir).copy(
+          buildScript = kotlinJunit4Dependency(),
+          testClass = kotlinJunit4Test()
+        )
+      )
     )
   }
 
@@ -33,25 +47,56 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
   fun `Manifest file contains project name and version`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
-    val result = buildProject(projectDir, "bootJar")
+    val result = buildProject(projectDir, "assemble")
     assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
     val file = findJar(projectDir, projectDetails.projectName)
     val jarFile = JarFile(file)
-    assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(LocalDate.now().format(DateTimeFormatter.ISO_DATE))
+    assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(
+      LocalDate.now().format(DateTimeFormatter.ISO_DATE)
+    )
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo(projectDetails.projectName)
+  }
+
+  @ParameterizedTest
+  @MethodSource("defaultProjectDetails")
+  fun `Jar file task is disabled so only one jar gets created`(projectDetails: ProjectDetails) {
+    makeProject(projectDetails)
+
+    val result = buildProject(projectDir, "assemble")
+    assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+
+    val jarFiles = Files.walk(Paths.get("${projectDir.absolutePath}/build/libs")).use { paths ->
+      paths.map { it.toString().substringAfter("${projectDir.absolutePath}/build/libs/") }
+        .filter { it.contains(projectDetails.projectName) }
+        .toList()
+    }
+
+    assertThat(jarFiles).containsExactly(
+      "${projectDetails.projectName}-${LocalDateTime.now().format(DateTimeFormatter.ISO_DATE)}.jar"
+    )
   }
 
   @Test
   fun `Java - Junit 4 tests will not even compile`() {
-    makeProject(javaProjectDetails(projectDir).copy(buildScript = javaExcludeJunit4Dependency(), testClass = javaJunit4Test()))
+    makeProject(
+      javaProjectDetails(projectDir).copy(
+        buildScript = javaExcludeJunit4Dependency(),
+        testClass = javaJunit4Test()
+      )
+    )
 
     buildProjectAndFail(projectDir, "compileTestJava")
   }
 
   @Test
   fun `Kotlin - Junit 4 tests will not even compile`() {
-    makeProject(kotlinProjectDetails(projectDir).copy(buildScript = kotlinExcludeJunit4Dependency(), testClass = kotlinJunit4Test()))
+    makeProject(
+      kotlinProjectDetails(projectDir).copy(
+        buildScript = kotlinExcludeJunit4Dependency(),
+        testClass = kotlinJunit4Test()
+      )
+    )
 
     buildProjectAndFail(projectDir, "compileTestKotlin")
   }
