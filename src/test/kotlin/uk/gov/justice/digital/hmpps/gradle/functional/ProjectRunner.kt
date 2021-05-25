@@ -19,13 +19,16 @@ private const val DEBUG_TESTS = false // To debug functional tests change this t
 data class ProjectDetails(
   val projectDir: File,
   val projectName: String,
-  val packageDir: String,
+  val packageDir: String = "src/main/java/uk/gov/justice/digital/hmpps/app",
+  val resourcesDir: String = "src/main/resources",
   val mainClassName: String,
   val mainClass: String,
+  val applicationYml: String = "application.yml",
+  val applicationScript: String = "management.endpoints.web.exposure.include: health,info",
   val buildScriptName: String,
   val buildScript: String,
   val settingsFileName: String,
-  val testClass: String
+  val testClass: String,
 ) {
   override fun toString(): String = projectName
 }
@@ -34,6 +37,7 @@ fun makeProject(projectDetails: ProjectDetails) {
   with(projectDetails) {
     makeBuildScript(projectDir, buildScriptName, buildScript)
     makeSrcFile(projectDir, packageDir, mainClassName, mainClass)
+    makeSrcFile(projectDir, resourcesDir, applicationYml, applicationScript)
     makeTestSrcFile(projectDir, packageDir, mainClassName, testClass)
     makeSettingsScript(projectDir, settingsFileName, projectName)
     makeGitRepo(projectDir)
