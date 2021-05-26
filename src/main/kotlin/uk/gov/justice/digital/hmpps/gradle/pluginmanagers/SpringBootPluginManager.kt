@@ -14,6 +14,7 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
     addDependencies()
     setSpringBootInfo()
     setManifestAttributes()
+    disableJarTask()
   }
 
   private fun addDependencies() {
@@ -42,6 +43,10 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
       "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
       "machine" to InetAddress.getLocalHost().hostName
     )
+  }
+
+  private fun disableJarTask() {
+    project.tasks.getByName("jar").enabled = false
   }
 
   private fun setManifestAttributes() {

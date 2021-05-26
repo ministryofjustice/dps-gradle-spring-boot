@@ -87,7 +87,7 @@ fun findFile(projectDir: File, fileName: String): File =
   }
 
 private fun createJar(projectDir: File, projectName: String): File =
-  buildProject(projectDir, "bootJar")
+  buildProject(projectDir, "assemble")
     .also { result -> assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS) }
     .let { findJar(projectDir, projectName) }
     .also { jar -> assertThat(jar.exists()).isTrue }
