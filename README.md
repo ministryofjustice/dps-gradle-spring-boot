@@ -10,6 +10,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 
+##### [3.3.3](release-notes/3.3.3.md)
 ##### [3.3.2](release-notes/3.3.2.md)
 ##### [3.3.1](release-notes/3.3.1.md)
 ##### [3.3.0](release-notes/3.3.0.md)
@@ -47,7 +48,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "3.3.2"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "3.3.3"
   ...
 }
 ```
@@ -65,7 +66,7 @@ Either way you will need to remove some of this duplication from your `build.gra
 
 Read the code!
 
-In the main you will probably need to know the following so you don't duplicate in your own build script:
+In the main you will probably need to know the following, so you don't duplicate in your own build script:
 
 #### The plugins and versions automatically applied by this plugin
 The class DpsSpringBootPlugin contains all 3rd party plugins that are applied by the DPS plugin - check there first.  Then look in the file `build.gradle.kts` in the `dependencies/implementation` section.  There you can find each plugin and its version.
