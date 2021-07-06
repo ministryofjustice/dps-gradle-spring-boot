@@ -30,7 +30,7 @@ class KtlintPluginManagerTest : GradleBuildTest() {
     makeProject(
       kotlinProjectDetails(projectDir).copy(
         mainClass =
-          """
+        """
         package uk.gov.justice.digital.hmpps.app
   
         import org.springframework.boot.autoconfigure.*
@@ -43,7 +43,7 @@ class KtlintPluginManagerTest : GradleBuildTest() {
             runApplication<Application>(*args)
         }
 
-          """.trimIndent(),
+        """.trimIndent(),
       )
     )
 
