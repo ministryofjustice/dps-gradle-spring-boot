@@ -10,8 +10,6 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
 
   override fun configure() {
     applyDependencyManagementBom(project)
-    //     // Overriding 5.5.1 introduced by Spring Boot 2.5.2 - possible remove when Spring Boot upgrades to > 5.5.3 (along with tests in functional/DependencyManagementPluginManagerTest)
-    project.extensions.extraProperties["spring-security.version"] = "5.5.0"
   }
 
   private fun applyDependencyManagementBom(project: Project) {
