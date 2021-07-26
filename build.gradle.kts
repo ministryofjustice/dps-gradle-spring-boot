@@ -2,7 +2,7 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.5.20"
+  kotlin("jvm") version "1.5.21"
   id("com.gradle.plugin-publish") version "0.15.0"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "3.3.4"
+version = "3.3.5-beta"
 
 gradlePlugin {
   plugins {
@@ -53,8 +53,8 @@ pluginBundle {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.5.2")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.5.3")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
   implementation("org.owasp:dependency-check-gradle:6.2.2")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.39.0")
