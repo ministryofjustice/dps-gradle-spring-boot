@@ -285,4 +285,11 @@
     <packageUrl regex="true">^pkg:maven/org\.hibernate\.validator/hibernate\-validator@.*$</packageUrl>
     <cve>CVE-2020-10693</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+    file name: lang-tag-1.5.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.nimbusds/lang\-tag@.*$</packageUrl>
+    <cve>CVE-2020-23171</cve>
+  </suppress>
 </suppressions>
