@@ -2,7 +2,7 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.5.30"
+  kotlin("jvm") version "1.5.31"
   id("com.gradle.plugin-publish") version "0.16.0"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "3.3.8"
+version = "3.3.9-beta"
 
 gradlePlugin {
   plugins {
@@ -53,8 +53,8 @@ pluginBundle {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.5.4")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.5.5")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
   implementation("org.owasp:dependency-check-gradle:6.3.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.39.0")
@@ -63,9 +63,9 @@ dependencies {
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.17")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:10.2.0")
 
-  testImplementation("org.junit.jupiter:junit-jupiter:5.8.0")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
   testImplementation("org.mockito:mockito-junit-jupiter:3.12.4")
-  testImplementation("org.assertj:assertj-core:3.20.2")
+  testImplementation("org.assertj:assertj-core:3.21.0")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.28.0")
   testImplementation("com.google.code.gson:gson:2.8.8")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.13.0.202109080827-r")

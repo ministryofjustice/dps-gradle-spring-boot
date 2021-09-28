@@ -294,44 +294,30 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
-    file name: tomcat-embed-core-9.0.52.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-core@.*$</packageUrl>
-    <cve>CVE-2020-0822</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: tomcat-embed-websocket-9.0.52.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-websocket@.*$</packageUrl>
-    <cve>CVE-2020-0822</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: spring-boot-starter-oauth2-client-2.5.4.jar
+    file name: spring-boot-starter-oauth2-client-2.5.5.jar
     ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-client@.*$</packageUrl>
     <cve>CVE-2018-1258</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-    file name: spring-boot-starter-oauth2-client-2.5.4.jar
+    file name: spring-boot-starter-oauth2-client-2.5.5.jar
     ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-client@.*$</packageUrl>
     <cve>CVE-2021-22112</cve>
   </suppress>
-<suppress>
-   <notes><![CDATA[
-   file name: spring-boot-starter-oauth2-resource-server-2.5.4.jar
+  <suppress>
+    <notes><![CDATA[
+   file name: spring-boot-starter-oauth2-resource-server-2.5.5.jar
    ]]></notes>
-   <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-resource\-server@.*$</packageUrl>
-   <cve>CVE-2018-1258</cve>
-</suppress>
-<suppress>
-   <notes><![CDATA[
-   file name: spring-boot-starter-oauth2-resource-server-2.5.4.jar
+    <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-resource\-server@.*$</packageUrl>
+    <cve>CVE-2018-1258</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: spring-boot-starter-oauth2-resource-server-2.5.5.jar
    ]]></notes>
-   <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-resource\-server@.*$</packageUrl>
-   <cve>CVE-2021-22112</cve>
-</suppress>
+    <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-resource\-server@.*$</packageUrl>
+    <cve>CVE-2021-22112</cve>
+  </suppress>
 </suppressions>
