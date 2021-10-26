@@ -56,6 +56,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.5.6")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
+  implementation("org.owasp:dependency-check-core:6.4.1") // Workaround to resolve dependency problem, consider removing on next update
   implementation("org.owasp:dependency-check-gradle:6.4.1.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.39.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.3.1")
