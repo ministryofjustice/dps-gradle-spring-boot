@@ -3,12 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   kotlin("jvm") version "1.5.31"
-  id("com.gradle.plugin-publish") version "0.16.0"
+  id("com.gradle.plugin-publish") version "0.17.0"
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.39.0"
-  id("se.patrikerdes.use-latest-versions") version "0.2.17"
-  id("org.owasp.dependencycheck") version "6.4.1.1"
+  id("se.patrikerdes.use-latest-versions") version "0.2.18"
+  id("org.owasp.dependencycheck") version "6.5.0.1"
   id("com.adarshr.test-logger") version "3.0.0"
   id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
 }
@@ -16,7 +16,6 @@ plugins {
 repositories {
   mavenLocal()
   mavenCentral()
-  jcenter()
   maven {
     url = uri("https://plugins.gradle.org/m2/")
   }
@@ -30,7 +29,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "3.3.12"
+version = "3.3.13-beta"
 
 gradlePlugin {
   plugins {
@@ -57,18 +56,18 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
   implementation("org.owasp:dependency-check-core:6.4.1") // Workaround to resolve dependency problem, consider removing on next update
-  implementation("org.owasp:dependency-check-gradle:6.4.1.1")
+  implementation("org.owasp:dependency-check-gradle:6.5.0.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.39.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.3.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:3.0.0")
-  implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.17")
+  implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:10.2.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
   testImplementation("org.mockito:mockito-junit-jupiter:4.0.0")
   testImplementation("org.assertj:assertj-core:3.21.0")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.28.0")
-  testImplementation("com.google.code.gson:gson:2.8.8")
+  testImplementation("com.google.code.gson:gson:2.8.9")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:5.13.0.202109080827-r")
 }
 
