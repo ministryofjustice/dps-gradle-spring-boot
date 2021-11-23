@@ -41,6 +41,6 @@ class BaseConfigManagerTest : UnitTest() {
   fun `Should default Java version on the Java Plugin`() {
     val javaConvention = project.extensions as DefaultConvention
     val javaPluginConvention = javaConvention.plugins["java"] as JavaPluginConvention
-    assertThat(javaPluginConvention.sourceCompatibility).isEqualTo(JavaVersion.VERSION_15)
+    assertThat(javaPluginConvention.sourceCompatibility).isEqualTo(JavaVersion.VERSION_11)
   }
 }
