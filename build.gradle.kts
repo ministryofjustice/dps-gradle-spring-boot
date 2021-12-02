@@ -1,4 +1,5 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -69,6 +70,13 @@ dependencies {
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.28.0")
   testImplementation("com.google.code.gson:gson:2.8.9")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.0.0.202111291000-r")
+  // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
+  testRuntimeOnly(
+    files(
+      serviceOf<org.gradle.api.internal.classpath.ModuleRegistry>().getModule("gradle-tooling-api-builders")
+        .classpath.asFiles.first()
+    )
+  )
 }
 
 tasks {
