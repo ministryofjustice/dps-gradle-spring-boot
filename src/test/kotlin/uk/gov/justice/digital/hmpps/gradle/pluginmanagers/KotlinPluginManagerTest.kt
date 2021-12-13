@@ -28,7 +28,7 @@ class KotlinPluginManagerTest : UnitTest() {
     assertThat(project.configurations.getByName("testImplementation").dependencies)
       .extracting<Tuple> { tuple(it.group, it.name) }
       .contains(
-        tuple("org.mockito.kotlin", "mockito-kotlin")
+        tuple("com.nhaarman.mockitokotlin2", "mockito-kotlin")
       )
   }
 }
