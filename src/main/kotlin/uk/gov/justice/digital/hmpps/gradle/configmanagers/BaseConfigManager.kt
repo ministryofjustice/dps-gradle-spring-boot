@@ -12,7 +12,6 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
     applyRepositories()
     addDependencies()
     copyResourcesFile("sonar-project.properties")
-    copyResourcesFile(".trivyignore")
   }
 
   override fun afterEvaluate() {
