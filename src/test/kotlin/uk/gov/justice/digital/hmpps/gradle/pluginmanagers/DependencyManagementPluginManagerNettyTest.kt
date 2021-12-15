@@ -14,24 +14,21 @@ import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.util.jar.JarFile
 
-class DependencyManagementPluginManagerTest : GradleBuildTest() {
+class DependencyManagementPluginManagerNettyTest : GradleBuildTest() {
 
   companion object {
     @Suppress("unused")
     @JvmStatic
-    fun wrongTransitiveLog4jVersion() = listOf(
-      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveLog4jVersionBuildFile())),
-      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveLog4jVersionBuildFile())),
+    fun wrongTransitiveNettyVersion() = listOf(
+      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveNettyVersionBuildFile())),
+      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveNettyVersionBuildFile())),
     )
   }
-  private fun jarContainsLog4jToSlf4j(jar: JarFile, version: String): Boolean =
-    jar.getJarEntry("BOOT-INF/lib/log4j-to-slf4j-$version.jar") != null
-
-  private fun jarContainsLog4jApi(jar: JarFile, version: String): Boolean =
-    jar.getJarEntry("BOOT-INF/lib/log4j-api-$version.jar") != null
+  private fun jarContainsNettyCommon(jar: JarFile, version: String): Boolean =
+    jar.getJarEntry("BOOT-INF/lib/netty-common-$version.jar") != null
 
   @ParameterizedTest
-  @MethodSource("wrongTransitiveLog4jVersion")
+  @MethodSource("wrongTransitiveNettyVersion")
   fun `Wrong transitive version of spring security should be overridden by the plugin`(projectDetails: ProjectDetails) {
     makeProject(projectDetails.copy())
 
@@ -40,14 +37,12 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
 
     val file = findJar(projectDir, projectDetails.projectName)
     val jarFile = JarFile(file)
-    assertThat(jarContainsLog4jToSlf4j(jarFile, "2.15.0")).isFalse
-    assertThat(jarContainsLog4jToSlf4j(jarFile, "2.16.0")).isTrue
-    assertThat(jarContainsLog4jApi(jarFile, "2.15.0")).isFalse
-    assertThat(jarContainsLog4jApi(jarFile, "2.16.0")).isTrue
+    assertThat(jarContainsNettyCommon(jarFile, "4.1.69.Final")).isFalse
+    assertThat(jarContainsNettyCommon(jarFile, "4.1.72.Final")).isTrue
   }
 }
 
-private fun wrongTransitiveLog4jVersionBuildFile() = """
+private fun wrongTransitiveNettyVersionBuildFile() = """
     plugins {
       id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
     }
