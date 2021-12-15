@@ -32,7 +32,7 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
 
   @ParameterizedTest
   @MethodSource("wrongTransitiveLog4jVersion")
-  fun `Wrong transitive version of spring security should be overridden by the plugin`(projectDetails: ProjectDetails) {
+  fun `Wrong transitive version of log4j should be overridden by the plugin`(projectDetails: ProjectDetails) {
     makeProject(projectDetails.copy())
 
     val result = buildProject(projectDir, "bootJar")

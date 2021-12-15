@@ -13,6 +13,7 @@ import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.util.jar.JarFile
+import kotlin.streams.toList
 
 class DependencyManagementPluginManagerNettyTest : GradleBuildTest() {
 
@@ -29,16 +30,17 @@ class DependencyManagementPluginManagerNettyTest : GradleBuildTest() {
 
   @ParameterizedTest
   @MethodSource("wrongTransitiveNettyVersion")
-  fun `Wrong transitive version of spring security should be overridden by the plugin`(projectDetails: ProjectDetails) {
+  fun `Wrong transitive version of netty should be overridden by the plugin`(projectDetails: ProjectDetails) {
     makeProject(projectDetails.copy())
 
     val result = buildProject(projectDir, "bootJar")
     assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
     val file = findJar(projectDir, projectDetails.projectName)
-    val jarFile = JarFile(file)
-    assertThat(jarContainsNettyCommon(jarFile, "4.1.69.Final")).isFalse
-    assertThat(jarContainsNettyCommon(jarFile, "4.1.72.Final")).isTrue
+    val jarContents = JarFile(file).versionedStream().map { it.name }.toList()
+    assertThat(jarContents)
+      .doesNotContain("BOOT-INF/lib/netty-common-4.1.69.Final.jar")
+      .contains("BOOT-INF/lib/netty-common-4.1.72.Final.jar")
   }
 }
 
@@ -47,8 +49,6 @@ private fun wrongTransitiveNettyVersionBuildFile() = """
       id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
     }
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-security");
-        implementation("org.springframework.boot:spring-boot-starter-oauth2-client");
-        
+      implementation("org.springframework.boot:spring-boot-starter-webflux")
     }
 """.trimIndent()
