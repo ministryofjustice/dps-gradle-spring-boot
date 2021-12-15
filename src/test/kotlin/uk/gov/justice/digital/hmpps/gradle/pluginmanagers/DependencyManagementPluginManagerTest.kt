@@ -19,9 +19,9 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
   companion object {
     @Suppress("unused")
     @JvmStatic
-    fun wrongTransitiveSpringSecurityVersion() = listOf(
-      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveSpringSecurityVersionBuildFile())),
-      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveSpringSecurityVersionBuildFile())),
+    fun wrongTransitiveLog4jVersion() = listOf(
+      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveLog4jVersionBuildFile())),
+      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveLog4jVersionBuildFile())),
     )
   }
   private fun jarContainsLog4jToSlf4j(jar: JarFile, version: String): Boolean =
@@ -31,8 +31,8 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
     jar.getJarEntry("BOOT-INF/lib/log4j-api-$version.jar") != null
 
   @ParameterizedTest
-  @MethodSource("wrongTransitiveSpringSecurityVersion")
-  fun `Wrong transitive version of spring security should be overridden by the plugin`(projectDetails: ProjectDetails) {
+  @MethodSource("wrongTransitiveLog4jVersion")
+  fun `Wrong transitive version of log4j should be overridden by the plugin`(projectDetails: ProjectDetails) {
     makeProject(projectDetails.copy())
 
     val result = buildProject(projectDir, "bootJar")
@@ -40,14 +40,14 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
 
     val file = findJar(projectDir, projectDetails.projectName)
     val jarFile = JarFile(file)
-    assertThat(jarContainsLog4jToSlf4j(jarFile, "2.14.1")).isFalse
-    assertThat(jarContainsLog4jToSlf4j(jarFile, "2.15.0")).isTrue
-    assertThat(jarContainsLog4jApi(jarFile, "2.14.1")).isFalse
-    assertThat(jarContainsLog4jApi(jarFile, "2.15.0")).isTrue
+    assertThat(jarContainsLog4jToSlf4j(jarFile, "2.15.0")).isFalse
+    assertThat(jarContainsLog4jToSlf4j(jarFile, "2.16.0")).isTrue
+    assertThat(jarContainsLog4jApi(jarFile, "2.15.0")).isFalse
+    assertThat(jarContainsLog4jApi(jarFile, "2.16.0")).isTrue
   }
 }
 
-private fun wrongTransitiveSpringSecurityVersionBuildFile() = """
+private fun wrongTransitiveLog4jVersionBuildFile() = """
     plugins {
       id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
     }
