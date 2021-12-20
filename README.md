@@ -233,11 +233,11 @@ A new version may be needed for a few different reasons:
 6. If the dependencies have security vulnerabilities then it can be useful to check that locally so you can see the state of them before and after your changes 
    1. Run the following Gradle task: `./gradlew dependencyCheckAnalyze`
    2. If you are using IntelliJ it can be found by going to _Gradle -> dps-gradle-spring-boot -> Tasks -> owasp dependency-check -> dependencyCheckAnalyze_ 
-   3. Additional testing can be done using `VersionsPluginManagerTest` - see [Dependency Update Checks](#dependency-update-checks)
+   3. Additional testing can be done using `pluginmanagers.VersionsPluginManagerTest` - see [Dependency Update Checks](#dependency-update-checks)
 7. Upgrade all the dependencies in `build.gradle.kts` by running the following Gradle task: `./gradlew useLatestVersions`
    1. If you are using IntelliJ it can be found by going to _Gradle -> dps-gradle-spring-boot -> Tasks -> help -> useLatestVersions_
-8. Follow the [Testing the plugin locally on other projects](#testing-the-plugin-locally-on-other-projects) section of the readme
-   1. In the other project you should run all the tests including integration and start it locally
+8. Follow [Testing the plugin locally on other projects](#testing-the-plugin-locally-on-other-projects)
+   1. In the other project you should run all tests including integration and start it locally
    2. At this stage you may run into issues such as transitive dependency resolution, unexpected test errors, or a new version of a dependency may not play nice with the project
    3. General advice is to do a bit of Googling to see if other people had the same issue. If it isn't critical to bump that 
    dependency then you can revert that dependency to the previous version and add a note in the build.gradle.kts
