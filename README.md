@@ -222,9 +222,9 @@ A new version may be needed for a few different reasons:
   - See [Slack message](https://mojdt.slack.com/archives/C69NWE339/p1639384200271500) for guidance on vulnerability patching 
 - There is a new major releases of Java, Kotlin or Spring and we want to provide the option for teams to bump to these versions
 
-### Steps
+### Upgrading dependencies
 
-1. Create a Jira ticket detailing the changes
+1. Create a Jira ticket
 2. git clone this repo
 3. Create a git branch including the Jira ticket in the name
 4. Open the project in your favourite code editor
@@ -233,13 +233,18 @@ A new version may be needed for a few different reasons:
 6. If the dependencies have security vulnerabilities then it can be useful to check that locally so you can see the state of them before and after your changes 
    1. Run the following Gradle task: `./gradlew dependencyCheckAnalyze`
    2. If you are using IntelliJ it can be found by going to _Gradle -> dps-gradle-spring-boot -> Tasks -> owasp dependency-check -> dependencyCheckAnalyze_ 
-   3. Additional testing can be done using `pluginmanagers.VersionsPluginManagerTest` - see [Dependency Update Checks](#dependency-update-checks)
+   3. Additional testing can be done with [Dependency Update Checks](#dependency-update-checks)
 7. Upgrade all the dependencies in `build.gradle.kts` by running the following Gradle task: `./gradlew useLatestVersions`
    1. If you are using IntelliJ it can be found by going to _Gradle -> dps-gradle-spring-boot -> Tasks -> help -> useLatestVersions_
-8. Follow [Testing the plugin locally on other projects](#testing-the-plugin-locally-on-other-projects)
-   1. In the other project you should run all tests including integration and start it locally
-   2. At this stage you may run into issues such as transitive dependency resolution, unexpected test errors, or a new version of a dependency may not play nice with the project
-   3. General advice is to do a bit of Googling to see if other people had the same issue. If it isn't critical to bump that 
+8. Review the pinned versions in `KotlinPluginManager`, `SpringBootPluginManager`, `DependencyManagementPluginManager`
+   1. You may need to manually bump, or remove them if they are no longer required
+
+### Testing locally
+
+1. Follow [Testing the plugin locally on other projects](#testing-the-plugin-locally-on-other-projects)
+2. In the other project you should run all tests including integration and start it locally
+   1. At this stage you may run into issues such as transitive dependency resolution, unexpected test errors, or a new version of a dependency may not play nice with the project
+   2. General advice is to do a bit of Googling to see if other people had the same issue. If it isn't critical to bump that 
    dependency then you can revert that dependency to the previous version and add a note in the build.gradle.kts
    as to why you didn't upgrade it so the next person knows. Hopefully the issue will be fixed and we'll be able to bump it next time
 
