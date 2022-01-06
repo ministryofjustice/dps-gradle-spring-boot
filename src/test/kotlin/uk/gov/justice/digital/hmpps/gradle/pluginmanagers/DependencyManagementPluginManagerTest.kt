@@ -40,10 +40,10 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
 
     val file = findJar(projectDir, projectDetails.projectName)
     val jarFile = JarFile(file)
-    assertThat(jarContainsLog4jToSlf4j(jarFile, "2.15.0")).isFalse
-    assertThat(jarContainsLog4jToSlf4j(jarFile, "2.16.0")).isTrue
-    assertThat(jarContainsLog4jApi(jarFile, "2.15.0")).isFalse
-    assertThat(jarContainsLog4jApi(jarFile, "2.16.0")).isTrue
+    assertThat(jarContainsLog4jToSlf4j(jarFile, "2.17.0")).isFalse
+    assertThat(jarContainsLog4jToSlf4j(jarFile, "2.17.1")).isTrue
+    assertThat(jarContainsLog4jApi(jarFile, "2.17.0")).isFalse
+    assertThat(jarContainsLog4jApi(jarFile, "2.17.1")).isTrue
   }
 }
 
