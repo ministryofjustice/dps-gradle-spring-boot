@@ -17,6 +17,10 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
     disableJarTask()
   }
 
+  override fun afterEvaluate() {
+    setMacArm64NettyVersionWhenRequired()
+  }
+
   private fun addDependencies() {
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
@@ -54,4 +58,16 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
     manifest.attributes["Implementation-Version"] = project.version
     manifest.attributes["Implementation-Title"] = project.name
   }
+
+  private fun setMacArm64NettyVersionWhenRequired() {
+    // reactor-netty only depends on x86_64 macos (since it is currently more common),
+    // those running locally on Apple Silicon Mac requires the arm64 version
+    // so if WebFlux is used and current platform is aarch_64 (Apple Silicon arm64) add additional runtime dependency
+    project.configurations.findByName("implementation")?.dependencies?.find { it.group == "org.springframework.boot" && it.name == "spring-boot-starter-webflux" }
+      ?.takeIf { isBuildingOnMacAppleSiliconArchitecture() }
+      ?.run { project.dependencies.add("runtimeOnly", "io.netty:netty-resolver-dns-native-macos::osx-aarch_64") }
+  }
+
+  private fun isBuildingOnMacAppleSiliconArchitecture() =
+    System.getProperty("os.arch").contains("aarch64")
 }
