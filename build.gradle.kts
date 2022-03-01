@@ -7,9 +7,9 @@ plugins {
   id("com.gradle.plugin-publish") version "0.20.0"
   id("java-gradle-plugin")
   id("maven-publish")
-  id("com.github.ben-manes.versions") version "0.41.0"
+  id("com.github.ben-manes.versions") version "0.42.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
-  id("org.owasp.dependencycheck") version "6.5.3"
+  id("org.owasp.dependencycheck") version "7.0.0"
   id("com.adarshr.test-logger") version "3.0.0"
   id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.0.4"
+version = "4.0.5-beta"
 
 gradlePlugin {
   plugins {
@@ -53,13 +53,13 @@ pluginBundle {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.6.3")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.6.4")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
-  implementation("org.owasp:dependency-check-core:6.5.3")
-  implementation("org.owasp:dependency-check-gradle:6.5.3")
-  implementation("com.github.ben-manes:gradle-versions-plugin:0.41.0")
-  implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.3.2")
+  implementation("org.owasp:dependency-check-core:7.0.0")
+  implementation("org.owasp:dependency-check-gradle:7.0.0")
+  implementation("com.github.ben-manes:gradle-versions-plugin:0.42.0")
+  implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.0")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:3.0.0") // did not upgrade to 3.1.0 because experienced ListenerNotificationException - same issue as https://github.com/radarsh/gradle-test-logger-plugin/issues/241
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:10.2.1")
@@ -67,8 +67,8 @@ dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
   testImplementation("org.mockito:mockito-junit-jupiter:4.3.1")
   testImplementation("org.assertj:assertj-core:3.22.0")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.28.0")
-  testImplementation("com.google.code.gson:gson:2.8.9")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.32.0")
+  testImplementation("com.google.code.gson:gson:2.9.0")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.0.0.202111291000-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
   testRuntimeOnly(

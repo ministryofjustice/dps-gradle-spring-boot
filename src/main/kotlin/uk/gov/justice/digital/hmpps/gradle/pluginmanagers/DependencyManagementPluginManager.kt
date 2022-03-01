@@ -10,9 +10,6 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
 
   override fun configure() {
     applyDependencyManagementBom(project)
-    //  Overriding log4j 2.17 CVE-2021-44832 - possible remove when Spring Boot upgrades to 2.6.3 (along with tests in functional/DependencyManagementPluginManagerTest)
-    project.extensions.extraProperties["log4j2.version"] = "2.17.1"
-    project.extensions.extraProperties["tomcat.version"] = "9.0.58"
   }
 
   private fun applyDependencyManagementBom(project: Project) {
