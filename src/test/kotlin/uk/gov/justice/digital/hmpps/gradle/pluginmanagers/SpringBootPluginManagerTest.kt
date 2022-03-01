@@ -39,7 +39,6 @@ class SpringBootPluginManagerTest : UnitTest() {
       )
   }
 
-
   class SpringBootPluginManagerGradleTest : GradleBuildTest() {
     @Nested
     @DisplayName("When WebFlux is included in project")
@@ -84,7 +83,6 @@ class SpringBootPluginManagerTest : UnitTest() {
         assertThat(jarContainsNettyResolverDNSNativeMacos(jarFile, version, "osx-aarch_64")).isFalse
         assertThat(jarContainsNettyResolverDNSNativeMacos(jarFile, version, "osx-x86_64")).isTrue
       }
-
     }
 
     @Nested
@@ -102,14 +100,13 @@ class SpringBootPluginManagerTest : UnitTest() {
               implementation("org.springframework.boot:spring-boot-starter-oauth2-client");
               
           }
-      """.trimIndent()
+        """.trimIndent()
 
         val jarFile = jarFileForProject(project)
 
         assertThat(getNettyResolverDNSNativeMacosJarEntry(jarFile, "osx-x86_64")).isNull()
         assertThat(getNettyResolverDNSNativeMacosJarEntry(jarFile, "osx-aarch_64")).isNull()
       }
-
     }
 
     private fun jarFileForProject(gradleContents: String, architecture: String = "aarch64"): JarFile {
@@ -120,9 +117,7 @@ class SpringBootPluginManagerTest : UnitTest() {
       return JarFile(findJar(projectDir, projectDetails.projectName))
     }
   }
-
 }
-
 
 private fun jarContainsNettyResolverDNSNativeMacos(jar: JarFile, version: String, architecture: String): Boolean =
   jar.getJarEntry("BOOT-INF/lib/netty-resolver-dns-native-macos-$version.Final-$architecture.jar") != null
