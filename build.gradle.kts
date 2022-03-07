@@ -11,7 +11,7 @@ plugins {
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "7.0.0"
   id("com.adarshr.test-logger") version "3.0.0"
-  id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
+  id("org.jmailen.kotlinter") version "3.9.0"
 }
 
 repositories {
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.0.5"
+version = "4.1.0-beta"
 
 gradlePlugin {
   plugins {
@@ -62,7 +62,7 @@ dependencies {
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.0")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:3.0.0") // did not upgrade to 3.1.0 because experienced ListenerNotificationException - same issue as https://github.com/radarsh/gradle-test-logger-plugin/issues/241
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:10.2.1")
+  implementation("org.jmailen.kotlinter:org.jmailen.kotlinter.gradle.plugin:3.9.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
   testImplementation("org.mockito:mockito-junit-jupiter:4.3.1")
@@ -95,8 +95,8 @@ tasks {
       isNonStable(candidate.version) && !isNonStable(currentVersion)
     }
   }
-}
 
-tasks.named("check") {
-  dependsOn(":ktlintCheck")
+  check {
+    dependsOn("installKotlinterPrePushHook")
+  }
 }

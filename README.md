@@ -10,6 +10,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 
+##### [4.1.0](release-notes/4.1.0.md)
 ##### [4.0.5](release-notes/4.0.5.md)
 ##### [4.0.4](release-notes/4.0.4.md)
 ##### [4.0.3](release-notes/4.0.3.md)
@@ -67,7 +68,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "4.0.5-beta"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "4.1.0-beta"
   ...
 }
 ```
@@ -202,17 +203,17 @@ https://app.circleci.com/pipelines/github/ministryofjustice/dps-gradle-spring-bo
 will publish the plugin to the gradle plugins repository.
 
 ### Code style & formatting
-```bash
-./gradlew ktlintApplyToIdea addKtlintFormatGitPreCommitHook
-```
-will apply ktlint styles to intellij and also add a pre-commit hook to format all changed kotlin files.
+
+A pre-push hook is automatically added by the gradle check task to check and if necessary format all changed kotlin files.
+See https://github.com/jeremymailen/kotlinter-gradle .
+
+To run manually use tasks `lintKotlin` and `formatKotlin`.
 
 Note that the .editorconfig in the root of this project is for this project only, the one in src/main/resources will be copied to other projects to enforce style.
 
-To setup dependent projects with ktlint:
-1. (Optional) run the above gradle command to apply to intellij and add the pre commit hook.
-2. If you don't plan on making changes to .editorconfig (created on first run) then add to .gitignore.
-3. Ensure that the continuous integration tool runs the `check` task instead of `test`.
+To setup dependent projects with kotlinter:
+1. If you don't plan on making changes to .editorconfig (created on first run) then add to .gitignore.
+2. Ensure that the continuous integration tool runs the `check` task instead of `test`.
 
 ## TODO
 

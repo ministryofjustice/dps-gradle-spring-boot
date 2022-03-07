@@ -15,7 +15,7 @@ import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.io.File
 import java.nio.file.Files
 
-class KtlintPluginManagerTest : GradleBuildTest() {
+class KotlinterPluginManagerTest : GradleBuildTest() {
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
   fun `Ktlint succeeds if no errors in project`(projectDetails: ProjectDetails) {
@@ -26,7 +26,7 @@ class KtlintPluginManagerTest : GradleBuildTest() {
   }
 
   @Test
-  fun `Ktlint fails if project contains errors`() {
+  fun `Kotlinter fails if project contains errors`() {
     makeProject(
       kotlinProjectDetails(projectDir).copy(
         mainClass =
@@ -49,7 +49,7 @@ class KtlintPluginManagerTest : GradleBuildTest() {
 
     val result = buildProjectAndFail(projectDir, "check")
     assertThat(result.output)
-      .contains("Wildcard import (cannot be auto-corrected)")
+      .contains("[no-wildcard-imports] Wildcard import")
       .contains("Unexpected indentation (4) (should be 2)")
   }
 
@@ -66,7 +66,7 @@ class KtlintPluginManagerTest : GradleBuildTest() {
   }
 
   @Test
-  fun `ktlint doesn't break multi-project builds`() {
+  fun `Kotlinter doesn't break multi-project builds`() {
     val app1Dir = File(projectDir, "app1").also { appDir -> appDir.mkdirs() }
     val app2Dir = File(projectDir, "app2").also { appDir -> appDir.mkdirs() }
     makeProject(kotlinProjectDetails(app1Dir))
@@ -77,14 +77,14 @@ class KtlintPluginManagerTest : GradleBuildTest() {
               rootProject.name = "multi-project"
               include("app1")
               include("app2")
-            """.trimMargin()
+      """.trimMargin()
     )
     makeFile("build.gradle.kts", "")
 
     val result = buildProject(projectDir, "check", "-m")
     assertThat(result.output).contains("BUILD SUCCESSFUL")
-    assertThat(result.output).contains("app1:ktlintCheck")
-    assertThat(result.output).contains("app2:ktlintCheck")
+    assertThat(result.output).contains("app1:lintKotlin")
+    assertThat(result.output).contains("app2:lintKotlin")
   }
 
   private fun makeFile(fileName: String, contents: String) {

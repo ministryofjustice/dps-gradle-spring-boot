@@ -2,13 +2,13 @@ package uk.gov.justice.digital.hmpps.gradle.pluginmanagers
 
 import org.gradle.api.Project
 import org.gradle.api.Task
-import org.jlleitschuh.gradle.ktlint.KtlintPlugin
+import org.jmailen.gradle.kotlinter.KotlinterPlugin
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 
-class KtlintPluginManager(override val project: Project) : PluginManager<KtlintPlugin> {
+class KotlinterPluginManager(override val project: Project) : PluginManager<KotlinterPlugin> {
   override fun configure() {
     project.getTasksByName("check", false).forEach {
-      it.dependsOn("${getProjectPrefix(it)}:ktlintCheck")
+      it.dependsOn("${getProjectPrefix(it)}:lintKotlin")
     }
 
     copyResourcesFile(".editorconfig")
