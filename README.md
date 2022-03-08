@@ -203,17 +203,20 @@ https://app.circleci.com/pipelines/github/ministryofjustice/dps-gradle-spring-bo
 will publish the plugin to the gradle plugins repository.
 
 ### Code style & formatting
-
-A pre-push hook is automatically added by the gradle check task to check and if necessary format all changed kotlin files.
+```bash
+./gradlew installKotlinterPrePushHook
+```
+will add a pre-push hook to check all changed kotlin files, and if necessary format them.
 See https://github.com/jeremymailen/kotlinter-gradle .
 
-To run manually use tasks `lintKotlin` and `formatKotlin`.
+To run linter manually use tasks `lintKotlin` and `formatKotlin`.
 
 Note that the .editorconfig in the root of this project is for this project only, the one in src/main/resources will be copied to other projects to enforce style.
 
-To setup dependent projects with kotlinter:
-1. If you don't plan on making changes to .editorconfig (created on first run) then add to .gitignore.
-2. Ensure that the continuous integration tool runs the `check` task instead of `test`.
+To set up dependent projects with kotlinter:
+1. (Optional) run the above gradle command to add the pre-push hook.
+2. If you don't plan on making changes to .editorconfig (created on first run) then add to .gitignore.
+3. Ensure that the continuous integration tool runs the `check` task instead of `test`.
 
 ## TODO
 
