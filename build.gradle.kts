@@ -80,6 +80,11 @@ dependencies {
 }
 
 tasks {
+//  register<org.jmailen.gradle.kotlinter.tasks.FormatTask>("formatKotlinFiles" ) {
+//    val n = project.property("files")
+//    source(n)
+//  }
+
   test {
     useJUnitPlatform()
   }

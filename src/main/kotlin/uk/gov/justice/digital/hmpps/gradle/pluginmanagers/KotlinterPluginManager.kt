@@ -11,6 +11,8 @@ class KotlinterPluginManager(override val project: Project) : PluginManager<Kotl
       it.dependsOn("${getProjectPrefix(it)}:installKotlinterPrePushHook")
     }
 
+    // TODO delete pre-commit hook of old plugin if present
+
     copyResourcesFile(".editorconfig")
   }
 
