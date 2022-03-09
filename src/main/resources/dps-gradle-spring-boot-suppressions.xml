@@ -328,4 +328,19 @@
     <packageUrl regex="true">^pkg:maven/io\.netty/netty\-tcnative\-classes@.*$</packageUrl>
     <cpe>cpe:/a:netty:netty</cpe>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: ktlint-reporter-checkstyle-0.42.1.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.pinterest\.ktlint/ktlint\-reporter\-checkstyle@.*$</packageUrl>
+    <cve>CVE-2019-10782</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: ktlint-reporter-checkstyle-0.42.1.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.pinterest\.ktlint/ktlint\-reporter\-checkstyle@.*$</packageUrl>
+    <cve>CVE-2019-9658</cve>
+  </suppress>
+
 </suppressions>
