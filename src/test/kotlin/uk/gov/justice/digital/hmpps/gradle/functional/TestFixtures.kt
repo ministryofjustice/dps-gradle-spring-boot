@@ -48,8 +48,13 @@ fun javaProjectDetails(projectDir: File) =
     """.trimIndent()
   )
 
-fun kotlinProjectDetails(projectDir: File) =
-  ProjectDetails(
+fun kotlinProjectDetails(projectDir: File, addKotlinerHookTask: Boolean = false): ProjectDetails {
+  val task = if (addKotlinerHookTask)
+    """tasks.register<org.jmailen.gradle.kotlinter.tasks.InstallPrePushHookTask>("installKotlinterPrePushHook") { }"""
+  else
+    ""
+
+  return ProjectDetails(
     projectName = "spring-boot-project-kotlin",
     projectDir = projectDir,
     mainClassName = "Application.kt",
@@ -75,7 +80,10 @@ fun kotlinProjectDetails(projectDir: File) =
             id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
           }
 
+          $task
+
     """.trimIndent(),
+
     settingsFileName = "settings.gradle.kts",
     testClass =
     """
@@ -93,3 +101,4 @@ fun kotlinProjectDetails(projectDir: File) =
 
     """.trimIndent()
   )
+}

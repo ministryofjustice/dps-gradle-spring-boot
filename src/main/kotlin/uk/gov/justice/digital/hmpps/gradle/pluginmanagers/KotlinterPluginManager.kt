@@ -8,7 +8,7 @@ import uk.gov.justice.digital.hmpps.gradle.PluginManager
 class KotlinterPluginManager(override val project: Project) : PluginManager<KotlinterPlugin> {
   override fun configure() {
     project.getTasksByName("check", false).forEach {
-      it.dependsOn("${getProjectPrefix(it)}:lintKotlin")
+      it.dependsOn("${getProjectPrefix(it)}:installKotlinterPrePushHook")
     }
 
     copyResourcesFile(".editorconfig")

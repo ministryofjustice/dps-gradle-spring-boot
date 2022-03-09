@@ -69,8 +69,8 @@ class KotlinterPluginManagerTest : GradleBuildTest() {
   fun `Kotlinter doesn't break multi-project builds`() {
     val app1Dir = File(projectDir, "app1").also { appDir -> appDir.mkdirs() }
     val app2Dir = File(projectDir, "app2").also { appDir -> appDir.mkdirs() }
-    makeProject(kotlinProjectDetails(app1Dir))
-    makeProject(kotlinProjectDetails(app2Dir))
+    makeProject(kotlinProjectDetails(app1Dir, true))
+    makeProject(kotlinProjectDetails(app2Dir, true))
     makeFile(
       "settings.gradle.kts",
       """
