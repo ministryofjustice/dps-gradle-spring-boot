@@ -14,6 +14,16 @@ plugins {
   id("org.jmailen.kotlinter") version "3.9.0"
 }
 
+// Allows formatting using:
+// gradle formatKotlinFiles -Pfiles=path/file1.kt,path/file2.kt
+tasks.register<org.jmailen.gradle.kotlinter.tasks.FormatTask>("formatKotlinFiles") {
+  if (project.hasProperty("files")) {
+    val commaSeparated = project.property("files") as String
+    source(commaSeparated.split(","))
+  }
+  group = "formatting"
+}
+
 repositories {
   mavenLocal()
   mavenCentral()
@@ -30,7 +40,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.1.0-beta"
+version = "4.2.0-beta"
 
 gradlePlugin {
   plugins {
@@ -80,10 +90,6 @@ dependencies {
 }
 
 tasks {
-//  register<org.jmailen.gradle.kotlinter.tasks.FormatTask>("formatKotlinFiles" ) {
-//    val n = project.property("files")
-//    source(n)
-//  }
 
   test {
     useJUnitPlatform()
