@@ -10,7 +10,7 @@ plugins {
   id("com.github.ben-manes.versions") version "0.42.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "7.0.1"
-  id("com.adarshr.test-logger") version "3.2.0"
+  id("com.adarshr.test-logger") version "3.0.0" // did not upgrade to 3.1.0 because experienced ListenerNotificationException - same issue as https://github.com/radarsh/gradle-test-logger-plugin/issues/241
   id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
 
