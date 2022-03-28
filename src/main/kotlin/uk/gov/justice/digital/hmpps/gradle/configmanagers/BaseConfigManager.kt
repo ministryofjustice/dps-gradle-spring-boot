@@ -37,7 +37,7 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
   }
 
   private fun addDependencies() {
-    project.dependencies.add("implementation", "com.google.guava:guava:31.0.1-jre") // This is only required because the version pulled in as a transitive dependency has CVE vulnerabilities
+    project.dependencies.add("implementation", "com.google.guava:guava:31.1-jre") // This is only required because the version pulled in as a transitive dependency has CVE vulnerabilities
   }
 
   private fun setJunit5() {
