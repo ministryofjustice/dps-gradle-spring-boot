@@ -4,9 +4,10 @@ import org.apache.commons.io.FileUtils
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.io.TempDir
 import org.junit.jupiter.params.provider.Arguments
+import uk.gov.justice.digital.hmpps.gradle.UnitTest
 import java.io.File
 
-abstract class GradleBuildTest {
+abstract class GradleBuildTest : UnitTest() {
 
   @AfterEach
   fun `Delete project`() {
