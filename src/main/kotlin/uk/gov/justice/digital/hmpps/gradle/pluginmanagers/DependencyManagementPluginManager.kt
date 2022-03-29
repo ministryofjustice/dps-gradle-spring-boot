@@ -10,6 +10,8 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
 
   override fun configure() {
     applyDependencyManagementBom(project)
+    //  Overriding Jackson databind version due to CVE-2020-36518 - possibly remove when Spring Boot upgrades to 2.6.6 (along with tests in functional/DependencyManagementPluginManagerTest)
+    project.extensions.extraProperties["jackson.version.databind"] = "2.13.2.2"
   }
 
   private fun applyDependencyManagementBom(project: Project) {
