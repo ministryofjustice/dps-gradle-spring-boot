@@ -14,7 +14,6 @@ class AppInsightsConfigManagerTest : UnitTest() {
     assertThat(project.configurations.getByName("implementation").dependencies)
       .extracting<Tuple> { tuple(it.group, it.name) }
       .contains(
-        tuple("net.logstash.logback", "logstash-logback-encoder"),
         tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter"),
         tuple("com.microsoft.azure", "applicationinsights-logging-logback")
       )
