@@ -11,7 +11,7 @@ plugins {
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "7.1.0.1"
   id("com.adarshr.test-logger") version "3.0.0" // did not upgrade to 3.2.0 because experienced ListenerNotificationException - same issue as https://github.com/radarsh/gradle-test-logger-plugin/issues/241
-  id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
+  id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
 }
 
 repositories {
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.1.6"
+version = "4.1.7-beta"
 
 gradlePlugin {
   plugins {
@@ -59,15 +59,15 @@ dependencies {
   implementation("org.owasp:dependency-check-core:7.1.0")
   implementation("org.owasp:dependency-check-gradle:7.1.0.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.42.0")
-  implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.0")
+  implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:3.0.0") // did not upgrade to 3.2.0 because experienced ListenerNotificationException - same issue as https://github.com/radarsh/gradle-test-logger-plugin/issues/241
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:10.2.1")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:10.3.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
   testImplementation("org.mockito:mockito-junit-jupiter:4.5.1")
   testImplementation("org.assertj:assertj-core:3.22.0")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.34.0")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.35.0")
   testImplementation("com.google.code.gson:gson:2.9.0")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.1.0.202203080745-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
