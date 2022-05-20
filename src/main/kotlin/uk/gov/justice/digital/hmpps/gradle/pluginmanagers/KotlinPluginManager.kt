@@ -15,7 +15,7 @@ class KotlinPluginManager(override val project: Project) : PluginManager<KotlinP
   private fun setKotlinCompileJvmVersion() {
     project.tasks.withType(KotlinCompile::class.java).forEach {
       it.kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "11"
       }
     }
   }
