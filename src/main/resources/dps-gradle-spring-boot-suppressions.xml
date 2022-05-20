@@ -355,124 +355,124 @@
     <packageUrl regex="true">^pkg:maven/io\.github\.detekt\.sarif4k/sarif4k@.*$</packageUrl>
     <cve>CVE-2022-0272</cve>
   </suppress>
-  <!-- suppressed as not running java 6 or lower -->
+  <!-- CVE-2016-1000027 -->
   <suppress>
     <notes><![CDATA[
-   file name: netty-buffer-4.1.76.Final.jar
+   file name: spring-aop-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-buffer@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-aop@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-codec-4.1.76.Final.jar
+   file name: spring-aspects-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-codec@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-aspects@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-codec-dns-4.1.76.Final.jar
+   file name: spring-beans-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-codec\-dns@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-beans@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-codec-http-4.1.76.Final.jar
+   file name: spring-context-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-codec\-http@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-context@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-codec-http2-4.1.76.Final.jar
+   file name: spring-context-support-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-codec\-http2@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-context\-support@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-codec-socks-4.1.76.Final.jar
+   file name: spring-core-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-codec\-socks@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-core@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-common-4.1.76.Final.jar
+   file name: spring-expression-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-common@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-expression@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-handler-4.1.76.Final.jar
+   file name: spring-jcl-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-handler@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-jcl@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-handler-proxy-4.1.76.Final.jar
+   file name: spring-jdbc-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-handler\-proxy@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-jdbc@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-resolver-4.1.76.Final.jar
+   file name: spring-jms-5.3.18.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-resolver@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-jms@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-resolver-dns-4.1.76.Final.jar
+   file name: spring-messaging-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-resolver\-dns@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-messaging@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-resolver-dns-classes-macos-4.1.76.Final.jar
+   file name: spring-orm-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-resolver\-dns\-classes\-macos@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-orm@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-resolver-dns-native-macos-4.1.76.Final-osx-x86_64.jar
+   file name: spring-oxm-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-resolver\-dns\-native\-macos@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-oxm@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-transport-4.1.76.Final.jar
+   file name: spring-tx-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-transport@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-tx@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-transport-classes-epoll-4.1.76.Final.jar
+   file name: spring-web-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-transport\-classes\-epoll@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-web@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-transport-native-epoll-4.1.76.Final-linux-x86_64.jar
+   file name: spring-webflux-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-transport\-native\-epoll@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-webflux@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: netty-transport-native-unix-common-4.1.76.Final.jar
+   file name: spring-webmvc-5.3.20.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-transport\-native\-unix\-common@.*$</packageUrl>
-    <cve>CVE-2022-24823</cve>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-webmvc@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
 </suppressions>
