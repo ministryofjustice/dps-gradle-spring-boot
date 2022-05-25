@@ -484,9 +484,30 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
+   file name: h2-2.1.212.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.h2database/h2@.*$</packageUrl>
+    <vulnerabilityName>[sonatype-2020-1324] CWE-94: Improper Control of Generation of Code ('Code Injection')</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
    file name: spring-security-crypto-5.7.1.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-crypto@.*$</packageUrl>
     <vulnerabilityName>CVE-2020-5408</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: guava-31.1-jre.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.google\.guava/guava@.*$</packageUrl>
+    <vulnerabilityName>[sonatype-2020-0926] CWE-379: Creation of Temporary File in Directory with Incorrect Permissions</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: netty-handler-4.1.77.Final.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-handler@.*$</packageUrl>
+    <vulnerabilityName>[sonatype-2020-0026] CWE-300: Channel Accessible by Non-Endpoint ('Man-in-the-Middle')</vulnerabilityName>
   </suppress>
 </suppressions>
