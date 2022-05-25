@@ -477,6 +477,13 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
+   file name: spring-r2dbc-5.3.20.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-r2dbc@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
    file name: h2-2.1.212.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/com\.h2database/h2@.*$</packageUrl>
