@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.2.0-beta-4"
+version = "4.2.0"
 
 gradlePlugin {
   plugins {
