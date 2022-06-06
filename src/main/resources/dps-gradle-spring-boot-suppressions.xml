@@ -517,4 +517,27 @@
     <packageUrl regex="true">^pkg:maven/io\.netty/netty\-handler@.*$</packageUrl>
     <vulnerabilityName>[sonatype-2020-0026] CWE-300: Channel Accessible by Non-Endpoint ('Man-in-the-Middle')</vulnerabilityName>
   </suppress>
+  <!-- suppressed as matching spring oauth2 instead of spring security -->
+  <suppress>
+    <notes><![CDATA[
+   file name: spring-boot-starter-oauth2-client-2.7.0.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-client@.*$</packageUrl>
+    <cve>CVE-2022-22976</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: spring-boot-starter-oauth2-resource-server-2.7.0.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-resource\-server@.*$</packageUrl>
+    <cve>CVE-2022-22976</cve>
+  </suppress>
+  <!-- suppressed as matching spring boot starter security instead of spring security -->
+  <suppress>
+    <notes><![CDATA[
+   file name: spring-boot-starter-security-2.7.0.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-security@.*$</packageUrl>
+    <cve>CVE-2022-22976</cve>
+  </suppress>
 </suppressions>
