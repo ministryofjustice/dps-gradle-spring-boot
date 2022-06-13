@@ -532,6 +532,13 @@
     <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-resource\-server@.*$</packageUrl>
     <cve>CVE-2022-22978</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: spring-security-oauth2-2.5.2.RELEASE.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework\.security\.oauth/spring\-security\-oauth2@.*$</packageUrl>
+    <cve>CVE-2022-22978</cve>
+  </suppress>
   <!-- suppressed as matching spring boot starter security instead of spring security -->
   <suppress>
     <notes><![CDATA[
