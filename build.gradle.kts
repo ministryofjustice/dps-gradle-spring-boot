@@ -3,7 +3,7 @@ import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.6.21"
+  kotlin("jvm") version "1.7.0"
   id("com.gradle.plugin-publish") version "0.21.0"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.2.3"
+version = "4.3.0-beta"
 
 gradlePlugin {
   plugins {
@@ -54,7 +54,7 @@ dependencies {
   implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.0")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
   implementation("org.owasp:dependency-check-core:7.1.1")
   implementation("org.owasp:dependency-check-gradle:7.1.1")
@@ -69,7 +69,7 @@ dependencies {
   testImplementation("org.assertj:assertj-core:3.23.1")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.35.0")
   testImplementation("com.google.code.gson:gson:2.9.0")
-  testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.1.0.202203080745-r")
+  testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.2.0.202206071550-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
   testRuntimeOnly(
     files(
