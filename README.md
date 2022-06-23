@@ -10,6 +10,9 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 
+<details>
+  <summary>4.#</summary>
+  
 ##### [4.3.0](release-notes/4.3.0.md)
 ##### [4.2.3](release-notes/4.2.3.md)
 ##### [4.2.2](release-notes/4.2.2.md)
@@ -28,6 +31,12 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 ##### [4.0.2](release-notes/4.0.2.md)
 ##### [4.0.1](release-notes/4.0.1.md)
 ##### [4.0.0](release-notes/4.0.0.md)
+  
+</details>
+
+<details>
+  <summary>3.#</summary>
+  
 ##### [3.3.16](release-notes/3.3.16.md)
 ##### [3.3.15](release-notes/3.3.15.md)
 ##### [3.3.14](release-notes/3.3.14.md)
@@ -56,12 +65,24 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 ##### [3.1.0](release-notes/3.1.0.md)
 ##### [3.0.1](release-notes/3.0.1.md)
 ##### [3.0.0](release-notes/3.0.0.md)
+
+</details>
+
+<details>
+  <summary>2.#</summary>
+  
 ##### [2.1.2](release-notes/2.1.2.md)
 ##### [2.1.1](release-notes/2.1.1.md)
 ##### [2.1.0](release-notes/2.1.0.md)
 ##### [2.0.2](release-notes/2.0.2.md)
 ##### [2.0.1](release-notes/2.0.1.md)
 ##### [2.0.0](release-notes/2.0.0.md)
+
+</details>
+
+<details>
+  <summary>1.#</summary>
+  
 ##### [1.1.2](release-notes/1.1.2.md)
 ##### [1.1.1](release-notes/1.1.1.md)
 ##### [1.1.0](release-notes/1.1.0.md)
@@ -73,6 +94,8 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 ##### [1.0.2](release-notes/1.0.2.md)
 ##### [1.0.1](release-notes/1.0.1.md)
 ##### [1.0.0](release-notes/1.0.0.md)
+
+</details>
 
 ## How to use this plugin
 In your `build.gradle.kts` (or `build.gradle` for Java) add the following line to the plugin section:
