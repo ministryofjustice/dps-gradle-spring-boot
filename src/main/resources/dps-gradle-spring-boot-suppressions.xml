@@ -571,19 +571,4 @@
     <packageUrl regex="true">^pkg:maven/org\.apache\.logging\.log4j/log4j\-api@.*$</packageUrl>
     <cve>CVE-2022-33915</cve>
   </suppress>
-  <!-- suppressed as contained within application insights jar which only publishes to app insights -->
-  <suppress>
-    <notes><![CDATA[
-   file name: applicationinsights-agent-3.3.0.jar (shaded: ch.qos.logback:logback-classic:1.2.8)
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/ch\.qos\.logback/logback\-classic@.*$</packageUrl>
-    <vulnerabilityName>CVE-2021-42550</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: applicationinsights-agent-3.3.0.jar (shaded: ch.qos.logback:logback-core:1.2.8)
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/ch\.qos\.logback/logback\-core@.*$</packageUrl>
-    <vulnerabilityName>CVE-2021-42550</vulnerabilityName>
-  </suppress>
 </suppressions>
