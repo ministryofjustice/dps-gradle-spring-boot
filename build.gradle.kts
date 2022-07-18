@@ -3,8 +3,8 @@ import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.7.10"
-  id("com.gradle.plugin-publish") version "1.0.0"
+  kotlin("jvm") version "1.7.0"
+  id("com.gradle.plugin-publish") version "0.21.0"
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.42.0"
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.4.0-beta"
+version = "4.3.2"
 
 gradlePlugin {
   plugins {
@@ -54,8 +54,8 @@ dependencies {
   implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.1")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
-  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.12.RELEASE")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0")
+  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.11.RELEASE")
   implementation("org.owasp:dependency-check-core:7.1.1")
   implementation("org.owasp:dependency-check-gradle:7.1.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.42.0")
