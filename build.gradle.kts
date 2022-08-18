@@ -3,7 +3,7 @@ import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.7.0"
+  kotlin("jvm") version "1.7.10"
   id("com.gradle.plugin-publish") version "0.21.0"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.4.1"
+version = "4.4.2-beta"
 
 gradlePlugin {
   plugins {
@@ -53,9 +53,9 @@ pluginBundle {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.2")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.3")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
-  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.12.RELEASE")
+  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.0.13.RELEASE")
   implementation("org.owasp:dependency-check-core:7.1.1")
   implementation("org.owasp:dependency-check-gradle:7.1.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.42.0")
@@ -64,11 +64,11 @@ dependencies {
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:10.3.0")
 
-  testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
-  testImplementation("org.mockito:mockito-junit-jupiter:4.6.1")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:4.7.0")
   testImplementation("org.assertj:assertj-core:3.23.1")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.35.0")
-  testImplementation("com.google.code.gson:gson:2.9.0")
+  testImplementation("com.google.code.gson:gson:2.9.1")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.2.0.202206071550-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
   testRuntimeOnly(
