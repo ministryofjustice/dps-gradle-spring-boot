@@ -77,7 +77,6 @@ dependencies {
         .classpath.asFiles.first()
     )
   )
-  ext["snakeyaml.version"] = "1.31"
 }
 
 tasks {

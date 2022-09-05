@@ -10,6 +10,9 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
 
   override fun configure() {
     applyDependencyManagementBom(project)
+    // overriding snakeyaml for https://nvd.nist.gov/vuln/detail/CVE-2022-25857 - brought in by org.springframework.boot:spring-boot-dependencies:2.7.2
+    project.extensions.extraProperties["snakeyaml.version"] = "1.31"
+
   }
 
   private fun applyDependencyManagementBom(project: Project) {
