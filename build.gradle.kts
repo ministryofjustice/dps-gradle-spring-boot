@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.4.2"
+version = "4.4.3-beta"
 
 gradlePlugin {
   plugins {
@@ -77,6 +77,7 @@ dependencies {
         .classpath.asFiles.first()
     )
   )
+  ext["snakeyaml.version"] = "1.31"
 }
 
 tasks {
