@@ -610,7 +610,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2019-10210</cve>
   </suppress>
@@ -618,7 +618,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2019-10211</cve>
   </suppress>
@@ -626,7 +626,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2015-3167</cve>
   </suppress>
@@ -634,7 +634,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2015-3166</cve>
   </suppress>
@@ -642,7 +642,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2014-0063</cve>
   </suppress>
@@ -650,7 +650,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2016-0768</cve>
   </suppress>
@@ -658,7 +658,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2014-0065</cve>
   </suppress>
@@ -666,7 +666,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2016-0766</cve>
   </suppress>
@@ -674,7 +674,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2014-0064</cve>
   </suppress>
@@ -682,7 +682,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2015-5288</cve>
   </suppress>
@@ -690,7 +690,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2015-5289</cve>
   </suppress>
@@ -698,7 +698,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2007-2138</cve>
   </suppress>
@@ -706,7 +706,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2014-0061</cve>
   </suppress>
@@ -714,7 +714,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2016-7048</cve>
   </suppress>
@@ -722,7 +722,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2018-1115</cve>
   </suppress>
@@ -730,7 +730,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2015-0243</cve>
   </suppress>
@@ -738,7 +738,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2015-0244</cve>
   </suppress>
@@ -746,7 +746,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2015-0241</cve>
   </suppress>
@@ -754,7 +754,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2015-0242</cve>
   </suppress>
@@ -762,7 +762,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2019-10128</cve>
   </suppress>
@@ -770,7 +770,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2019-10127</cve>
   </suppress>
@@ -778,7 +778,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2020-25694</cve>
   </suppress>
@@ -786,7 +786,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2016-0773</cve>
   </suppress>
@@ -794,7 +794,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2016-5424</cve>
   </suppress>
@@ -802,7 +802,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2016-5423</cve>
   </suppress>
@@ -810,7 +810,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2020-25695</cve>
   </suppress>
@@ -818,7 +818,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2017-14798</cve>
   </suppress>
@@ -826,7 +826,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2017-7484</cve>
   </suppress>
@@ -834,7 +834,7 @@
     <notes><![CDATA[
     FP per issue #4755
     ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org.postgresql/r2dbc-postgresql@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/r2dbc-postgresql@.*$</packageUrl>
     <cpe>cpe:/a:postgresql:postgresql</cpe>
     <cve>CVE-2021-23214</cve>
   </suppress>
