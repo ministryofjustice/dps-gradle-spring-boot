@@ -25,7 +25,7 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
 
     val jarFile = JarFile(findJar(projectDir, project.projectName))
     assertThat(jarContains(jarFile, "snakeyaml-1.30")).isFalse
-    assertThat(jarContains(jarFile, "snakeyaml-1.31")).isTrue
+    assertThat(jarContains(jarFile, "snakeyaml-1.32")).isTrue
   }
 
   private fun jarContains(jar: JarFile, dependency: String): Boolean =
