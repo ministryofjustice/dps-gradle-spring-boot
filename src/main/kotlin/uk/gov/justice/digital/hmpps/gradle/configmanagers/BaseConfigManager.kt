@@ -44,6 +44,6 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
     project.tasks.withType(Test::class.java) { it.useJUnitPlatform() }
     project.configurations.findByName("testImplementation")?.dependencies?.find { it.group == "junit" }?.version
       ?.takeIf { it.startsWith("4") }
-      .run { project.dependencies.add("testImplementation", "org.junit.vintage:junit-vintage-engine:5.9.0") }
+      .run { project.dependencies.add("testImplementation", "org.junit.vintage:junit-vintage-engine:5.9.1") }
   }
 }
