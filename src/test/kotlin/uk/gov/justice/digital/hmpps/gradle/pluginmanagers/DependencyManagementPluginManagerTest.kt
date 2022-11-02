@@ -15,7 +15,7 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
           id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
         }
         dependencies {
-            implementation("org.springframework.boot:spring-boot-starter-web:2.7.2");
+            implementation("org.springframework.boot:spring-boot-starter-web");
         }
     """.trimIndent())
     makeProject(project)
@@ -25,7 +25,37 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
 
     val jarFile = JarFile(findJar(projectDir, project.projectName))
     assertThat(jarContains(jarFile, "snakeyaml-1.30")).isFalse
-    assertThat(jarContains(jarFile, "snakeyaml-1.32")).isTrue
+    assertThat(jarContains(jarFile, "snakeyaml-1.33")).isTrue
+  }
+
+
+  @Test
+  fun `Upgrade of spring security should be overridden by the plugin`() {
+    val project = javaProjectDetails(projectDir).copy(buildScript = """
+        plugins {
+          id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+        }
+        dependencies {
+          implementation("org.springframework.boot:spring-boot-starter-security");
+          implementation("org.springframework.boot:spring-boot-starter-oauth2-client");
+        }
+    """.trimIndent())
+    makeProject(project)
+
+    val result = buildProject(projectDir, "bootJar")
+    assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+
+    val jarFile = JarFile(findJar(projectDir, project.projectName))
+    assertThat(jarContains(jarFile, "spring-security-core-5.7.4")).isFalse
+    assertThat(jarContains(jarFile, "spring-security-core-5.7.5")).isTrue
+    assertThat(jarContains(jarFile, "spring-security-oauth2-client-5.7.4")).isFalse
+    assertThat(jarContains(jarFile, "spring-security-oauth2-client-5.7.5")).isTrue
+    assertThat(jarContains(jarFile, "spring-security-oauth2-core-5.7.4")).isFalse
+    assertThat(jarContains(jarFile, "spring-security-oauth2-core-5.7.5")).isTrue
+    assertThat(jarContains(jarFile, "spring-security-web-5.7.4")).isFalse
+    assertThat(jarContains(jarFile, "spring-security-web-5.7.5")).isTrue
+    assertThat(jarContains(jarFile, "spring-security-oauth2-jose-5.7.4")).isFalse
+    assertThat(jarContains(jarFile, "spring-security-oauth2-jose-5.7.5")).isTrue
   }
 
   private fun jarContains(jar: JarFile, dependency: String): Boolean =
