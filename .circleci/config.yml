@@ -7,7 +7,7 @@ jobs:
   validate:
     executor:
       name: hmpps/java
-      jdk_tag: "17.0"
+      tag: "17.0"
     steps:
       - checkout
       - restore_cache:
@@ -33,7 +33,7 @@ jobs:
   publish:
     executor:
       name: hmpps/java
-      jdk_tag: "17.0"
+      tag: "17.0"
     steps:
       - checkout
       - restore_cache:
