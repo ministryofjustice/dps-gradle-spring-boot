@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.7.4"
+version = "4.8.0-beta"
 
 gradlePlugin {
   plugins {
@@ -52,22 +52,17 @@ pluginBundle {
 
 // did not upgrade to 3.2.0 because experienced ListenerNotificationException - same issue as https://github.com/radarsh/gradle-test-logger-plugin/issues/241
 // this version is also set in settings.gradle.kts as needed by the plugins block
-val testLoggerVersion by extra("3.0.0")
-
-// Versions plugin requires gradle 7 so pin to 0.42.0 until can upgrade
-// https://github.com/ben-manes/gradle-versions-plugin/releases/tag/v0.43.0
-// this version is also set in settings.gradle.kts as needed by the plugins block
-val versionsVersion by extra("0.42.0")
+val testLoggerVersion by extra("3.2.0")
 
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.6")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.0.0")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.22")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.0")
   implementation("org.owasp:dependency-check-core:7.3.2")
   implementation("org.owasp:dependency-check-gradle:7.3.2")
-  implementation("com.github.ben-manes:gradle-versions-plugin:$versionsVersion")
+  implementation("com.github.ben-manes:gradle-versions-plugin:0.44.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:$testLoggerVersion")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
@@ -95,7 +90,7 @@ tasks {
 
   withType<KotlinCompile> {
     kotlinOptions {
-      jvmTarget = JavaVersion.VERSION_11.toString()
+      jvmTarget = JavaVersion.VERSION_17.toString()
     }
   }
 
