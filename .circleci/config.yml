@@ -5,8 +5,9 @@ orbs:
 
 jobs:
   validate:
-    executor: hmpps/java
-    jdk_tag: "17.0"
+    executor:
+      name: hmpps/java
+      jdk_tag: "17.0"
     steps:
       - checkout
       - restore_cache:
@@ -30,7 +31,9 @@ jobs:
             - build.gradle.kts
 
   publish:
-    executor: hmpps/java
+    executor:
+      name: hmpps/java
+      jdk_tag: "17.0"
     steps:
       - checkout
       - restore_cache:
