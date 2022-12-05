@@ -482,6 +482,7 @@
     <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-r2dbc@.*$</packageUrl>
     <cve>CVE-2016-1000027</cve>
   </suppress>
+  <!-- suppressed as we don't run in production with h2 -->
   <suppress>
     <notes><![CDATA[
    file name: h2-2.1.212.jar
@@ -489,12 +490,21 @@
     <packageUrl regex="true">^pkg:maven/com\.h2database/h2@.*$</packageUrl>
     <vulnerabilityName>CVE-2018-14335</vulnerabilityName>
   </suppress>
+  <!-- suppressed as we don't run in production with h2 -->
   <suppress>
     <notes><![CDATA[
    file name: h2-2.1.212.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/com\.h2database/h2@.*$</packageUrl>
     <vulnerabilityName>[sonatype-2020-1324] CWE-94: Improper Control of Generation of Code ('Code Injection')</vulnerabilityName>
+  </suppress>
+  <!-- suppressed as we don't run in production with h2 -->
+  <suppress>
+    <notes><![CDATA[
+   file name: h2-2.1.214.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.h2database/h2@.*$</packageUrl>
+    <cve>CVE-2022-45868</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
@@ -604,7 +614,6 @@
     <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
     <vulnerabilityName>CVE-2022-38752</vulnerabilityName>
   </suppress>
-
   <!-- suppressed as we don't parse untrusted YAML in our projects -->
   <suppress>
     <notes><![CDATA[
@@ -612,6 +621,14 @@
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
     <vulnerabilityName>CVE-2022-41854</vulnerabilityName>
+  </suppress>
+  <!-- suppressed as we don't parse untrusted YAML in our projects -->
+  <suppress>
+    <notes><![CDATA[
+   file name: snakeyaml-1.33.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
+    <vulnerabilityName>CVE-2022-1471</vulnerabilityName>
   </suppress>
 
   <!-- suppressed as the UNWRAP_SINGLE_VALUE_ARRAYS is not enabled (except in assessments-api) -->
