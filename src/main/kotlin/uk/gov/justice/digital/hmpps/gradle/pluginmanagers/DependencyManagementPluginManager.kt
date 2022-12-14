@@ -16,6 +16,9 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
 
     // Upgrading to 5.7.5 - remove when Spring Boot upgrades to > 2.7.5 (along with tests in functional/DependencyManagementPluginManagerTest)
     project.extensions.extraProperties["spring-security.version"] = "5.7.5"
+
+    // pinning netty due to CVE-2022-41915
+    project.extensions.extraProperties["netty.version"] = "4.1.86.Final"
   }
 
   private fun applyDependencyManagementBom(project: Project) {
