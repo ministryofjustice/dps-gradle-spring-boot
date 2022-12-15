@@ -6,7 +6,6 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 import java.net.InetAddress
-import java.time.Instant
 
 class SpringBootPluginManager(override val project: Project) : PluginManager<SpringBootPlugin> {
 
@@ -25,7 +24,6 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
     project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-validation")
-    project.dependencies.add("implementation", "com.github.timpeeters:spring-boot-graceful-shutdown:2.2.2")
 
     project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test")
   }
@@ -34,9 +32,8 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
     val sbExtension = project.extensions.getByName("springBoot") as SpringBootExtension
     sbExtension.buildInfo { buildInfo ->
       buildInfo.properties { buildInfoProps ->
-        buildInfoProps.time = Instant.now()
-        buildInfoProps.additional = getAdditionalBuildInfo()
-        buildInfoProps.version = project.version.toString()
+        buildInfoProps.additional.set(getAdditionalBuildInfo())
+        buildInfoProps.version.set(project.version.toString())
       }
     }
   }
