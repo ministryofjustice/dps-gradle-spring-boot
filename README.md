@@ -10,7 +10,6 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 
 ## Release Notes
 ##### [5.0.0](release-notes/5.0.0.md)
-##### [4.8.0](release-notes/4.8.0.md)
 ##### [4.7.4](release-notes/4.7.4.md)
 ##### [4.7.3](release-notes/4.7.3.md)
 ##### [4.7.2](release-notes/4.7.2.md)
