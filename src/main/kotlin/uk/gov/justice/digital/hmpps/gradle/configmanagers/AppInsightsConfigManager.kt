@@ -5,7 +5,7 @@ import org.gradle.api.tasks.Copy
 import uk.gov.justice.digital.hmpps.gradle.ConfigManager
 
 private const val APP_INSIGHTS_VERSION = "3.4.7"
-private const val OPEN_TELEMETRY_VERSION = "1.21.0"
+private const val OPENTELEMETRY_VERSION = "1.22.0"
 
 class AppInsightsConfigManager(override val project: Project) : ConfigManager {
 
@@ -29,7 +29,7 @@ class AppInsightsConfigManager(override val project: Project) : ConfigManager {
 
   private fun addDependencies() {
     project.dependencies.add("implementation", "com.microsoft.azure:applicationinsights-core:$APP_INSIGHTS_VERSION")
-    project.dependencies.add("implementation", "io.opentelemetry:opentelemetry-api:$OPEN_TELEMETRY_VERSION")
+    project.dependencies.add("implementation", "io.opentelemetry:opentelemetry-api:$OPENTELEMETRY_VERSION")
 
     project.dependencies.add("agentDeps", "com.microsoft.azure:applicationinsights-agent:$APP_INSIGHTS_VERSION")
   }
