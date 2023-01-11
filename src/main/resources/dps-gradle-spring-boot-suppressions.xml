@@ -463,13 +463,6 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: spring-webmvc-5.3.24.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-webmvc@.*$</packageUrl>
-    <cve>CVE-2016-1000027</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
    file name: spring-webflux-5.3.20.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-webflux@.*$</packageUrl>
