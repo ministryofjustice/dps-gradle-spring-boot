@@ -5,7 +5,7 @@ import org.gradle.api.tasks.Copy
 import uk.gov.justice.digital.hmpps.gradle.ConfigManager
 
 private const val APP_INSIGHTS_SDK_VERSION = "2.6.4"
-private const val APP_INSIGHTS_AGENT_VERSION = "3.4.7"
+private const val APP_INSIGHTS_AGENT_VERSION = "3.4.8"
 
 class AppInsightsConfigManager(override val project: Project) : ConfigManager {
 
