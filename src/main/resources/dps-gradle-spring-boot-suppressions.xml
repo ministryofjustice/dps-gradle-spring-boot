@@ -726,4 +726,11 @@
     <packageUrl regex="true">^pkg:maven/software\.amazon\.awssdk/utils@.*$</packageUrl>
     <cve>CVE-2021-4277</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: json-20210307.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.json/json@.*$</packageUrl>
+    <vulnerabilityName>CVE-2022-45688</vulnerabilityName>
+  </suppress>
 </suppressions>
