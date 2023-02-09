@@ -3,7 +3,7 @@ import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.8.0"
+  kotlin("jvm") version "1.8.10"
   id("com.gradle.plugin-publish") version "1.1.0"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -11,7 +11,7 @@ plugins {
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "7.4.3"
   id("com.adarshr.test-logger")
-  id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+  id("org.jlleitschuh.gradle.ktlint") version "11.1.0"
 }
 
 repositories {
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.8.2-beta"
+version = "4.8.3"
 
 gradlePlugin {
   plugins {
@@ -71,7 +71,7 @@ dependencies {
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:$testLoggerVersion")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.0.0")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.1.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
   testImplementation("org.mockito:mockito-junit-jupiter:5.1.1")
