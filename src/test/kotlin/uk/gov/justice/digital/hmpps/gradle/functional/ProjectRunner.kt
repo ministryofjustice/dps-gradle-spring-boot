@@ -28,7 +28,7 @@ data class ProjectDetails(
   val buildScriptName: String,
   val buildScript: String,
   val settingsFileName: String,
-  val testClass: String,
+  val testClass: String
 ) {
   override fun toString(): String = projectName
 }

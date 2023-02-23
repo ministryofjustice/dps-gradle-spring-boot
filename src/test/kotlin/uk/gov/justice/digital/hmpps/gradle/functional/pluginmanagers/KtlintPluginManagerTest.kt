@@ -43,7 +43,7 @@ class KtlintPluginManagerTest : GradleBuildTest() {
             runApplication<Application>(*args)
         }
 
-        """.trimIndent(),
+        """.trimIndent()
       )
     )
 
@@ -77,7 +77,7 @@ class KtlintPluginManagerTest : GradleBuildTest() {
               rootProject.name = "multi-project"
               include("app1")
               include("app2")
-            """.trimMargin()
+      """.trimMargin()
     )
     makeFile("build.gradle.kts", "")
 

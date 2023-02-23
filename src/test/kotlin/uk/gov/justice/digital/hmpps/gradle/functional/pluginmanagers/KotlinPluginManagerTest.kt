@@ -24,7 +24,7 @@ class KotlinPluginManagerTest : GradleBuildTest() {
     fun projectDetailsWithMockitoDependency() = listOf(
       Arguments.of(
         kotlinProjectDetails(projectDir).copy(
-          testClass = kotlinMockitoTest(),
+          testClass = kotlinMockitoTest()
         )
       )
     )
