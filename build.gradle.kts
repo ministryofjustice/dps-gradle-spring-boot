@@ -11,7 +11,7 @@ plugins {
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "7.4.3"
   id("com.adarshr.test-logger")
-  id("org.jlleitschuh.gradle.ktlint") version "11.1.0"
+  id("org.jlleitschuh.gradle.ktlint") version "11.2.0"
 }
 
 repositories {
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.8.3"
+version = "4.8.4-beta"
 
 gradlePlugin {
   plugins {
@@ -62,7 +62,7 @@ val versionsVersion by extra("0.42.0")
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.8")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.9")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.0")
   implementation("org.owasp:dependency-check-core:7.4.3")

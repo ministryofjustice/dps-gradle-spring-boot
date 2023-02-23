@@ -22,7 +22,7 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
         dependencies {
             implementation("org.springframework.boot:spring-boot-starter-web");
         }
-      """.trimIndent()
+      """.trimIndent(),
     )
     makeProject(project)
 
@@ -45,7 +45,7 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
           implementation("org.springframework.boot:spring-boot-starter-security");
           implementation("org.springframework.boot:spring-boot-starter-oauth2-client");
         }
-      """.trimIndent()
+      """.trimIndent(),
     )
     makeProject(project)
 

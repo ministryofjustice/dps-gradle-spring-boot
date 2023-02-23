@@ -17,7 +17,7 @@ class KotlinPluginManagerTest : GradleBuildTest() {
   companion object {
     @JvmStatic
     fun kotlinOnlyProject() = listOf(
-      Arguments.of(kotlinProjectDetails(projectDir))
+      Arguments.of(kotlinProjectDetails(projectDir)),
     )
 
     @JvmStatic
@@ -25,8 +25,8 @@ class KotlinPluginManagerTest : GradleBuildTest() {
       Arguments.of(
         kotlinProjectDetails(projectDir).copy(
           testClass = kotlinMockitoTest(),
-        )
-      )
+        ),
+      ),
     )
   }
 

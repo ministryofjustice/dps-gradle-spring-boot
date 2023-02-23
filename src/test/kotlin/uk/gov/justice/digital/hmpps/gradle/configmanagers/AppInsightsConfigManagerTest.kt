@@ -15,7 +15,7 @@ class AppInsightsConfigManagerTest : UnitTest() {
       .extracting<Tuple> { tuple(it.group, it.name) }
       .contains(
         tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter"),
-        tuple("com.microsoft.azure", "applicationinsights-logging-logback")
+        tuple("com.microsoft.azure", "applicationinsights-logging-logback"),
       )
   }
 

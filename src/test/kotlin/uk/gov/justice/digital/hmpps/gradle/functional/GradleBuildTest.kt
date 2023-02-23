@@ -22,7 +22,7 @@ abstract class GradleBuildTest {
     @JvmStatic
     fun defaultProjectDetails() = listOf(
       Arguments.of(javaProjectDetails(projectDir)),
-      Arguments.of(kotlinProjectDetails(projectDir))
+      Arguments.of(kotlinProjectDetails(projectDir)),
     )
   }
 }

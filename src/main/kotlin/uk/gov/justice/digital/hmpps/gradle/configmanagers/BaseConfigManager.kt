@@ -25,8 +25,7 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
   }
 
   private fun getVersion(): String {
-    return if (System.getenv().contains("BUILD_NUMBER")) System.getenv("BUILD_NUMBER")
-    else LocalDate.now().format(DateTimeFormatter.ISO_DATE)
+    return if (System.getenv().contains("BUILD_NUMBER")) { System.getenv("BUILD_NUMBER") } else { LocalDate.now().format(DateTimeFormatter.ISO_DATE) }
   }
 
   private fun applyRepositories() {
