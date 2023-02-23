@@ -45,7 +45,7 @@ fun javaProjectDetails(projectDir: File) =
               }
           }
 
-    """.trimIndent()
+    """.trimIndent(),
   )
 
 fun kotlinProjectDetails(projectDir: File) =
@@ -91,5 +91,5 @@ fun kotlinProjectDetails(projectDir: File) =
           }
         }
 
-    """.trimIndent()
+    """.trimIndent(),
   )

@@ -45,7 +45,7 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
     return mapOf(
       "by" to System.getProperty("user.name"),
       "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
-      "machine" to InetAddress.getLocalHost().hostName
+      "machine" to InetAddress.getLocalHost().hostName,
     )
   }
 

@@ -22,7 +22,7 @@ class DependencyManagementPluginManagerNettyTest : GradleBuildTest() {
     @JvmStatic
     fun wrongTransitiveNettyVersion() = listOf(
       Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveNettyVersionBuildFile())),
-      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveNettyVersionBuildFile()))
+      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveNettyVersionBuildFile())),
     )
   }
   private fun jarContainsNettyCommon(jar: JarFile, version: String): Boolean =

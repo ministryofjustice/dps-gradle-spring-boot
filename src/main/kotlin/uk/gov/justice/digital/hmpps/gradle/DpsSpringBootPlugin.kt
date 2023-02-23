@@ -38,7 +38,7 @@ class DpsSpringBootPlugin : Plugin<Project> {
       PluginManager.from(::GitPropertiesPluginManager, project),
       PluginManager.from(::UseLatestVersionsPluginManager, project),
       PluginManager.from(::TestLoggerPluginManager, project),
-      PluginManager.from(::KtlintPluginManager, project)
+      PluginManager.from(::KtlintPluginManager, project),
     )
   }
 }

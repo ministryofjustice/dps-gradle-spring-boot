@@ -17,16 +17,16 @@ class KotlinPluginManagerTest : GradleBuildTest() {
   companion object {
     @JvmStatic
     fun kotlinOnlyProject() = listOf(
-      Arguments.of(kotlinProjectDetails(projectDir))
+      Arguments.of(kotlinProjectDetails(projectDir)),
     )
 
     @JvmStatic
     fun projectDetailsWithMockitoDependency() = listOf(
       Arguments.of(
         kotlinProjectDetails(projectDir).copy(
-          testClass = kotlinMockitoTest()
-        )
-      )
+          testClass = kotlinMockitoTest(),
+        ),
+      ),
     )
   }
 
