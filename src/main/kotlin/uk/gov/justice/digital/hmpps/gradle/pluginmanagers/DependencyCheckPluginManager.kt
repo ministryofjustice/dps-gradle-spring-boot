@@ -44,7 +44,7 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
         
         INFO: The default dependency checker suppression file has not been applied. Did you accidentally set suppressionFiles = listOf("<file>") instead of suppressionFiles.add("<file>") in your Gradle build script?
 
-        """.trimIndent()
+        """.trimIndent(),
       )
     }
   }

@@ -17,7 +17,6 @@ import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.VersionsPluginManager
 class DpsSpringBootPlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
-
     val configManagers = configManagers(project)
 
     configManagers.forEach { it.configure() }

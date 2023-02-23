@@ -30,7 +30,7 @@ class BaseConfigManagerTest : UnitTest() {
       .extracting<Tuple> { tuple(it.group, it.name) }
       .contains(
         tuple("com.fasterxml.jackson.module", "jackson-module-kotlin"),
-        tuple("com.google.guava", "guava")
+        tuple("com.google.guava", "guava"),
       )
   }
 
