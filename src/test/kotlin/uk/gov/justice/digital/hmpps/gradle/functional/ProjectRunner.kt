@@ -120,7 +120,7 @@ private fun makeTestSrcFile(projectDir: File, packageDir: String, mainClassName:
     projectDir,
     packageDir.replace("main", "test"),
     mainClassName.replace(".java", "Test.java").replace(".kt", "Test.kt"),
-    testClass
+    testClass,
   )
 
 private fun makeBuildScript(projectDir: File, buildScriptName: String, buildScript: String): File =

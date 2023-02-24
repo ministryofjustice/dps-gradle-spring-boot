@@ -26,7 +26,7 @@ class SpringBootPluginManagerTest : UnitTest() {
       .contains(
         tuple("org.springframework.boot", "spring-boot-starter-web"),
         tuple("org.springframework.boot", "spring-boot-starter-actuator"),
-        tuple("org.springframework.boot", "spring-boot-starter-validation")
+        tuple("org.springframework.boot", "spring-boot-starter-validation"),
       )
   }
 
@@ -35,7 +35,7 @@ class SpringBootPluginManagerTest : UnitTest() {
     assertThat(project.configurations.getByName("testImplementation").dependencies)
       .extracting<Tuple> { tuple(it.group, it.name) }
       .contains(
-        Tuple.tuple("org.springframework.boot", "spring-boot-starter-test")
+        Tuple.tuple("org.springframework.boot", "spring-boot-starter-test"),
 
       )
   }

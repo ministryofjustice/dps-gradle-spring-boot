@@ -30,15 +30,15 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
       Arguments.of(
         javaProjectDetails(projectDir).copy(
           buildScript = javaJunit4Dependency(),
-          testClass = javaJunit4Test()
-        )
+          testClass = javaJunit4Test(),
+        ),
       ),
       Arguments.of(
         kotlinProjectDetails(projectDir).copy(
           buildScript = kotlinJunit4Dependency(),
-          testClass = kotlinJunit4Test()
-        )
-      )
+          testClass = kotlinJunit4Test(),
+        ),
+      ),
     )
   }
 
@@ -53,7 +53,7 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
     val file = findJar(projectDir, projectDetails.projectName)
     val jarFile = JarFile(file)
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Version")).isEqualTo(
-      LocalDate.now().format(DateTimeFormatter.ISO_DATE)
+      LocalDate.now().format(DateTimeFormatter.ISO_DATE),
     )
     assertThat(jarFile.manifest.mainAttributes.getValue("Implementation-Title")).isEqualTo(projectDetails.projectName)
   }
@@ -73,7 +73,7 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
     }
 
     assertThat(jarFiles).containsExactly(
-      "${projectDetails.projectName}-${LocalDateTime.now().format(DateTimeFormatter.ISO_DATE)}.jar"
+      "${projectDetails.projectName}-${LocalDateTime.now().format(DateTimeFormatter.ISO_DATE)}.jar",
     )
   }
 
@@ -82,8 +82,8 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
     makeProject(
       javaProjectDetails(projectDir).copy(
         buildScript = javaExcludeJunit4Dependency(),
-        testClass = javaJunit4Test()
-      )
+        testClass = javaJunit4Test(),
+      ),
     )
 
     buildProjectAndFail(projectDir, "compileTestJava")
@@ -94,8 +94,8 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
     makeProject(
       kotlinProjectDetails(projectDir).copy(
         buildScript = kotlinExcludeJunit4Dependency(),
-        testClass = kotlinJunit4Test()
-      )
+        testClass = kotlinJunit4Test(),
+      ),
     )
 
     buildProjectAndFail(projectDir, "compileTestKotlin")
