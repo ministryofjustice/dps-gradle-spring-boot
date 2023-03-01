@@ -5,13 +5,13 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementConfigurer
 import org.gradle.api.Project
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
+import uk.gov.justice.digital.hmpps.gradle.configmanagers.OPENTELEMETRY_VERSION
 
 class DependencyManagementPluginManager(override val project: Project) : PluginManager<DependencyManagementPlugin> {
 
   override fun configure() {
     applyDependencyManagementBom(project)
-    // pinning netty due to CVE-2022-41915
-    project.extensions.extraProperties["netty.version"] = "4.1.86.Final"
+    project.extensions.extraProperties["opentelemetry.version"] = OPENTELEMETRY_VERSION
   }
 
   private fun applyDependencyManagementBom(project: Project) {
