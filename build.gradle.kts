@@ -9,7 +9,7 @@ plugins {
   id("maven-publish")
   id("com.github.ben-manes.versions")
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
-  id("org.owasp.dependencycheck") version "7.4.3"
+  id("org.owasp.dependencycheck") version "8.1.2"
   id("com.adarshr.test-logger")
   id("org.jlleitschuh.gradle.ktlint") version "11.2.0"
 }
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.8.4-beta-1"
+version = "4.8.4-beta-2"
 
 gradlePlugin {
   plugins {
@@ -63,15 +63,15 @@ dependencies {
   implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.9")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.0")
-  implementation("org.owasp:dependency-check-core:7.4.3")
-  implementation("org.owasp:dependency-check-gradle:7.4.3")
+  implementation("org.owasp:dependency-check-core:8.1.2")
+  implementation("org.owasp:dependency-check-gradle:8.1.2")
   implementation("com.github.ben-manes:gradle-versions-plugin:$versionsVersion")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:$testLoggerVersion")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.1.0")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.2.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
   testImplementation("org.mockito:mockito-junit-jupiter:5.1.1")

@@ -733,4 +733,13 @@
     <packageUrl regex="true">^pkg:maven/org\.json/json@.*$</packageUrl>
     <vulnerabilityName>CVE-2022-45688</vulnerabilityName>
   </suppress>
+  <!-- suppressed as the method in question is deprecated and not used by our apps - see https://github.com/google/guava/issues/4011.
+       It is also a local temp file permissions issue, which won't affect us running in kubernetes. -->
+  <suppress>
+    <notes><![CDATA[
+   file name: guava-31.1-jre.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.google\.guava/guava@.*$</packageUrl>
+    <vulnerabilityName>CVE-2020-8908</vulnerabilityName>
+  </suppress>
 </suppressions>

@@ -25,8 +25,8 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
   private fun setDependencyCheckConfig() {
     val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
     extension.failBuildOnCVSS = 5f
-    extension.suppressionFiles.add(DEPENDENCY_SUPPRESSION_FILENAME)
-    extension.format = ReportGenerator.Format.ALL
+    extension.suppressionFiles = mutableListOf(DEPENDENCY_SUPPRESSION_FILENAME)
+    extension.format = ReportGenerator.Format.ALL.name
     extension.analyzers.assemblyEnabled = false
   }
 
