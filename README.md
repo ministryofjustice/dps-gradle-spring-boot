@@ -132,7 +132,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "5.1.1-beta"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "5.1.1"
   ...
 }
 ```
