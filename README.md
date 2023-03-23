@@ -9,6 +9,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 * CVEs causing `dependencyCheckAnalyze` failures are mitigated in a single place rather than in each and every project
 
 ## Release Notes
+##### [5.1.3](release-notes/5.1.3.md)
 ##### [5.1.2](release-notes/5.1.2.md)
 ##### [5.1.1](release-notes/5.1.1.md)
 ##### [5.1.0](release-notes/5.1.0.md)
@@ -18,6 +19,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 <details>
   <summary>4.#</summary>
 
+##### [4.8.5](release-notes/4.8.5.md)
 ##### [4.8.4](release-notes/4.8.4.md)
 ##### [4.8.3](release-notes/4.8.3.md)
 ##### [4.8.2](release-notes/4.8.2.md)
@@ -133,7 +135,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "5.1.1"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "5.1.3"
   ...
 }
 ```
