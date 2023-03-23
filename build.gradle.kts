@@ -9,9 +9,9 @@ plugins {
   id("maven-publish")
   id("com.github.ben-manes.versions")
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
-  id("org.owasp.dependencycheck") version "8.1.2"
+  id("org.owasp.dependencycheck") version "8.2.1"
   id("com.adarshr.test-logger")
-  id("org.jlleitschuh.gradle.ktlint") version "11.2.0"
+  id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
 }
 
 repositories {
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.8.4"
+version = "4.8.5-beta"
 
 gradlePlugin {
   plugins {
@@ -62,23 +62,23 @@ val versionsVersion by extra("0.42.0")
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.9")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.10")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.0")
-  implementation("org.owasp:dependency-check-core:8.1.2")
-  implementation("org.owasp:dependency-check-gradle:8.1.2")
+  implementation("org.owasp:dependency-check-core:8.2.1")
+  implementation("org.owasp:dependency-check-gradle:8.2.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:$versionsVersion")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:$testLoggerVersion")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.2.0")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.3.1")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.1.1")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.2.0")
   testImplementation("org.assertj:assertj-core:3.24.2")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.36.1")
   testImplementation("com.google.code.gson:gson:2.10.1")
-  testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.4.0.202211300538-r")
+  testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.5.0.202303070854-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
   testRuntimeOnly(
     files(
