@@ -12,22 +12,28 @@ class SpringBootPluginManager(override val project: Project) : PluginManager<Spr
 
   override fun configure() {
     addDependencies()
+    addDependencyConstraints()
     setSpringBootInfo()
     setManifestAttributes()
     disableJarTask()
   }
 
-  override fun afterEvaluate() {
-    setMacArm64NettyVersionWhenRequired()
+  override fun afterEvaluate(): Unit = setMacArm64NettyVersionWhenRequired()
+
+  private fun addDependencies(): Unit = with(project.dependencies) {
+    add("implementation", "org.springframework.boot:spring-boot-starter-web")
+    add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
+    add("implementation", "org.springframework.boot:spring-boot-starter-validation")
+    add("implementation", "com.github.timpeeters:spring-boot-graceful-shutdown:2.2.2")
+
+    add("testImplementation", "org.springframework.boot:spring-boot-starter-test")
   }
 
-  private fun addDependencies() {
-    project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-web")
-    project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-actuator")
-    project.dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-validation")
-    project.dependencies.add("implementation", "com.github.timpeeters:spring-boot-graceful-shutdown:2.2.2")
-
-    project.dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test")
+  // json-smart is shaded in nimbus-jose-jwt so therefore need to add dependency constraints on that version
+  // rather than on json-smart itself to avoid CVE-2023-1370
+  private fun addDependencyConstraints(): Unit = with(project.dependencies.constraints) {
+    add("implementation", "com.nimbusds:oauth2-oidc-sdk:9.43.1")
+    add("implementation", "com.nimbusds:nimbus-jose-jwt:9.24.4")
   }
 
   private fun setSpringBootInfo() {
