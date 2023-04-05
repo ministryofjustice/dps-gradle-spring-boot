@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.tuple
 import org.assertj.core.groups.Tuple
 import org.gradle.api.JavaVersion
 import org.gradle.api.plugins.JavaPlugin
-import org.gradle.api.plugins.JavaPluginConvention
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.internal.extensibility.DefaultConvention
 import org.junit.jupiter.api.Test
 import uk.gov.justice.digital.hmpps.gradle.UnitTest
@@ -40,7 +40,7 @@ class BaseConfigManagerTest : UnitTest() {
   @Test
   fun `Should default Java version on the Java Plugin`() {
     val javaConvention = project.extensions as DefaultConvention
-    val javaPluginConvention = javaConvention.plugins["java"] as JavaPluginConvention
+    val javaPluginConvention = javaConvention.plugins["java"] as JavaPluginExtension
     assertThat(javaPluginConvention.sourceCompatibility).isEqualTo(JavaVersion.VERSION_11)
   }
 }

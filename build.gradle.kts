@@ -3,14 +3,14 @@ import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.8.10"
+  kotlin("jvm") version "1.8.20"
   id("com.gradle.plugin-publish") version "1.1.0"
   id("java-gradle-plugin")
   id("maven-publish")
-  id("com.github.ben-manes.versions")
+  id("com.github.ben-manes.versions") version "0.46.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "8.2.1"
-  id("com.adarshr.test-logger")
+  id("com.adarshr.test-logger") version "3.2.0"
   id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
 }
 
@@ -30,9 +30,11 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.8.5"
+version = "4.8.6-beta"
 
 gradlePlugin {
+  website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
+  vcsUrl.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
   plugins {
     create("dpsSpringBootPlugin") {
       id = "uk.gov.justice.hmpps.gradle-spring-boot"
@@ -40,24 +42,10 @@ gradlePlugin {
 
       displayName = "HMPPS Spring Boot Plugin"
       description = "Plugin for HMPPS Spring Boot microservice configuration"
+      tags.set(listOf("hmpps", "spring-boot"))
     }
   }
 }
-
-pluginBundle {
-  website = "https://github.com/ministryofjustice/dps-gradle-spring-boot"
-  vcsUrl = "https://github.com/ministryofjustice/dps-gradle-spring-boot"
-  tags = listOf("hmpps", "spring-boot")
-}
-
-// did not upgrade to 3.2.0 because experienced ListenerNotificationException - same issue as https://github.com/radarsh/gradle-test-logger-plugin/issues/241
-// this version is also set in settings.gradle.kts as needed by the plugins block
-val testLoggerVersion by extra("3.0.0")
-
-// Versions plugin requires gradle 7 so pin to 0.42.0 until can upgrade
-// https://github.com/ben-manes/gradle-versions-plugin/releases/tag/v0.43.0
-// this version is also set in settings.gradle.kts as needed by the plugins block
-val versionsVersion by extra("0.42.0")
 
 dependencies {
   implementation(kotlin("reflect"))
@@ -67,16 +55,16 @@ dependencies {
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.0")
   implementation("org.owasp:dependency-check-core:8.2.1")
   implementation("org.owasp:dependency-check-gradle:8.2.1")
-  implementation("com.github.ben-manes:gradle-versions-plugin:$versionsVersion")
+  implementation("com.github.ben-manes:gradle-versions-plugin:0.46.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
-  implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:$testLoggerVersion")
+  implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:3.2.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.3.1")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
   testImplementation("org.mockito:mockito-junit-jupiter:5.2.0")
   testImplementation("org.assertj:assertj-core:3.24.2")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.36.1")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.37.0")
   testImplementation("com.google.code.gson:gson:2.10.1")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.5.0.202303070854-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
@@ -86,6 +74,10 @@ dependencies {
         .classpath.asFiles.first()
     )
   )
+}
+
+java {
+  toolchain.languageVersion.set(JavaLanguageVersion.of(11))
 }
 
 tasks {
