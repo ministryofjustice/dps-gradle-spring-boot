@@ -12,6 +12,9 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
   override fun configure() {
     applyDependencyManagementBom(project)
     project.extensions.extraProperties["opentelemetry.version"] = OPENTELEMETRY_VERSION
+
+    // temporarily pin due to CVE-2023-20863
+    project.extensions.extraProperties["spring-framework.version"] = "6.0.8"
   }
 
   private fun applyDependencyManagementBom(project: Project) {
