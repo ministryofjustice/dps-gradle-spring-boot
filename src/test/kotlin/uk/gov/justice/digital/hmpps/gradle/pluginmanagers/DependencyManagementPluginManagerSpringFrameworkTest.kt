@@ -36,8 +36,8 @@ class DependencyManagementPluginManagerSpringFrameworkTest : GradleBuildTest() {
     val file = findJar(projectDir, projectDetails.projectName)
     val jarContents = JarFile(file).versionedStream().map { it.name }.toList()
     assertThat(jarContents)
-      .doesNotContain("BOOT-INF/lib/spring-core-5.3.26.jar")
-      .contains("BOOT-INF/lib/spring-core-5.3.27.jar")
+      .doesNotContain("BOOT-INF/lib/spring-core-6.0.7.jar")
+      .contains("BOOT-INF/lib/spring-core-6.0.8.jar")
   }
 }
 
