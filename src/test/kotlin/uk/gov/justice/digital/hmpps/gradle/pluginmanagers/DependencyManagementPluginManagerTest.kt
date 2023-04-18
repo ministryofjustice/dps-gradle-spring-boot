@@ -31,16 +31,16 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
     assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
     val jarFile = JarFile(findJar(projectDir, project.projectName))
-    assertThat(jarContains(jarFile, "spring-security-core-5.7.7")).isFalse
-    assertThat(jarContains(jarFile, "spring-security-core-5.7.8")).isTrue
-    assertThat(jarContains(jarFile, "spring-security-oauth2-client-5.7.7")).isFalse
-    assertThat(jarContains(jarFile, "spring-security-oauth2-client-5.7.8")).isTrue
-    assertThat(jarContains(jarFile, "spring-security-oauth2-core-5.7.7")).isFalse
-    assertThat(jarContains(jarFile, "spring-security-oauth2-core-5.7.8")).isTrue
-    assertThat(jarContains(jarFile, "spring-security-web-5.7.7")).isFalse
-    assertThat(jarContains(jarFile, "spring-security-web-5.7.8")).isTrue
-    assertThat(jarContains(jarFile, "spring-security-oauth2-jose-5.7.7")).isFalse
-    assertThat(jarContains(jarFile, "spring-security-oauth2-jose-5.7.8")).isTrue
+    assertThat(jarContains(jarFile, "spring-security-core-6.0.2")).isFalse
+    assertThat(jarContains(jarFile, "spring-security-core-6.0.3")).isTrue
+    assertThat(jarContains(jarFile, "spring-security-oauth2-client-6.0.2")).isFalse
+    assertThat(jarContains(jarFile, "spring-security-oauth2-client-6.0.3")).isTrue
+    assertThat(jarContains(jarFile, "spring-security-oauth2-core-6.0.2")).isFalse
+    assertThat(jarContains(jarFile, "spring-security-oauth2-core-6.0.3")).isTrue
+    assertThat(jarContains(jarFile, "spring-security-web-6.0.2")).isFalse
+    assertThat(jarContains(jarFile, "spring-security-web-6.0.3")).isTrue
+    assertThat(jarContains(jarFile, "spring-security-oauth2-jose-6.0.2")).isFalse
+    assertThat(jarContains(jarFile, "spring-security-oauth2-jose-6.0.3")).isTrue
   }
 
   private fun jarContains(jar: JarFile, dependency: String): Boolean =
