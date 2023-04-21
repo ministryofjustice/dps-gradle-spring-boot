@@ -3,7 +3,7 @@ import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.8.20"
+  kotlin("jvm") version "1.8.10"
   id("com.gradle.plugin-publish") version "1.2.0"
   id("java-gradle-plugin")
   id("maven-publish")
