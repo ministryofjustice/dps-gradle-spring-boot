@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   kotlin("jvm") version "1.8.10"
-  id("com.gradle.plugin-publish") version "1.1.0"
+  id("com.gradle.plugin-publish") version "1.2.0"
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions")
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.8.6-beta-2"
+version = "4.8.6-beta-3"
 
 gradlePlugin {
   plugins {
@@ -62,7 +62,7 @@ val versionsVersion by extra("0.42.0")
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.10")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:2.7.11")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.0")
   implementation("org.owasp:dependency-check-core:8.2.1")
@@ -74,9 +74,9 @@ dependencies {
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.3.1")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.2.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.3.0")
   testImplementation("org.assertj:assertj-core:3.24.2")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.36.1")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.37.0")
   testImplementation("com.google.code.gson:gson:2.10.1")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.5.0.202303070854-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
