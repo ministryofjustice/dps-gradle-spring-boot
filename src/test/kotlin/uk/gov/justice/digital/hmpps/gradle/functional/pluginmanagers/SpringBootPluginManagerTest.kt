@@ -35,7 +35,6 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
       ),
       Arguments.of(
         kotlinProjectDetails(projectDir).copy(
-          buildScript = kotlinJunit4Dependency(),
           testClass = kotlinJunit4Test(),
         ),
       ),

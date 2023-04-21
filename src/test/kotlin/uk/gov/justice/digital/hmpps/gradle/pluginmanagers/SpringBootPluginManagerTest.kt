@@ -17,7 +17,7 @@ import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.util.jar.JarEntry
 import java.util.jar.JarFile
 
-@Disabled("Disabled until tests are re-written to use gradle 7!")
+@Disabled("Disabled until tests are re-written to use gradle 8!")
 class SpringBootPluginManagerTest : UnitTest() {
   @Test
   fun `Should apply Spring Boot standard libraries`() {
@@ -40,6 +40,7 @@ class SpringBootPluginManagerTest : UnitTest() {
       )
   }
 
+  @Disabled("Disabled until tests are re-written to use gradle 8!")
   class SpringBootPluginManagerGradleTest : GradleBuildTest() {
     @Nested
     @DisplayName("When WebFlux is included in project")
