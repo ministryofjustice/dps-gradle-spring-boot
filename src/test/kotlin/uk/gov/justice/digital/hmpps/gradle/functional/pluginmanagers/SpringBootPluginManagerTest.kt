@@ -100,7 +100,6 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
     buildProjectAndFail(projectDir, "compileTestKotlin")
   }
 
-  // failing
   @ParameterizedTest
   @MethodSource("projectDetailsWithJunit4TestsAndDependency")
   fun `Junit 4 tests will compile and run if Junit 4 dependency added`(projectDetails: ProjectDetails) {
