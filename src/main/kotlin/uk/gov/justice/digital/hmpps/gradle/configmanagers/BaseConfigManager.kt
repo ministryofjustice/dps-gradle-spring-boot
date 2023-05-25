@@ -11,13 +11,10 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
     setGroupAndVersion()
     applyRepositories()
     addDependencies()
+    setJunit5()
     copyResourcesFile("sonar-project.properties")
     copyResourcesFile("gradle.properties")
     copyResourcesFile(".trivyignore")
-  }
-
-  override fun afterEvaluate() {
-    setJunit5()
   }
 
   private fun setGroupAndVersion() {
