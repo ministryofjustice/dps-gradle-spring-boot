@@ -6,7 +6,9 @@ import org.gradle.api.Project
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 
-class DependencyManagementPluginManager(override val project: Project) : PluginManager<DependencyManagementPlugin> {
+class DependencyManagementPluginManager(override val project: Project) : PluginManager {
+
+  override val pluginProject = DependencyManagementPlugin::class.java
 
   override fun configure() {
     applyDependencyManagementBom(project)

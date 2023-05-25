@@ -44,10 +44,9 @@ gradlePlugin {
   }
 }
 
-pluginBundle {
-  website = "https://github.com/ministryofjustice/dps-gradle-spring-boot"
-  vcsUrl = "https://github.com/ministryofjustice/dps-gradle-spring-boot"
-  tags = listOf("hmpps", "spring-boot")
+gradlePlugin {
+  website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
+  vcsUrl.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
 }
 
 // did not upgrade to 3.2.0 because experienced ListenerNotificationException - same issue as https://github.com/radarsh/gradle-test-logger-plugin/issues/241

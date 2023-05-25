@@ -5,7 +5,9 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 
-class KotlinPluginManager(override val project: Project) : PluginManager<KotlinPluginWrapper> {
+class KotlinPluginManager(override val project: Project) : PluginManager {
+
+  override val pluginProject = KotlinPluginWrapper::class.java
 
   override fun configure() {
     addDependencies()

@@ -8,7 +8,9 @@ import uk.gov.justice.digital.hmpps.gradle.PluginManager
 import java.net.InetAddress
 import java.time.Instant
 
-class SpringBootPluginManager(override val project: Project) : PluginManager<SpringBootPlugin> {
+class SpringBootPluginManager(override val project: Project) : PluginManager {
+
+  override val pluginProject = SpringBootPlugin::class.java
 
   override fun configure() {
     addDependencies()
