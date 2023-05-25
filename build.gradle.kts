@@ -44,11 +44,6 @@ gradlePlugin {
   }
 }
 
-gradlePlugin {
-  website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
-  vcsUrl.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
-}
-
 // did not upgrade to 3.2.0 because experienced ListenerNotificationException - same issue as https://github.com/radarsh/gradle-test-logger-plugin/issues/241
 // this version is also set in settings.gradle.kts as needed by the plugins block
 val testLoggerVersion by extra("3.0.0")
