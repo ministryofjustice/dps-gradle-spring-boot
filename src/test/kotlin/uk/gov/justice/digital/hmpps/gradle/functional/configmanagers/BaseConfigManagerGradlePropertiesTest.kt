@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.gradle.configmanagers
+package uk.gov.justice.digital.hmpps.gradle.functional.configmanagers
 
 import org.assertj.core.api.Assertions.assertThat
 import org.gradle.testkit.runner.TaskOutcome
@@ -12,62 +12,62 @@ import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.io.File
 import java.nio.file.Files
 
-class BaseConfigManagerGradleTest : GradleBuildTest() {
+class BaseConfigManagerGradlePropertiesTest : GradleBuildTest() {
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `The sonar properties file is copied into the project`(projectDetails: ProjectDetails) {
+  fun `The gradle properties file is copied into the project`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
     val result = buildProject(Companion.projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val sonarFile = findFile(projectDir, "sonar-project.properties")
-    assertThat(sonarFile).exists()
+    val gradlePropertiesFile = findFile(projectDir, "gradle.properties")
+    assertThat(gradlePropertiesFile).exists()
   }
 
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `The sonar properties file is not copied into the project`(projectDetails: ProjectDetails) {
+  fun `The gradle properties file is not copied into the project`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
-    val sonarScript =
+    val gradleProperties =
       """
-# some coverage rules
-sonar.coverage.exclusions=**/*.java,**/*.kt
+# some configuration
+kotlin.incremental.useClasspathSnapshot=false
       """.trimIndent()
-    makeSonarFile(sonarScript)
+    makeGradlePropertiesFile(gradleProperties)
 
     val result = buildProject(Companion.projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val sonarFile = findFile(projectDir, "sonar-project.properties")
-    assertThat(sonarFile).exists()
-    val firstLine = sonarFile.useLines { it.firstOrNull() }
-    assertThat(firstLine).startsWith("# some coverage rules")
+    val gradlePropertiesFile = findFile(projectDir, "gradle.properties")
+    assertThat(gradlePropertiesFile).exists()
+    val firstLine = gradlePropertiesFile.useLines { it.firstOrNull() }
+    assertThat(firstLine).startsWith("# some configuration")
   }
 
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `The sonar properties file is overwritten in the project if WARNING exists`(projectDetails: ProjectDetails) {
+  fun `The gradle properties file is overwritten in the project if WARNING exists`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
-    val sonarScript =
+    val gradleProperties =
       """
 # WARNING - contents will be overwritten
-sonar.coverage.exclusions=**/*.java,**/*.kt
+kotlin.incremental.useClasspathSnapshot=false
       """.trimIndent()
-    makeSonarFile(sonarScript)
+    makeGradlePropertiesFile(gradleProperties)
 
     val result = buildProject(Companion.projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val sonarFile = findFile(projectDir, "sonar-project.properties")
-    assertThat(sonarFile).exists()
-    val firstLine = sonarFile.useLines { it.firstOrNull() }
+    val gradlePropertiesFile = findFile(projectDir, "gradle.properties")
+    assertThat(gradlePropertiesFile).exists()
+    val firstLine = gradlePropertiesFile.useLines { it.firstOrNull() }
     assertThat(firstLine).startsWith("# WARNING - THIS FILE WAS GENERATED")
   }
 
-  private fun makeSonarFile(sonarScript: String) {
-    val sonarFile = File(projectDir, "sonar-project.properties")
-    Files.writeString(sonarFile.toPath(), sonarScript)
+  private fun makeGradlePropertiesFile(gradleProperties: String) {
+    val gradlePropertiesFile = File(projectDir, "gradle.properties")
+    Files.writeString(gradlePropertiesFile.toPath(), gradleProperties)
   }
 }
