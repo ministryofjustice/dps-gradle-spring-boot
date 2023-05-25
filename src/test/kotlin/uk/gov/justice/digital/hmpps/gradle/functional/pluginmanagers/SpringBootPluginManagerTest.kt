@@ -19,6 +19,7 @@ import java.nio.file.Paths
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.jar.JarEntry
 import java.util.jar.JarFile
 import kotlin.streams.toList
 
@@ -37,6 +38,26 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
         kotlinProjectDetails(projectDir).copy(
           testClass = kotlinJunit4Test(),
         ),
+      ),
+    )
+
+    @JvmStatic
+    fun projectDetailsWithArmWebfluxDependency() = listOf(
+      Arguments.of(
+        javaProjectDetails(projectDir).copy(buildScript = javaArmWebfluxDependency()),
+      ),
+      Arguments.of(
+        kotlinProjectDetails(projectDir).copy(buildScript = kotlinArmWebfluxDependency()),
+      ),
+    )
+
+    @JvmStatic
+    fun projectDetailsWithArmNonWebfluxDependency() = listOf(
+      Arguments.of(
+        javaProjectDetails(projectDir).copy(buildScript = javaArmNonWebfluxDependency()),
+      ),
+      Arguments.of(
+        kotlinProjectDetails(projectDir).copy(buildScript = kotlinArmNonWebfluxDependency()),
       ),
     )
   }
@@ -110,6 +131,55 @@ class SpringBootPluginManagerTest : GradleBuildTest() {
       .contains("Task :test")
       .contains("BUILD SUCCESSFUL")
       .contains("1 tests")
+  }
+
+  @ParameterizedTest
+  @MethodSource("projectDetailsWithArmWebfluxDependency")
+  fun `when apple silicon arm 64 should include osx-aarch_64 as well as default osx-x86_64 version`(projectDetails: ProjectDetails) {
+    val jarFile = jarFileForProject(projectDetails, architecture = "aarch64")
+
+    val version = getNettyResolverDNSNativeMacosVersion(jarFile)
+
+    assertThat(jarContainsNettyResolverDNSNativeMacos(jarFile, version, "osx-aarch_64")).isTrue
+    assertThat(jarContainsNettyResolverDNSNativeMacos(jarFile, version, "osx-x86_64")).isTrue
+  }
+
+  @ParameterizedTest
+  @MethodSource("projectDetailsWithArmWebfluxDependency")
+  internal fun `when intel should not include osx-aarch_64 just default osx-x86_64 version`(projectDetails: ProjectDetails) {
+    val jarFile = jarFileForProject(projectDetails, architecture = "amd64")
+
+    val version = getNettyResolverDNSNativeMacosVersion(jarFile)
+
+    assertThat(jarContainsNettyResolverDNSNativeMacos(jarFile, version, "osx-aarch_64")).isFalse
+    assertThat(jarContainsNettyResolverDNSNativeMacos(jarFile, version, "osx-x86_64")).isTrue
+  }
+
+  @ParameterizedTest
+  @MethodSource("projectDetailsWithArmWebfluxDependency")
+  internal fun `when any other architecture should not include osx-aarch_64 just default osx-x86_64 version`(projectDetails: ProjectDetails) {
+    val jarFile = jarFileForProject(projectDetails, architecture = "s390")
+
+    val version = getNettyResolverDNSNativeMacosVersion(jarFile)
+
+    assertThat(jarContainsNettyResolverDNSNativeMacos(jarFile, version, "osx-aarch_64")).isFalse
+    assertThat(jarContainsNettyResolverDNSNativeMacos(jarFile, version, "osx-x86_64")).isTrue
+  }
+
+  @ParameterizedTest
+  @MethodSource("projectDetailsWithArmNonWebfluxDependency")
+  internal fun `should not add netty mac arm64 version when webflux not a dependency`(projectDetails: ProjectDetails) {
+    val jarFile = jarFileForProject(projectDetails)
+
+    assertThat(getNettyResolverDNSNativeMacosJarEntry(jarFile, "osx-x86_64")).isNull()
+    assertThat(getNettyResolverDNSNativeMacosJarEntry(jarFile, "osx-aarch_64")).isNull()
+  }
+
+  private fun jarFileForProject(projectDetails: ProjectDetails, architecture: String = "aarch64"): JarFile {
+    makeProject(projectDetails)
+    val result = buildProject(projectDir, "bootJar", "-Dos.arch=$architecture")
+    assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+    return JarFile(findJar(projectDir, projectDetails.projectName))
   }
 }
 
@@ -191,4 +261,68 @@ private fun kotlinJunit4Test(): String {
           }
       }
   """.trimIndent()
+}
+
+private fun javaArmWebfluxDependency(): String =
+  """
+    plugins {
+      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+    }
+    dependencies {
+        implementation "org.springframework.boot:spring-boot-starter-webflux"
+        implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
+        
+    }
+  """.trimIndent()
+
+private fun kotlinArmWebfluxDependency(): String =
+  """
+    plugins {
+      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+    }
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-webflux")
+        implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+        
+    }
+  """.trimIndent()
+
+private fun javaArmNonWebfluxDependency(): String =
+  """
+    plugins {
+      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+    }
+    dependencies {
+      implementation "org.springframework.boot:spring-boot-starter-web"
+      implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
+        
+    }
+  """.trimIndent()
+
+private fun kotlinArmNonWebfluxDependency(): String =
+  """
+    plugins {
+      id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
+    }
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+        
+    }
+  """.trimIndent()
+
+private fun jarContainsNettyResolverDNSNativeMacos(jar: JarFile, version: String, architecture: String): Boolean =
+  jar.getJarEntry("BOOT-INF/lib/netty-resolver-dns-native-macos-$version.Final-$architecture.jar") != null
+
+private fun getNettyResolverDNSNativeMacosJarEntry(jar: JarFile, architecture: String): JarEntry? =
+  jar.entries().asSequence()
+    .filter { it.name.startsWith("BOOT-INF/lib/netty-resolver-dns-native-macos") }
+    .filter { it.name.contains(".Final-$architecture.jar") }
+    .firstOrNull()
+
+private fun getNettyResolverDNSNativeMacosVersion(jar: JarFile): String {
+  val entry = getNettyResolverDNSNativeMacosJarEntry(jar, "osx-x86_64")
+  val versionExtractor = "netty-resolver-dns-native-macos-([0-9.]+).Final-osx-x86_64.jar".toRegex()
+  return entry?.let { versionExtractor.find(entry.name)?.groupValues?.get(1) }
+    ?: throw IllegalStateException("Could not extract version from $entry")
 }

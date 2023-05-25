@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.gradle.configmanagers
+package uk.gov.justice.digital.hmpps.gradle.functional.configmanagers
 
 import org.assertj.core.api.Assertions.assertThat
 import org.gradle.testkit.runner.TaskOutcome
@@ -12,62 +12,62 @@ import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.io.File
 import java.nio.file.Files
 
-class BaseConfigManagerGradlePropertiesTest : GradleBuildTest() {
+class BaseConfigManagerTrivyignoreTest : GradleBuildTest() {
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `The gradle properties file is copied into the project`(projectDetails: ProjectDetails) {
+  fun `The trivy ignore file is copied into the project`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
     val result = buildProject(Companion.projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val gradlePropertiesFile = findFile(projectDir, "gradle.properties")
-    assertThat(gradlePropertiesFile).exists()
+    val trivyFile = findFile(projectDir, ".trivyignore")
+    assertThat(trivyFile).exists()
   }
 
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `The gradle properties file is not copied into the project`(projectDetails: ProjectDetails) {
+  fun `The trivy ignore file is not copied into the project`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
-    val gradleProperties =
+    val trivyScript =
       """
-# some configuration
-kotlin.incremental.useClasspathSnapshot=false
+# some coverage rules
+trivy.coverage.exclusions=**/*.java,**/*.kt
       """.trimIndent()
-    makeGradlePropertiesFile(gradleProperties)
+    makeTrivyFile(trivyScript)
 
     val result = buildProject(Companion.projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val gradlePropertiesFile = findFile(projectDir, "gradle.properties")
-    assertThat(gradlePropertiesFile).exists()
-    val firstLine = gradlePropertiesFile.useLines { it.firstOrNull() }
-    assertThat(firstLine).startsWith("# some configuration")
+    val trivyFile = findFile(projectDir, ".trivyignore")
+    assertThat(trivyFile).exists()
+    val firstLine = trivyFile.useLines { it.firstOrNull() }
+    assertThat(firstLine).startsWith("# some coverage rules")
   }
 
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `The gradle properties file is overwritten in the project if WARNING exists`(projectDetails: ProjectDetails) {
+  fun `The trivy ignore file is overwritten in the project if WARNING exists`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
-    val gradleProperties =
+    val trivyScript =
       """
 # WARNING - contents will be overwritten
-kotlin.incremental.useClasspathSnapshot=false
+trivy.coverage.exclusions=**/*.java,**/*.kt
       """.trimIndent()
-    makeGradlePropertiesFile(gradleProperties)
+    makeTrivyFile(trivyScript)
 
     val result = buildProject(Companion.projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val gradlePropertiesFile = findFile(projectDir, "gradle.properties")
-    assertThat(gradlePropertiesFile).exists()
-    val firstLine = gradlePropertiesFile.useLines { it.firstOrNull() }
+    val trivyFile = findFile(projectDir, ".trivyignore")
+    assertThat(trivyFile).exists()
+    val firstLine = trivyFile.useLines { it.firstOrNull() }
     assertThat(firstLine).startsWith("# WARNING - THIS FILE WAS GENERATED")
   }
 
-  private fun makeGradlePropertiesFile(gradleProperties: String) {
-    val gradlePropertiesFile = File(projectDir, "gradle.properties")
-    Files.writeString(gradlePropertiesFile.toPath(), gradleProperties)
+  private fun makeTrivyFile(trivyScript: String) {
+    val trivyFile = File(projectDir, ".trivyignore")
+    Files.writeString(trivyFile.toPath(), trivyScript)
   }
 }
