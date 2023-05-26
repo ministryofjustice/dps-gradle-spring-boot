@@ -5,7 +5,10 @@ import org.gradle.api.Task
 import org.jlleitschuh.gradle.ktlint.KtlintPlugin
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 
-class KtlintPluginManager(override val project: Project) : PluginManager<KtlintPlugin> {
+class KtlintPluginManager(override val project: Project) : PluginManager {
+
+  override val pluginProject = KtlintPlugin::class.java
+
   override fun configure() {
     project.getTasksByName("check", false).forEach {
       it.dependsOn("${getProjectPrefix(it)}:ktlintCheck")

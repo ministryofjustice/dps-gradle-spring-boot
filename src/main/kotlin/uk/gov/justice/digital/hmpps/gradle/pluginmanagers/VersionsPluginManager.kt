@@ -5,7 +5,9 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.Project
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 
-class VersionsPluginManager(override val project: Project) : PluginManager<VersionsPlugin> {
+class VersionsPluginManager(override val project: Project) : PluginManager {
+
+  override val pluginProject = VersionsPlugin::class.java
 
   override fun configure() {
     rejectUnstableDependencyUpdates()

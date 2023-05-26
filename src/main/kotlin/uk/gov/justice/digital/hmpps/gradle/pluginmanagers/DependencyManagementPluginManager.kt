@@ -7,7 +7,9 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 import uk.gov.justice.digital.hmpps.gradle.configmanagers.OPENTELEMETRY_VERSION
 
-class DependencyManagementPluginManager(override val project: Project) : PluginManager<DependencyManagementPlugin> {
+class DependencyManagementPluginManager(override val project: Project) : PluginManager {
+
+  override val pluginProject = DependencyManagementPlugin::class.java
 
   override fun configure() {
     applyDependencyManagementBom(project)
