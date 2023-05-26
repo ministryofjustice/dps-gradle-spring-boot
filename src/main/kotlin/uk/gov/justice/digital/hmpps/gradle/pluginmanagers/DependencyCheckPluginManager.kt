@@ -11,7 +11,9 @@ import java.nio.file.StandardCopyOption
 
 internal const val DEPENDENCY_SUPPRESSION_FILENAME = "dps-gradle-spring-boot-suppressions.xml"
 
-class DependencyCheckPluginManager(override val project: Project) : PluginManager<DependencyCheckPlugin> {
+class DependencyCheckPluginManager(override val project: Project) : PluginManager {
+
+  override val pluginProject = DependencyCheckPlugin::class.java
 
   override fun configure() {
     setDependencyCheckConfig()

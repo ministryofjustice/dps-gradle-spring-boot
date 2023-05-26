@@ -7,7 +7,9 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 import java.net.InetAddress
 
-class SpringBootPluginManager(override val project: Project) : PluginManager<SpringBootPlugin> {
+class SpringBootPluginManager(override val project: Project) : PluginManager {
+
+  override val pluginProject = SpringBootPlugin::class.java
 
   override fun configure() {
     addDependencies()
