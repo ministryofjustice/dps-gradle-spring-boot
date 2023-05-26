@@ -5,7 +5,13 @@ import org.gradle.testkit.runner.TaskOutcome
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import uk.gov.justice.digital.hmpps.gradle.functional.*
+import uk.gov.justice.digital.hmpps.gradle.functional.GradleBuildTest
+import uk.gov.justice.digital.hmpps.gradle.functional.ProjectDetails
+import uk.gov.justice.digital.hmpps.gradle.functional.buildProject
+import uk.gov.justice.digital.hmpps.gradle.functional.findJar
+import uk.gov.justice.digital.hmpps.gradle.functional.getDependencyVersion
+import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
+import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.util.jar.JarFile
 
 class DependencyManagementPluginManagerTest : GradleBuildTest() {

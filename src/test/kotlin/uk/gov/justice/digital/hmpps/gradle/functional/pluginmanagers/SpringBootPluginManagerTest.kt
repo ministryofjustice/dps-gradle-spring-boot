@@ -21,7 +21,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.jar.JarEntry
 import java.util.jar.JarFile
-import kotlin.streams.toList
 
 class SpringBootPluginManagerTest : GradleBuildTest() {
 
