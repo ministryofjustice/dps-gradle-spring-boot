@@ -37,13 +37,13 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
   }
 
   private fun addDependencies() {
-    project.dependencies.add("implementation", "com.google.guava:guava:31.1-jre") // This is only required because the version pulled in as a transitive dependency has CVE vulnerabilities
+    project.dependencies.add("implementation", "com.google.guava:guava:32.0.0-jre") // This is only required because the version pulled in as a transitive dependency has CVE vulnerabilities
   }
 
   private fun setJunit5() {
     project.tasks.withType(Test::class.java) { it.useJUnitPlatform() }
     project.configurations.findByName("testImplementation")?.dependencies?.find { it.group == "junit" }?.version
       ?.takeIf { it.startsWith("4") }
-      .run { project.dependencies.add("testImplementation", "org.junit.vintage:junit-vintage-engine:5.9.2") }
+      .run { project.dependencies.add("testImplementation", "org.junit.vintage:junit-vintage-engine:5.9.3") }
   }
 }
