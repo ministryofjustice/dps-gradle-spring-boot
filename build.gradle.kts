@@ -57,7 +57,7 @@ val testLoggerVersion by extra("3.0.0")
 val versionsVersion by extra("0.42.0")
 
 // This is the spring 2 branch - so pin to a v2 version
-val springBootVersion by extra("2.7.12")
+val springBootVersion by extra("2.7.13")
 
 dependencies {
   implementation(kotlin("reflect"))
