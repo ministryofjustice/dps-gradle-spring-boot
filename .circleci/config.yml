@@ -1,12 +1,13 @@
 version: 2.1
 
 orbs:
-  hmpps: ministryofjustice/hmpps@3.14
+  hmpps: ministryofjustice/hmpps@7
 
 jobs:
   validate:
-    executor: hmpps/java
-    tag: "17.0"
+    executor:
+      name: hmpps/java
+      tag: "17.0"
     steps:
       - checkout
       - restore_cache:
@@ -30,8 +31,9 @@ jobs:
             - build.gradle.kts
 
   publish:
-    executor: hmpps/java
-    tag: "17.0"
+    executor:
+      name: hmpps/java
+      tag: "17.0"
     steps:
       - checkout
       - restore_cache:
