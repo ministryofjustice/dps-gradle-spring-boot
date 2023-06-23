@@ -4,8 +4,8 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
 import uk.gov.justice.digital.hmpps.gradle.ConfigManager
 
-private const val APP_INSIGHTS_VERSION = "3.4.13"
-const val OPENTELEMETRY_VERSION = "1.26.0"
+private const val APP_INSIGHTS_VERSION = "3.4.14"
+const val OPENTELEMETRY_VERSION = "1.27.0"
 
 class AppInsightsConfigManager(override val project: Project) : ConfigManager {
 
