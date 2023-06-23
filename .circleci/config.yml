@@ -6,6 +6,7 @@ orbs:
 jobs:
   validate:
     executor: hmpps/java
+    tag: "17.0"
     steps:
       - checkout
       - restore_cache:
@@ -30,6 +31,7 @@ jobs:
 
   publish:
     executor: hmpps/java
+    tag: "17.0"
     steps:
       - checkout
       - restore_cache:

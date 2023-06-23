@@ -15,15 +15,15 @@ class KotlinPluginManager(override val project: Project) : PluginManager<KotlinP
   private fun setKotlinCompileJvmVersion() {
     project.tasks.withType(KotlinCompile::class.java).forEach {
       it.kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
       }
     }
   }
 
   private fun addDependencies() {
-    project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
+    project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
     project.dependencies.add("implementation", "org.jetbrains.kotlin:kotlin-reflect")
 
-    project.dependencies.add("testImplementation", "org.mockito.kotlin:mockito-kotlin:4.1.0")
+    project.dependencies.add("testImplementation", "org.mockito.kotlin:mockito-kotlin:5.0.0")
   }
 }
