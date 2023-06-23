@@ -7,7 +7,7 @@ plugins {
   id("com.gradle.plugin-publish") version "1.2.0"
   id("java-gradle-plugin")
   id("maven-publish")
-  id("com.github.ben-manes.versions") version "0.46.0"
+  id("com.github.ben-manes.versions") version "0.47.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "8.3.1"
   id("com.adarshr.test-logger") version "3.2.0"
@@ -50,12 +50,12 @@ gradlePlugin {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.1.0")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.1.1")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.0")
   implementation("org.owasp:dependency-check-core:8.3.1")
   implementation("org.owasp:dependency-check-gradle:8.3.1")
-  implementation("com.github.ben-manes:gradle-versions-plugin:0.46.0")
+  implementation("com.github.ben-manes:gradle-versions-plugin:0.47.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:3.2.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
