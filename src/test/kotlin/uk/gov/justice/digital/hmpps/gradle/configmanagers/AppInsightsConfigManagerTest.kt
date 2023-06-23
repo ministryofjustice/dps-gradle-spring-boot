@@ -1,41 +1,26 @@
 package uk.gov.justice.digital.hmpps.gradle.configmanagers
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.tuple
-import org.assertj.core.groups.Tuple
-import org.gradle.api.tasks.Copy
-import org.junit.jupiter.api.Test
-import uk.gov.justice.digital.hmpps.gradle.UnitTest
+import org.gradle.testkit.runner.TaskOutcome
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
+import uk.gov.justice.digital.hmpps.gradle.functional.GradleBuildTest
+import uk.gov.justice.digital.hmpps.gradle.functional.ProjectDetails
+import uk.gov.justice.digital.hmpps.gradle.functional.buildProject
+import uk.gov.justice.digital.hmpps.gradle.functional.findJar
+import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 
-class AppInsightsConfigManagerTest : UnitTest() {
+class AppInsightsConfigManagerTest : GradleBuildTest() {
 
-  @Test
-  fun `Should apply app insights libraries`() {
-    assertThat(project.configurations.getByName("implementation").dependencies)
-      .extracting<Tuple> { tuple(it.group, it.name) }
-      .contains(
-        tuple("com.microsoft.azure", "applicationinsights-spring-boot-starter"),
-        tuple("com.microsoft.azure", "applicationinsights-logging-logback"),
-      )
-  }
+  @ParameterizedTest
+  @MethodSource("defaultProjectDetails")
+  fun `The application insights jar is copied into the build lib`(projectDetails: ProjectDetails) {
+    makeProject(projectDetails)
 
-  // The test fails if an exception is thrown
-  @Test
-  fun `Should create agentDeps configuration`() {
-    project.configurations.getByName("agentDeps")
-  }
+    val result = buildProject(projectDir, "assemble")
+    assertThat(result.task(":assemble")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-  @Test
-  fun `Should create copyAgent task`() {
-    val copyAgentTask = project.tasks.getByName("copyAgent") as Copy
-    assertThat(copyAgentTask.destinationDir.absolutePath).contains("lib")
-    assertThat(copyAgentTask.source.singleFile.name).contains("applicationinsights")
-  }
-
-  @Test
-  fun `assemble task should depend on copyAgent task`() {
-    val assembleTask = project.tasks.getByName("assemble")
-    val dependsOn = assembleTask.taskDependencies.getDependencies(assembleTask)
-    assertThat(dependsOn).extracting<String> { it.name }.contains("copyAgent")
+    val file = findJar(projectDir, "applicationinsights-agent")
+    assertThat(file).exists()
   }
 }
