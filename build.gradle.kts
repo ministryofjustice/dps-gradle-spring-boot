@@ -33,6 +33,8 @@ group = "uk.gov.justice.hmpps.gradle"
 version = "4.9.0"
 
 gradlePlugin {
+  website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
+  vcsUrl.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
   plugins {
     create("dpsSpringBootPlugin") {
       id = "uk.gov.justice.hmpps.gradle-spring-boot"
@@ -40,14 +42,9 @@ gradlePlugin {
 
       displayName = "HMPPS Spring Boot Plugin"
       description = "Plugin for HMPPS Spring Boot microservice configuration"
+      tags.set(listOf("hmpps", "spring-boot"))
     }
   }
-}
-
-pluginBundle {
-  website = "https://github.com/ministryofjustice/dps-gradle-spring-boot"
-  vcsUrl = "https://github.com/ministryofjustice/dps-gradle-spring-boot"
-  tags = listOf("hmpps", "spring-boot")
 }
 
 // did not upgrade to 3.2.0 because experienced ListenerNotificationException - same issue as https://github.com/radarsh/gradle-test-logger-plugin/issues/241
