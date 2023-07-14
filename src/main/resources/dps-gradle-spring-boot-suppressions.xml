@@ -758,4 +758,14 @@
     <packageUrl regex="true">^pkg:maven/com\.fasterxml\.jackson\.core/jackson\-databind@.*$</packageUrl>
     <cve>CVE-2023-35116</cve>
   </suppress>
+  <!-- suppress as a new version of the applicationinsights-agent neeeds to be released with the updated version of squareup.okio.
+   The version was updated here: https://github.com/microsoft/ApplicationInsights-Java/pull/3181 there has not been a new release
+   of applicationinsights yet.-->
+  <suppress until="2023-10-01Z">
+    <notes><![CDATA[
+   file name: applicationinsights-agent-3.4.14.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.squareup\.okio/okio@.*$</packageUrl>
+    <cve>CVE-2023-3635</cve>
+  </suppress>
 </suppressions>
