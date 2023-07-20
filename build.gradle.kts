@@ -3,7 +3,7 @@ import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.8.22"
+  kotlin("jvm") version "1.9.0"
   id("com.gradle.plugin-publish") version "1.2.0"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -11,7 +11,7 @@ plugins {
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "8.3.1"
   id("com.adarshr.test-logger")
-  id("org.jlleitschuh.gradle.ktlint") version "11.4.2"
+  id("org.jlleitschuh.gradle.ktlint") version "11.5.0"
 }
 
 repositories {
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.9.3"
+version = "4.10.0-beta"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -57,26 +57,26 @@ val testLoggerVersion by extra("3.0.0")
 val versionsVersion by extra("0.42.0")
 
 // This is the spring 2 branch - so pin to a v2 version
-val springBootVersion by extra("2.7.13")
+val springBootVersion by extra("2.7.14")
 
 dependencies {
   implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21")
-  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.0")
+  implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.2")
   implementation("org.owasp:dependency-check-core:8.3.1")
   implementation("org.owasp:dependency-check-gradle:8.3.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:$versionsVersion")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:$testLoggerVersion")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.4.2")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.5.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
   testImplementation("org.mockito:mockito-junit-jupiter:5.4.0")
   testImplementation("org.assertj:assertj-core:3.24.2")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.38.0")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.0.0")
   testImplementation("com.google.code.gson:gson:2.10.1")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.6.0.202305301015-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
