@@ -9,6 +9,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 * CVEs causing `dependencyCheckAnalyze` failures are mitigated in a single place rather than in each and every project
 
 ## Release Notes
+##### [5.3.0](release-notes/5.3.0.md)
 ##### [5.2.4](release-notes/5.2.4.md)
 ##### [5.2.3](release-notes/5.2.3.md)
 ##### [5.2.2](release-notes/5.2.2.md)
@@ -25,6 +26,9 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 <details>
   <summary>4.#</summary>
 
+##### [4.10.0](release-notes/4.10.0.md)
+##### [4.9.3](release-notes/4.9.3.md)
+##### [4.9.2](release-notes/4.9.2.md)
 ##### [4.9.1](release-notes/4.9.2.md)
 ##### [4.9.1](release-notes/4.9.1.md)
 ##### [4.9.0](release-notes/4.9.0.md)
