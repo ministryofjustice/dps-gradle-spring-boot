@@ -775,13 +775,6 @@
     <packageUrl regex="true">^pkg:maven/com\.fasterxml\.jackson\.core/jackson\-databind@.*$</packageUrl>
     <cve>CVE-2023-35116</cve>
   </suppress>
-  <suppress until="2023-10-01Z">
-    <notes><![CDATA[
-   file name: applicationinsights-agent-3.4.14.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.squareup\.okio/okio@.*$</packageUrl>
-    <cve>CVE-2023-3635</cve>
-  </suppress>
   <!-- Suppressed as this affects Spring Boot Admin Server having enabled MailNotifier with write access to environment
    variables. This does not apply to us. -->
   <suppress>
@@ -798,5 +791,13 @@
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.springframework\.hateoas/spring\-hateoas@.*$</packageUrl>
     <cve>CVE-2023-34036</cve>
+  </suppress>
+  <!-- Suppressed as affects postgres, not the postgres jdbc driver -->
+  <suppress>
+    <notes><![CDATA[
+   file name: postgresql-42.6.0.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.postgresql/postgresql@.*$</packageUrl>
+    <vulnerabilityName>CVE-2020-21469</vulnerabilityName>
   </suppress>
 </suppressions>
