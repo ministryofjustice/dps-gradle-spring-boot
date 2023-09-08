@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.11.0"
+version = "4.11.1"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -78,7 +78,7 @@ dependencies {
   testImplementation("org.assertj:assertj-core:3.24.2")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.0.0")
   testImplementation("com.google.code.gson:gson:2.10.1")
-  testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.6.0.202305301015-r")
+  testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.7.0.202309050840-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
   testRuntimeOnly(
     files(
