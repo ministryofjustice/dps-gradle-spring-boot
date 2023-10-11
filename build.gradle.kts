@@ -11,7 +11,7 @@ plugins {
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "8.4.0"
   id("com.adarshr.test-logger") version "3.2.0"
-  id("org.jlleitschuh.gradle.ktlint") version "11.6.0"
+  id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
 }
 
 repositories {
@@ -59,10 +59,10 @@ dependencies {
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:3.2.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.6.0")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.6.1")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.5.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.6.0")
   testImplementation("org.assertj:assertj-core:3.24.2")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
   testImplementation("com.google.code.gson:gson:2.10.1")
