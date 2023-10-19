@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.12.1"
+version = "4.13.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -57,7 +57,7 @@ val testLoggerVersion by extra("3.0.0")
 val versionsVersion by extra("0.42.0")
 
 // This is the spring 2 branch - so pin to a v2 version
-val springBootVersion by extra("2.7.16")
+val springBootVersion by extra("2.7.17")
 
 dependencies {
   implementation(kotlin("reflect"))
