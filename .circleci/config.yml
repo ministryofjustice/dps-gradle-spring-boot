@@ -75,7 +75,7 @@ workflows:
             branches:
               only:
                 - main
-                - spring-boot-3
+                - spring-boot-2
       - publish:
           requires:
             - publish-approval
@@ -83,7 +83,7 @@ workflows:
             branches:
               only:
                 - main
-                - spring-boot-3
+                - spring-boot-2
 
   security:
     triggers:
@@ -93,7 +93,7 @@ workflows:
             branches:
               only:
                 - main
-                - spring-boot-3
+                - spring-boot-2
     jobs:
       - hmpps/gradle_owasp_dependency_check:
           slack_channel: hmpps_tech_alerts_security
