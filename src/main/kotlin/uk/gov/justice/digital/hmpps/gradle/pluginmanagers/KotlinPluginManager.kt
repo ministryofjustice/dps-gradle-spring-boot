@@ -23,7 +23,7 @@ class KotlinPluginManager(override val project: Project) : PluginManager {
   }
 
   private fun addDependencies() {
-    project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
+    project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0")
     project.dependencies.add("implementation", "org.jetbrains.kotlin:kotlin-reflect")
 
     project.dependencies.add("testImplementation", "org.mockito.kotlin:mockito-kotlin:5.1.0")
