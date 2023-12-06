@@ -30,7 +30,9 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
     extension.suppressionFiles = mutableListOf(DEPENDENCY_SUPPRESSION_FILENAME)
     extension.format = ReportGenerator.Format.ALL.name
     extension.analyzers.assemblyEnabled = false
-    extension.nvd.apiKey = System.getenv("NVD_API_KEY")
+    if (System.getenv("NVD_API_KEY") != null) {
+      extension.nvd.apiKey = System.getenv("NVD_API_KEY")
+    }
   }
 
   private fun addDependencyCheckSuppressionFile() {
@@ -41,7 +43,9 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
 
   private fun checkOverriddenSuppressionFile() {
     val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
-    if (extension.suppressionFiles.isNotEmpty() && extension.suppressionFiles.contains(DEPENDENCY_SUPPRESSION_FILENAME).not()) {
+    if (extension.suppressionFiles.isNotEmpty() && extension.suppressionFiles.contains(DEPENDENCY_SUPPRESSION_FILENAME)
+        .not()
+    ) {
       project.logger.warn(
         """
         
