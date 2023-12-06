@@ -43,9 +43,7 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
 
   private fun checkOverriddenSuppressionFile() {
     val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
-    if (extension.suppressionFiles.isNotEmpty() && extension.suppressionFiles.contains(DEPENDENCY_SUPPRESSION_FILENAME)
-        .not()
-    ) {
+    if (extension.suppressionFiles.isNotEmpty() && extension.suppressionFiles.contains(DEPENDENCY_SUPPRESSION_FILENAME).not()) {
       project.logger.warn(
         """
         
