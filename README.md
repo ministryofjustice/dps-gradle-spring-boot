@@ -12,7 +12,7 @@ This plugin targets Spring Boot 3.  See the `spring-boot-2` branch for the Sprin
 
 ## Release Notes
 ##### [5.x](release-notes/5.x.md)
-##### [4.x](release-notes/5.x.md)
+##### [4.x](release-notes/4.x.md)
 ##### [3.x](release-notes/3.x.md)
 ##### [2.x](release-notes/2.x.md)
 ##### [1.x](release-notes/1.x.md)
