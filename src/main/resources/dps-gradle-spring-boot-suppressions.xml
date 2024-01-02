@@ -56,168 +56,6 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
-   file name: kotlin-compiler-embeddable-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-compiler\-embeddable@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-daemon-embeddable-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-daemon\-embeddable@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-reflect-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-reflect@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-script-runtime-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-script\-runtime@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-scripting-common-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-scripting\-common@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-scripting-compiler-embeddable-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-scripting\-compiler\-embeddable@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-scripting-compiler-impl-embeddable-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-scripting\-compiler\-impl\-embeddable@.*$
-    </packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-scripting-jvm-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-scripting\-jvm@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-stdlib-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-stdlib-common-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib\-common@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-stdlib-jdk7-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib\-jdk7@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-stdlib-jdk8-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib\-jdk8@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-allopen-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-allopen@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-gradle-plugin-api-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-gradle\-plugin\-api@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-gradle-plugin-model-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-gradle\-plugin\-model@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-native-utils-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-native\-utils@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-noarg-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-noarg@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-util-io-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-util\-io@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: kotlin-klib-commonizer-embeddable-1.4.10.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-klib\-commonizer\-embeddable@.*$</packageUrl>
-    <cve>CVE-2020-15824</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: accessors-smart-1.2.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/net\.minidev/accessors\-smart@.*$</packageUrl>
-    <cve>CVE-2020-7712</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: json-path-2.4.0.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.jayway\.jsonpath/json\-path@.*$</packageUrl>
-    <cve>CVE-2020-7712</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: json-patch-1.13.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.github\.java-json-tools/json\-patch@.*$</packageUrl>
-    <cve>CVE-2021-4279</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: json-smart-2.3.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/net\.minidev/json\-smart@.*$</packageUrl>
-    <cve>CVE-2020-7712</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
    file name: jjwt-0.9.1.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/io\.jsonwebtoken/jjwt@.*$</packageUrl>
@@ -815,5 +653,32 @@
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-websocket@.*$</packageUrl>
     <cve>CVE-2023-41080</cve>
+  </suppress>
+  <!-- Suppressed as we don't reference the netty handler directly, it is included by other libraries -->
+  <suppress>
+    <notes><![CDATA[
+	@@ -767,19 +37,24 @@
+    <packageUrl regex="true">^pkg:maven/io\.netty/netty-.*@.*$</packageUrl>
+    <cve>CVE-2023-4586</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+      Suppression for logback-classic and logback-core as we don't let third parties control our appenders.
+      See https://logback.qos.ch/news.html#1.3.12 for further information.
+      Can be removed when 1.4.12 is then used by spring.
+   file name: logback-classic-1.4.11.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/ch\.qos\.logback/logback\-classic@.*$</packageUrl>
+    <vulnerabilityName>CVE-2023-6378</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+      Suppression for logback-classic and logback-core as we don't let third parties control our appenders.
+      See https://logback.qos.ch/news.html#1.3.12 for further information.
+      Can be removed when 1.4.12 is then used by spring.
+   file name: logback-core-1.4.11.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/ch\.qos\.logback/logback\-core@.*$</packageUrl>
+    <vulnerabilityName>CVE-2023-6378</vulnerabilityName>
   </suppress>
 </suppressions>
