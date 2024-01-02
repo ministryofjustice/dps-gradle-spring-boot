@@ -6,7 +6,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 
 class KotlinPluginManager(override val project: Project) : PluginManager {
-
   override val pluginProject = KotlinPluginWrapper::class.java
 
   override fun configure() {
@@ -23,9 +22,9 @@ class KotlinPluginManager(override val project: Project) : PluginManager {
   }
 
   private fun addDependencies() {
-    project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0")
+    project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
     project.dependencies.add("implementation", "org.jetbrains.kotlin:kotlin-reflect")
 
-    project.dependencies.add("testImplementation", "org.mockito.kotlin:mockito-kotlin:5.1.0")
+    project.dependencies.add("testImplementation", "org.mockito.kotlin:mockito-kotlin:5.2.1")
   }
 }

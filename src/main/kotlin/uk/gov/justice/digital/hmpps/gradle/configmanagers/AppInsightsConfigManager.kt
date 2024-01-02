@@ -4,11 +4,10 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
 import uk.gov.justice.digital.hmpps.gradle.ConfigManager
 
-private const val APP_INSIGHTS_VERSION = "3.4.18"
-const val OPENTELEMETRY_VERSION = "1.31.0"
+private const val APP_INSIGHTS_VERSION = "3.4.19"
+const val OPENTELEMETRY_VERSION = "1.32.0"
 
 class AppInsightsConfigManager(override val project: Project) : ConfigManager {
-
   override fun configure() {
     addAgentDepsConfiguration()
     createCopyAgentTask()
@@ -20,10 +19,11 @@ class AppInsightsConfigManager(override val project: Project) : ConfigManager {
   }
 
   private fun createCopyAgentTask() {
-    val copyAgentTask = project.tasks.register("copyAgent", Copy::class.java) {
-      it.from(project.configurations.getByName("agentDeps"))
-      it.into("${project.buildDir}/libs")
-    }
+    val copyAgentTask =
+      project.tasks.register("copyAgent", Copy::class.java) {
+        it.from(project.configurations.getByName("agentDeps"))
+        it.into("${project.buildDir}/libs")
+      }
     project.tasks.getByName("assemble").dependsOn(copyAgentTask)
   }
 
