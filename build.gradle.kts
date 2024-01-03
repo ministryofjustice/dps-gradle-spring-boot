@@ -3,7 +3,7 @@ import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "1.9.10"
+  kotlin("jvm") version "1.9.22"
   id("com.gradle.plugin-publish") version "1.2.1"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "4.13.0"
+version = "4.14.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -57,7 +57,7 @@ val testLoggerVersion by extra("3.0.0")
 val versionsVersion by extra("0.42.0")
 
 // This is the spring 2 branch - so pin to a v2 version
-val springBootVersion by extra("2.7.17")
+val springBootVersion by extra("2.7.18")
 
 dependencies {
   implementation(kotlin("reflect"))
@@ -74,11 +74,11 @@ dependencies {
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.6.1")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.6.0")
-  testImplementation("org.assertj:assertj-core:3.24.2")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.8.0")
+  testImplementation("org.assertj:assertj-core:3.25.0")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
   testImplementation("com.google.code.gson:gson:2.10.1")
-  testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.7.0.202309050840-r")
+  testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.8.0.202311291450-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
   testRuntimeOnly(
     files(
