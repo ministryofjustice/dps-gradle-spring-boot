@@ -11,7 +11,7 @@ plugins {
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "8.4.2"
   id("com.adarshr.test-logger") version "4.0.0"
-  id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
+  id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
 }
 
 repositories {
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "5.13.0"
+version = "5.14.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -59,11 +59,11 @@ dependencies {
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:11.6.1")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:12.1.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
   testImplementation("org.mockito:mockito-junit-jupiter:5.8.0")
-  testImplementation("org.assertj:assertj-core:3.25.0")
+  testImplementation("org.assertj:assertj-core:3.25.1")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
   testImplementation("com.google.code.gson:gson:2.10.1")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.8.0.202311291450-r")
@@ -71,8 +71,8 @@ dependencies {
   testRuntimeOnly(
     files(
       serviceOf<org.gradle.api.internal.classpath.ModuleRegistry>().getModule("gradle-tooling-api-builders")
-        .classpath.asFiles.first()
-    )
+        .classpath.asFiles.first(),
+    ),
   )
 }
 
