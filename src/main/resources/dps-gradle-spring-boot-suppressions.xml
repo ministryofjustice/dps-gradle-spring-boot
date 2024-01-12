@@ -57,4 +57,20 @@
     <packageUrl regex="true">^pkg:maven/ch\.qos\.logback/logback\-core@.*$</packageUrl>
     <vulnerabilityName>CVE-2023-6378</vulnerabilityName>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+     Suppression for checkstyle vulnerability that's being reported for ktlint library.
+     file name: ktlint-cli-reporter-checkstyle-1.0.1.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.pinterest\.ktlint/ktlint\-cli\-reporter\-checkstyle@.*$</packageUrl>
+    <cve>CVE-2019-10782</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+     Suppression for checkstyle vulnerability that's being reported for ktlint library.
+     file name: ktlint-cli-reporter-checkstyle-1.0.1.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.pinterest\.ktlint/ktlint\-cli\-reporter\-checkstyle@.*$</packageUrl>
+    <cve>CVE-2019-9658</cve>
+  </suppress>
 </suppressions>
