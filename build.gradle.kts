@@ -7,7 +7,7 @@ plugins {
   id("com.gradle.plugin-publish") version "1.2.1"
   id("java-gradle-plugin")
   id("maven-publish")
-  id("com.github.ben-manes.versions") version "0.50.0"
+  id("com.github.ben-manes.versions") version "0.51.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
   id("org.owasp.dependencycheck") version "8.4.2"
   id("com.adarshr.test-logger") version "4.0.0"
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "5.14.1"
+version = "5.15.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -50,19 +50,19 @@ gradlePlugin {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.2.1")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.2.2")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.4")
   implementation("org.owasp:dependency-check-core:8.4.2")
   implementation("org.owasp:dependency-check-gradle:8.4.2")
-  implementation("com.github.ben-manes:gradle-versions-plugin:0.50.0")
+  implementation("com.github.ben-manes:gradle-versions-plugin:0.51.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:12.1.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.8.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.9.0")
   testImplementation("org.assertj:assertj-core:3.25.1")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
   testImplementation("com.google.code.gson:gson:2.10.1")
