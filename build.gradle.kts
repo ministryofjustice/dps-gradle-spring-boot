@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "5.15.1"
+version = "5.15.2"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -51,7 +51,7 @@ dependencies {
   implementation(kotlin("reflect"))
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:3.2.2")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.4")
   implementation("org.owasp:dependency-check-core:8.4.2")
   implementation("org.owasp:dependency-check-gradle:8.4.2")
@@ -61,10 +61,10 @@ dependencies {
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:12.1.0")
 
-  testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.9.0")
-  testImplementation("org.assertj:assertj-core:3.25.1")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.10.0")
+  testImplementation("org.assertj:assertj-core:3.25.3")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.4")
   testImplementation("com.google.code.gson:gson:2.10.1")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.8.0.202311291450-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
