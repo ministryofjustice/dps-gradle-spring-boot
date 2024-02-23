@@ -23,14 +23,14 @@ repositories {
 }
 
 fun isNonStable(version: String): Boolean {
-  val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+  val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
   val regex = "^[0-9,.v-]+(-r)?$".toRegex()
   val isStable = stableKeyword || regex.matches(version)
   return isStable.not()
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "5.15.2"
+version = "5.15.3"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -50,7 +50,7 @@ gradlePlugin {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.2.2")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.2.3")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.4")
   implementation("org.owasp:dependency-check-core:8.4.2")
@@ -64,7 +64,7 @@ dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
   testImplementation("org.mockito:mockito-junit-jupiter:5.10.0")
   testImplementation("org.assertj:assertj-core:3.25.3")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.4")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.7")
   testImplementation("com.google.code.gson:gson:2.10.1")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.8.0.202311291450-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
