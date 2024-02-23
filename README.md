@@ -159,9 +159,9 @@ will publish the plugin to the gradle plugins repository.
 
 ### Code style & formatting
 ```bash
-./gradlew ktlintApplyToIdea addKtlintFormatGitPreCommitHook
+./gradlew addKtlintFormatGitPreCommitHook
 ```
-will apply ktlint styles to intellij and also add a pre-commit hook to format all changed kotlin files.
+will add a pre-commit hook to format all changed kotlin files.
 
 Note that the .editorconfig in the root of this project is for this project only, the one in src/main/resources will be copied to other projects to enforce style.
 
