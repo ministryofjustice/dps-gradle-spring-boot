@@ -66,7 +66,7 @@ dependencies {
   testImplementation("org.assertj:assertj-core:3.25.3")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.7")
   testImplementation("com.google.code.gson:gson:2.10.1")
-  testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.8.0.202311291450-r")
+  testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.9.0.202403050737-r")
   // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
   testRuntimeOnly(
     files(
