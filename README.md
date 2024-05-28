@@ -11,6 +11,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 This plugin targets Spring Boot 3.  See the `spring-boot-2` branch for the Spring Boot 2 version.
 
 ## Release Notes
+##### [6.x](release-notes/6.x.md)
 ##### [5.x](release-notes/5.x.md)
 ##### [4.x](release-notes/4.x.md)
 ##### [3.x](release-notes/3.x.md)
@@ -23,7 +24,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "5.15.6"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "6.0.0"
   ...
 }
 ```
