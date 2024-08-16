@@ -1,10 +1,9 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "2.0.0"
+  kotlin("jvm") version "2.0.10"
   id("com.gradle.plugin-publish") version "1.2.1"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -31,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "6.0.2"
+version = "6.0.3"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -62,19 +61,12 @@ dependencies {
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:12.1.1")
 
-  testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
   testImplementation("org.mockito:mockito-junit-jupiter:5.12.0")
   testImplementation("org.assertj:assertj-core:3.26.3")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.4.1")
   testImplementation("com.google.code.gson:gson:2.11.0")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:6.10.0.202406032230-r")
-  // Had to include this when I had the same error as https://youtrack.jetbrains.com/issue/KT-49547, this links to https://github.com/gradle/gradle/issues/16774 which has includes a workaround
-  testRuntimeOnly(
-    files(
-      serviceOf<org.gradle.api.internal.classpath.ModuleRegistry>().getModule("gradle-tooling-api-builders")
-        .classpath.asFiles.first(),
-    ),
-  )
 }
 
 tasks {
