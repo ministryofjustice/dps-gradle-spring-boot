@@ -63,12 +63,4 @@
     <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-cache@.*$</packageUrl>
     <cve>CVE-2020-36448</cve>
   </suppress>
-  <suppress>
-    <notes><![CDATA[
-   Only applications that parse ETags from "If-Match" or "If-None-Match" request headers are vulnerable to DoS attack.
-   file name: spring-web-6.1.11.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-web@.*$</packageUrl>
-    <vulnerabilityName>CVE-2024-38809</vulnerabilityName>
-  </suppress>
 </suppressions>
