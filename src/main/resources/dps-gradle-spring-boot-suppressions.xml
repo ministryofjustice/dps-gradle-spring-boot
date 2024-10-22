@@ -63,4 +63,28 @@
     <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-cache@.*$</packageUrl>
     <cve>CVE-2020-36448</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+   Suppression for Spring Framework path directory traversal as it only affects applications that use WebMvc.fn or WebFlux.fn
+   file name: spring-context-6.1.13.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-context@.*$</packageUrl>
+    <vulnerabilityName>CVE-2024-38820</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   Suppression for Spring Framework path directory traversal as it only affects applications that use WebMvc.fn or WebFlux.fn
+   file name: spring-webflux-6.1.13.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-webflux@.*$</packageUrl>
+    <vulnerabilityName>CVE-2024-38819</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   Suppression for Spring Framework path directory traversal as it only affects applications that use WebMvc.fn or WebFlux.fn
+   file name: spring-webmvc-6.1.13.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-webmvc@.*$</packageUrl>
+    <vulnerabilityName>CVE-2024-38819</vulnerabilityName>
+  </suppress>
 </suppressions>
