@@ -24,7 +24,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "6.0.7"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "6.0.8"
   ...
 }
 ```
