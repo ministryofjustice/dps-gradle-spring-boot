@@ -14,6 +14,9 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
   override fun configure() {
     applyDependencyManagementBom(project)
     project.extensions.extraProperties["opentelemetry.version"] = OPENTELEMETRY_VERSION
+
+    // pinning netty due to CVE-2024-47535
+    project.extensions.extraProperties["netty.version"] = "4.1.115.Final"
   }
 
   private fun applyDependencyManagementBom(project: Project) {
