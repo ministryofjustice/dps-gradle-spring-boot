@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "6.0.9"
+version = "6.1.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -50,7 +50,7 @@ gradlePlugin {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.3.5")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.4.0")
   implementation(kotlin("gradle-plugin"))
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.6")
   implementation("org.owasp:dependency-check-core:8.4.3")
@@ -64,7 +64,7 @@ dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter:5.11.3")
   testImplementation("org.mockito:mockito-junit-jupiter:5.14.2")
   testImplementation("org.assertj:assertj-core:3.26.3")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.4.1")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:4.0.0")
   testImplementation("com.google.code.gson:gson:2.11.0")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:7.0.0.202409031743-r")
 }
