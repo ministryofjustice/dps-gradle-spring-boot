@@ -5,7 +5,8 @@ import org.gradle.api.tasks.Copy
 import uk.gov.justice.digital.hmpps.gradle.ConfigManager
 
 private const val APP_INSIGHTS_VERSION = "3.6.2"
-const val OPENTELEMETRY_VERSION = "1.46.0"
+// This should be kept at the same version as used by App Insights: https://github.com/microsoft/ApplicationInsights-Java/blob/3.6.2/dependencyManagement/build.gradle.kts#L14
+const val OPENTELEMETRY_VERSION = "1.43.0"
 
 class AppInsightsConfigManager(override val project: Project) : ConfigManager {
   override fun configure() {
