@@ -9,7 +9,7 @@ plugins {
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.52.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.18"
-  id("org.owasp.dependencycheck") version "12.0.1"
+  id("org.owasp.dependencycheck") version "8.4.3"
   id("com.adarshr.test-logger") version "4.0.0"
   id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
 }
@@ -53,8 +53,8 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-gradle-plugin:3.4.2")
   implementation(kotlin("gradle-plugin"))
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
-  implementation("org.owasp:dependency-check-core:12.0.1")
-  implementation("org.owasp:dependency-check-gradle:12.0.1")
+  implementation("org.owasp:dependency-check-core:8.4.3")
+  implementation("org.owasp:dependency-check-gradle:8.4.3")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.52.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.2")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
