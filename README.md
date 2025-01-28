@@ -11,6 +11,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 This plugin targets Spring Boot 3.  See the `spring-boot-2` branch for the Spring Boot 2 version.
 
 ## Release Notes
+##### [7.x](release-notes/7.x.md)
 ##### [6.x](release-notes/6.x.md)
 ##### [5.x](release-notes/5.x.md)
 ##### [4.x](release-notes/4.x.md)
