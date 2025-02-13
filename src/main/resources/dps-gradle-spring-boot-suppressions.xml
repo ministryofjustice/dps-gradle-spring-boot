@@ -81,17 +81,10 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
-    Suppressed as we don't deal with untrusted json, either in configuration or JWTs
-   file name: json-smart-2.5.1.jar
+    Suppressed as Sonartype is reporting as vulnerable but 2.5.2 is the fixed version.
+   file name: json-smart-2.5.2.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/net\.minidev/json\-smart@.*$</packageUrl>
     <vulnerabilityName>CVE-2024-57699</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-   file name: netty-handler-4.1.118.Final.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.netty/netty\-handler@.*$</packageUrl>
-    <vulnerabilityName>CVE-2025-24970</vulnerabilityName>
   </suppress>
 </suppressions>
