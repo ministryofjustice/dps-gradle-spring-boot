@@ -17,6 +17,9 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
 
     // pinning netty due to CVE-2025-24970
     project.extensions.extraProperties["netty.version"] = "4.1.118.Final"
+
+    // pinning netty due to CVE-2024-57699
+    project.extensions.extraProperties["json-smart.version"] = "2.5.2"
   }
 
   private fun applyDependencyManagementBom(project: Project) {
