@@ -79,12 +79,4 @@
     <packageUrl regex="true">^pkg:maven/ch\.qos\.logback/logback\-core@.*$</packageUrl>
     <vulnerabilityName>CVE-2024-12801</vulnerabilityName>
   </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppressed as Sonartype is reporting as vulnerable but 2.5.2 is the fixed version.
-   file name: json-smart-2.5.2.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/net\.minidev/json\-smart@.*$</packageUrl>
-    <vulnerabilityName>CVE-2024-57699</vulnerabilityName>
-  </suppress>
 </suppressions>
