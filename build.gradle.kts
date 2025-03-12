@@ -12,7 +12,7 @@ plugins {
   // This is not using the latest version due to https://github.com/jeremylong/DependencyCheck?tab=readme-ov-file#the-nvd-api-key-ci-and-rate-limiting
   id("org.owasp.dependencycheck") version "8.4.3"
   id("com.adarshr.test-logger") version "4.0.0"
-  id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
+  id("org.jlleitschuh.gradle.ktlint") version "12.2.0"
 }
 
 repositories {
@@ -31,7 +31,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "7.1.3"
+version = "7.1.4"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -57,13 +57,13 @@ dependencies {
   implementation("org.owasp:dependency-check-core:8.4.3")
   implementation("org.owasp:dependency-check-gradle:8.4.3")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.52.0")
-  implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.2")
+  implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.5.0")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:12.1.2")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:12.2.0")
 
-  testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.15.2")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.12.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.16.0")
   testImplementation("org.assertj:assertj-core:3.27.3")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:4.1.0")
   testImplementation("com.google.code.gson:gson:2.12.1")
