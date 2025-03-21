@@ -69,7 +69,7 @@ dependencies {
   testImplementation("com.google.code.gson:gson:2.12.1")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:7.2.0.202503040940-r")
 
-  testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.1")
+  testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.11.4")
 }
 
 tasks {
