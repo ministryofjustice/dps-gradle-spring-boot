@@ -11,6 +11,7 @@ This Gradle plugin is used to orchestrate DPS Spring Boot projects such that:
 This plugin targets Spring Boot 3.  See the `spring-boot-2` branch for the Spring Boot 2 version.
 
 ## Release Notes
+##### [8.x](release-notes/8.x.md)
 ##### [7.x](release-notes/7.x.md)
 ##### [6.x](release-notes/6.x.md)
 ##### [5.x](release-notes/5.x.md)
@@ -25,7 +26,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "7.1.4"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "8.0.0"
   ...
 }
 ```
@@ -59,30 +60,6 @@ E.g. Class `SpringBootPluginManager` has a method called `setSpringBootInfo` whi
 Search the package `uk.gov.justice.digital.hmpps.gradle` for `project.dependencies.add`.  This should list all dependencies this plugin automatically applies.
 
 E.g. Class `SpringBootPluginManager` applies `spring-boot-starter-actuator` (amongst others) so you do not need to declare that dependency in your project's `build.gradle.kts` file.
-
-## Using JUnit 4
-
-JUnit 4 is no longer included by Spring Boot.  If you have tests running on JUnit 4 make sure to explicitly declare the dependency (check for latest version):
-
-```
-configuration {
-    testImplementation 'junit:junit:4.13.1'
-}
-```
-
-Note that this plugin will automatically apply the junit vintage dependency to ensure compatibility with JUnit 5.
-
-## Excluding JUnit 4
-
-We no longer exclude JUnit 4 as part of this plugin as it wasn't compatible with Gradle 6.7.  If you want to exclude it from your project then add the following to your Gradle build file:
-
-```
-configurations {
-  testImplementation { exclude(mapOf("group" to "org.junit.vintage", "group" to "junit")) }
-}
-```
-
-This will ensure that code that includes junit `@Test` annotation doesn't compile and also that the junit vintage engine isn't included.
 
 ## OWASP Dependency Check and Suppression Files
 
