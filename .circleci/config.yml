@@ -8,6 +8,7 @@ jobs:
     executor:
       name: hmpps/java
       tag: "21.0"
+    resource_class: medium+
     steps:
       - checkout
       - restore_cache:
