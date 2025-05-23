@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "2.1.20"
+  kotlin("jvm") version "2.1.21"
   id("com.gradle.plugin-publish") version "1.3.1"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -31,7 +31,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "8.1.0"
+version = "8.2.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -51,7 +51,7 @@ gradlePlugin {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.4.5")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.5.0")
   implementation(kotlin("gradle-plugin"))
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
   implementation("org.owasp:dependency-check-core:8.4.3")
@@ -63,13 +63,13 @@ dependencies {
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:12.2.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.17.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.18.0")
   testImplementation("org.assertj:assertj-core:3.27.3")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:4.1.0")
+  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:4.1.1")
   testImplementation("com.google.code.gson:gson:2.13.1")
-  testImplementation("org.eclipse.jgit:org.eclipse.jgit:7.2.0.202503040940-r")
+  testImplementation("org.eclipse.jgit:org.eclipse.jgit:7.2.1.202505142326-r")
 
-  testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.11.4")
+  testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.2")
 }
 
 tasks {
