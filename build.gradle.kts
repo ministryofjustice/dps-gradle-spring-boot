@@ -12,7 +12,7 @@ plugins {
   // This is not using the latest version due to https://github.com/jeremylong/DependencyCheck?tab=readme-ov-file#the-nvd-api-key-ci-and-rate-limiting
   id("org.owasp.dependencycheck") version "8.4.3"
   id("com.adarshr.test-logger") version "4.0.0"
-  id("org.jlleitschuh.gradle.ktlint") version "12.2.0"
+  id("org.jlleitschuh.gradle.ktlint") version "12.3.0"
 }
 
 repositories {
@@ -31,7 +31,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "8.2.0"
+version = "8.3.0-beta"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
@@ -51,7 +51,7 @@ gradlePlugin {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.5.0")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.5.3")
   implementation(kotlin("gradle-plugin"))
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
   implementation("org.owasp:dependency-check-core:8.4.3")
@@ -60,14 +60,14 @@ dependencies {
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.5.0")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:12.2.0")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:12.3.0")
 
-  testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.13.1")
   testImplementation("org.mockito:mockito-junit-jupiter:5.18.0")
   testImplementation("org.assertj:assertj-core:3.27.3")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:4.1.1")
   testImplementation("com.google.code.gson:gson:2.13.1")
-  testImplementation("org.eclipse.jgit:org.eclipse.jgit:7.2.1.202505142326-r")
+  testImplementation("org.eclipse.jgit:org.eclipse.jgit:7.3.0.202506031305-r")
 
   testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.2")
 }
