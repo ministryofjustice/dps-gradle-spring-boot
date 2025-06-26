@@ -6,15 +6,11 @@ on:
         type: string
         required: false
         default: '21'
-      gradle-command:
-        type: string
-        default: './gradlew check'
-        required: false
 permissions:
   contents: read
 jobs:
-  gradle-verify:
-    name: Verify the gradle app
+  gradle-publish:
+    name: Publish the gradle plugin
     environment: 'publish'
     runs-on: ubuntu-latest
     steps:
