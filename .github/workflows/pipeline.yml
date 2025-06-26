@@ -21,3 +21,5 @@ jobs:
     if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/publish.yml # LOCAL_VERSION
     secrets: inherit
+    needs:
+      - gradle_verify
