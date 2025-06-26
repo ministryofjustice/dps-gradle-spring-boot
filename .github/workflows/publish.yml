@@ -15,6 +15,7 @@ permissions:
 jobs:
   gradle-verify:
     name: Verify the gradle app
+    environment: 'publish'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
