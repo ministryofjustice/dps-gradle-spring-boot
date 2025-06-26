@@ -30,8 +30,8 @@ jobs:
       - name: Create gradle.properties
         shell: bash
         run: |
-          echo "gradle.publish.key=$PUBLISH_KEY" > "$HOME/.gradle/gradle.properties"
-          echo "gradle.publish.secret=$PUBLISH_SECRET" >> "$HOME/.gradle/gradle.properties"
+          echo "gradle.publish.key=${{ secrets.PUBLISH_KEY }}" > "$HOME/.gradle/gradle.properties"
+          echo "gradle.publish.secret=${{ secrets.PUBLISH_SECRET }}" >> "$HOME/.gradle/gradle.properties"
       - name: Publish the plugin
         shell: bash
         run: ./gradlew publishPlugins
