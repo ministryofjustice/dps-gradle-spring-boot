@@ -15,3 +15,11 @@ jobs:
     name: Run the tests
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/gradle_verify.yml@v2 # WORKFLOW_VERSION
     secrets: inherit
+
+  publish:
+    name: Publish the artifact
+    if: github.ref == 'refs/heads/main'
+    uses: .github/workflows/publish.yml # LOCAL_VERSION
+    secrets: inherit
+    with:
+      environment: 'publish'
