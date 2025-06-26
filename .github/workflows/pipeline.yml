@@ -19,7 +19,7 @@ jobs:
   publish:
     name: Publish the artifact
     if: github.ref == 'refs/heads/main'
-    uses: .github/workflows/publish.yml # LOCAL_VERSION
+    uses: ./.github/workflows/publish.yml # LOCAL_VERSION
     secrets: inherit
     with:
       environment: 'publish'
