@@ -1,0 +1,37 @@
+name: Publish
+on:
+  workflow_call:
+    inputs:
+      java-version:
+        type: string
+        required: false
+        default: '21'
+      gradle-command:
+        type: string
+        default: './gradlew check'
+        required: false
+permissions:
+  contents: read
+jobs:
+  gradle-verify:
+    name: Verify the gradle app
+    environment: 'publish'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '${{ inputs.java-version }}'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Create gradle.properties
+        shell: bash
+        run: |
+          echo "gradle.publish.key=$PUBLISH_KEY" > "$HOME/.gradle/gradle.properties"
+          echo "gradle.publish.secret=$PUBLISH_SECRET" >> "$HOME/.gradle/gradle.properties"
+      - name: Publish the plugin
+        shell: bash
+        run: ./gradlew publishPlugins
