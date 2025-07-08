@@ -1,1 +1,1 @@
-rootProject.name = "dps-gradle-spring-boot"
+rootProject.name = "hmpps-gradle-spring-boot"

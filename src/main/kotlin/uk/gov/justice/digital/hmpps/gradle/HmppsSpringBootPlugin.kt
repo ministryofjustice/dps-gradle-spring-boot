@@ -14,7 +14,7 @@ import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.TestLoggerPluginManage
 import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.UseLatestVersionsPluginManager
 import uk.gov.justice.digital.hmpps.gradle.pluginmanagers.VersionsPluginManager
 
-class DpsSpringBootPlugin : Plugin<Project> {
+class HmppsSpringBootPlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
     val configManagers = configManagers(project)

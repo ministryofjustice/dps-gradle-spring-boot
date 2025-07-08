@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "2.1.21"
+  kotlin("jvm") version "2.2.0"
   id("com.gradle.plugin-publish") version "1.3.1"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -12,7 +12,7 @@ plugins {
   // This is not using the latest version due to https://github.com/jeremylong/DependencyCheck?tab=readme-ov-file#the-nvd-api-key-ci-and-rate-limiting
   id("org.owasp.dependencycheck") version "8.4.3"
   id("com.adarshr.test-logger") version "4.0.0"
-  id("org.jlleitschuh.gradle.ktlint") version "12.3.0"
+  id("org.jlleitschuh.gradle.ktlint") version "13.0.0"
 }
 
 repositories {
@@ -31,15 +31,15 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "8.3.1-beta2"
+version = "8.3.1"
 
 gradlePlugin {
-  website.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
-  vcsUrl.set("https://github.com/ministryofjustice/dps-gradle-spring-boot")
+  website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
+  vcsUrl.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
   plugins {
-    create("dpsSpringBootPlugin") {
+    create("hmppsSpringBootPlugin") {
       id = "uk.gov.justice.hmpps.gradle-spring-boot"
-      implementationClass = "uk.gov.justice.digital.hmpps.gradle.DpsSpringBootPlugin"
+      implementationClass = "uk.gov.justice.digital.hmpps.gradle.HmppsSpringBootPlugin"
 
       displayName = "HMPPS Spring Boot Plugin"
       description = "Plugin for HMPPS Spring Boot microservice configuration"
@@ -60,9 +60,9 @@ dependencies {
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.5.0")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:12.3.0")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:13.0.0")
 
-  testImplementation("org.junit.jupiter:junit-jupiter:5.13.1")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.13.3")
   testImplementation("org.mockito:mockito-junit-jupiter:5.18.0")
   testImplementation("org.assertj:assertj-core:3.27.3")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:4.1.1")

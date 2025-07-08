@@ -40,13 +40,11 @@ class SpringBootPluginManager(override val project: Project) : PluginManager {
     }
   }
 
-  private fun getAdditionalBuildInfo(): Map<String, String> {
-    return mapOf(
-      "by" to System.getProperty("user.name"),
-      "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
-      "machine" to InetAddress.getLocalHost().hostName,
-    )
-  }
+  private fun getAdditionalBuildInfo(): Map<String, String> = mapOf(
+    "by" to System.getProperty("user.name"),
+    "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
+    "machine" to InetAddress.getLocalHost().hostName,
+  )
 
   private fun disableJarTask() {
     project.tasks.getByName("jar").enabled = false
@@ -67,6 +65,5 @@ class SpringBootPluginManager(override val project: Project) : PluginManager {
       ?.run { project.dependencies.add("runtimeOnly", "io.netty:netty-resolver-dns-native-macos::osx-aarch_64") }
   }
 
-  private fun isBuildingOnMacAppleSiliconArchitecture() =
-    System.getProperty("os.arch").contains("aarch64")
+  private fun isBuildingOnMacAppleSiliconArchitecture() = System.getProperty("os.arch").contains("aarch64")
 }

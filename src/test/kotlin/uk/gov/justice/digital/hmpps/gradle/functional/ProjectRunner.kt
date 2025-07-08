@@ -45,87 +45,74 @@ fun makeProject(projectDetails: ProjectDetails) {
 }
 
 @Suppress("ComplexRedundantLet")
-fun createAndRunJar(projectDetails: ProjectDetails): Process =
-  makeProject(projectDetails)
-    .run {
-      with(projectDetails) {
-        runJar(createJar(projectDir, projectName), mainClassName)
-      }
+fun createAndRunJar(projectDetails: ProjectDetails): Process = makeProject(projectDetails)
+  .run {
+    with(projectDetails) {
+      runJar(createJar(projectDir, projectName), mainClassName)
     }
+  }
 
-fun buildProject(projectDir: File, vararg arguments: String): BuildResult =
-  projectBuilder(projectDir, *arguments).build()
+fun buildProject(projectDir: File, vararg arguments: String): BuildResult = projectBuilder(projectDir, *arguments).build()
 
-fun buildProjectAndFail(projectDir: File, vararg arguments: String): BuildResult =
-  projectBuilder(projectDir, *arguments).buildAndFail()
+fun buildProjectAndFail(projectDir: File, vararg arguments: String): BuildResult = projectBuilder(projectDir, *arguments).buildAndFail()
 
 @Suppress("SimpleRedundantLet")
-fun getDependencyVersion(projectDir: File, dependency: String): String =
-  buildProject(projectDir, "dependencyInsight", "--dependency", dependency)
-    .also { result -> assertThat(result.task(":dependencyInsight")?.outcome).isEqualTo(TaskOutcome.SUCCESS) }
-    .let { result -> result.output.replace("\n", " ") }
-    .let { flattenedResult -> findVersion(dependency, flattenedResult) }
-    .let { (version) -> version.takeWhile { it != ' ' } }
+fun getDependencyVersion(projectDir: File, dependency: String): String = buildProject(projectDir, "dependencyInsight", "--dependency", dependency)
+  .also { result -> assertThat(result.task(":dependencyInsight")?.outcome).isEqualTo(TaskOutcome.SUCCESS) }
+  .let { result -> result.output.replace("\n", " ") }
+  .let { flattenedResult -> findVersion(dependency, flattenedResult) }
+  .let { (version) -> version.takeWhile { it != ' ' } }
 
-private fun findVersion(dependency: String, flattenedResult: String): MatchResult.Destructured =
-  Regex("$dependency:(.*)\\s").find(flattenedResult)!!.destructured
+private fun findVersion(dependency: String, flattenedResult: String): MatchResult.Destructured = Regex("$dependency:(.*)\\s").find(flattenedResult)!!.destructured
 
-fun findJar(projectDir: File, partialJarName: String): File =
-  Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
-    paths.filter { path -> path.toString().contains(partialJarName) }
-      .findFirst()
-      .map { jarPath -> jarPath.toFile() }
-      .orElseThrow()
+fun findJar(projectDir: File, partialJarName: String): File = Files.walk(Paths.get(projectDir.absolutePath + "/build/libs")).use { paths ->
+  paths.filter { path -> path.toString().contains(partialJarName) }
+    .findFirst()
+    .map { jarPath -> jarPath.toFile() }
+    .orElseThrow()
+}
+
+fun findFile(projectDir: File, fileName: String): File = Files.walk(Paths.get(projectDir.absolutePath)).use { paths ->
+  paths.filter { path -> path.toString().contains(fileName) }
+    .findFirst()
+    .map { filePath -> filePath.toFile() }
+    .orElseThrow()
+}
+
+private fun createJar(projectDir: File, projectName: String): File = buildProject(projectDir, "assemble")
+  .also { result -> assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS) }
+  .let { findJar(projectDir, projectName) }
+  .also { jar -> assertThat(jar.exists()).isTrue }
+
+private fun runJar(jar: File, mainClassName: String): Process = ProcessBuilder("java", "-jar", jar.absolutePath).start()
+  .also { process ->
+    findIfStartedOk(process, mainClassName)
+      .also { startedOk -> assertThat(startedOk).isTrue.withFailMessage("Unable to start the Spring Boot jar") }
   }
 
-fun findFile(projectDir: File, fileName: String): File =
-  Files.walk(Paths.get(projectDir.absolutePath)).use { paths ->
-    paths.filter { path -> path.toString().contains(fileName) }
-      .findFirst()
-      .map { filePath -> filePath.toFile() }
-      .orElseThrow()
+private fun findIfStartedOk(process: Process, mainClassName: String): Boolean = BufferedReader(InputStreamReader(process.inputStream))
+  .let { outputReader ->
+    outputReader.useLines {
+      it.asStream()
+        .peek { line -> println(line) }
+        .anyMatch { line -> line.contains("Started ${mainClassName.substringBefore(".")}") }
+    }
   }
 
-private fun createJar(projectDir: File, projectName: String): File =
-  buildProject(projectDir, "assemble")
-    .also { result -> assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS) }
-    .let { findJar(projectDir, projectName) }
-    .also { jar -> assertThat(jar.exists()).isTrue }
+private fun makeSrcFile(projectDir: File, packageDir: String, mainClassName: String, mainClass: String): Path = File(projectDir, packageDir)
+  .also { srcDir -> srcDir.mkdirs() }
+  .let { srcDir -> File(srcDir, mainClassName) }
+  .let { srcFile -> Files.writeString(srcFile.toPath(), mainClass) }
 
-private fun runJar(jar: File, mainClassName: String): Process =
-  ProcessBuilder("java", "-jar", jar.absolutePath).start()
-    .also { process ->
-      findIfStartedOk(process, mainClassName)
-        .also { startedOk -> assertThat(startedOk).isTrue.withFailMessage("Unable to start the Spring Boot jar") }
-    }
+private fun makeTestSrcFile(projectDir: File, packageDir: String, mainClassName: String, testClass: String): Path = makeSrcFile(
+  projectDir,
+  packageDir.replace("main", "test"),
+  mainClassName.replace(".java", "Test.java").replace(".kt", "Test.kt"),
+  testClass,
+)
 
-private fun findIfStartedOk(process: Process, mainClassName: String): Boolean =
-  BufferedReader(InputStreamReader(process.inputStream))
-    .let { outputReader ->
-      outputReader.useLines {
-        it.asStream()
-          .peek { line -> println(line) }
-          .anyMatch { line -> line.contains("Started ${mainClassName.substringBefore(".")}") }
-      }
-    }
-
-private fun makeSrcFile(projectDir: File, packageDir: String, mainClassName: String, mainClass: String): Path =
-  File(projectDir, packageDir)
-    .also { srcDir -> srcDir.mkdirs() }
-    .let { srcDir -> File(srcDir, mainClassName) }
-    .let { srcFile -> Files.writeString(srcFile.toPath(), mainClass) }
-
-private fun makeTestSrcFile(projectDir: File, packageDir: String, mainClassName: String, testClass: String): Path =
-  makeSrcFile(
-    projectDir,
-    packageDir.replace("main", "test"),
-    mainClassName.replace(".java", "Test.java").replace(".kt", "Test.kt"),
-    testClass,
-  )
-
-private fun makeBuildScript(projectDir: File, buildScriptName: String, buildScript: String): File =
-  File(projectDir, buildScriptName)
-    .also { buildFile -> Files.writeString(buildFile.toPath(), buildScript) }
+private fun makeBuildScript(projectDir: File, buildScriptName: String, buildScript: String): File = File(projectDir, buildScriptName)
+  .also { buildFile -> Files.writeString(buildFile.toPath(), buildScript) }
 
 private fun makeSettingsScript(projectDir: File, settingsFileName: String, projectName: String): Path {
   val settingsFile = File(projectDir, settingsFileName)
@@ -151,9 +138,8 @@ private fun makeGitRepo(projectDir: File) {
     .also { git -> git.commit().setSign(false).setMessage("Commit everything").call() }
 }
 
-private fun projectBuilder(projectDir: File, vararg arguments: String, debug: Boolean = DEBUG_TESTS): GradleRunner =
-  GradleRunner.create()
-    .withProjectDir(projectDir)
-    .withArguments("clean", *arguments)
-    .withPluginClasspath()
-    .withDebug(debug)
+private fun projectBuilder(projectDir: File, vararg arguments: String, debug: Boolean = DEBUG_TESTS): GradleRunner = GradleRunner.create()
+  .withProjectDir(projectDir)
+  .withArguments("clean", *arguments)
+  .withPluginClasspath()
+  .withDebug(debug)

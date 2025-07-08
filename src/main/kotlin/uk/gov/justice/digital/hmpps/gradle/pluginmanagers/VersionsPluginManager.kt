@@ -27,7 +27,5 @@ class VersionsPluginManager(override val project: Project) : PluginManager {
     return stableKeyword || regex.matches(version)
   }
 
-  private fun isUnstable(version: String): Boolean {
-    return isStable(version).not()
-  }
+  private fun isUnstable(version: String): Boolean = isStable(version).not()
 }

@@ -177,14 +177,12 @@ private fun kotlinArmNonWebfluxDependency(): String =
     }
   """.trimIndent()
 
-private fun jarContainsNettyResolverDNSNativeMacos(jar: JarFile, version: String, architecture: String): Boolean =
-  jar.getJarEntry("BOOT-INF/lib/netty-resolver-dns-native-macos-$version.Final-$architecture.jar") != null
+private fun jarContainsNettyResolverDNSNativeMacos(jar: JarFile, version: String, architecture: String): Boolean = jar.getJarEntry("BOOT-INF/lib/netty-resolver-dns-native-macos-$version.Final-$architecture.jar") != null
 
-private fun getNettyResolverDNSNativeMacosJarEntry(jar: JarFile, architecture: String): JarEntry? =
-  jar.entries().asSequence()
-    .filter { it.name.startsWith("BOOT-INF/lib/netty-resolver-dns-native-macos") }
-    .filter { it.name.contains(".Final-$architecture.jar") }
-    .firstOrNull()
+private fun getNettyResolverDNSNativeMacosJarEntry(jar: JarFile, architecture: String): JarEntry? = jar.entries().asSequence()
+  .filter { it.name.startsWith("BOOT-INF/lib/netty-resolver-dns-native-macos") }
+  .filter { it.name.contains(".Final-$architecture.jar") }
+  .firstOrNull()
 
 private fun getNettyResolverDNSNativeMacosVersion(jar: JarFile): String {
   val entry = getNettyResolverDNSNativeMacosJarEntry(jar, "osx-x86_64")
