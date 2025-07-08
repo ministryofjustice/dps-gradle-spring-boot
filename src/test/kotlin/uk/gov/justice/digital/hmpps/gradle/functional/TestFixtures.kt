@@ -2,13 +2,12 @@ package uk.gov.justice.digital.hmpps.gradle.functional
 
 import java.io.File
 
-fun javaProjectDetails(projectDir: File) =
-  ProjectDetails(
-    projectName = "spring-boot-project-java",
-    projectDir = projectDir,
-    mainClassName = "Application.java",
-    mainClass =
-    """
+fun javaProjectDetails(projectDir: File) = ProjectDetails(
+  projectName = "spring-boot-project-java",
+  projectDir = projectDir,
+  mainClassName = "Application.java",
+  mainClass =
+  """
           package uk.gov.justice.digital.hmpps.app;
   
           import org.springframework.boot.SpringApplication;
@@ -21,17 +20,17 @@ fun javaProjectDetails(projectDir: File) =
                   SpringApplication.run(Application.class, args);
               }
           }
-    """.trimIndent(),
-    buildScriptName = "build.gradle",
-    buildScript =
-    """
+  """.trimIndent(),
+  buildScriptName = "build.gradle",
+  buildScript =
+  """
           plugins {
             id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
           }
-    """.trimIndent(),
-    settingsFileName = "settings.gradle",
-    testClass =
-    """
+  """.trimIndent(),
+  settingsFileName = "settings.gradle",
+  testClass =
+  """
           package uk.gov.justice.digital.hmpps.app;
           
           import org.junit.jupiter.api.Test;
@@ -45,16 +44,15 @@ fun javaProjectDetails(projectDir: File) =
               }
           }
 
-    """.trimIndent(),
-  )
+  """.trimIndent(),
+)
 
-fun kotlinProjectDetails(projectDir: File) =
-  ProjectDetails(
-    projectName = "spring-boot-project-kotlin",
-    projectDir = projectDir,
-    mainClassName = "Application.kt",
-    mainClass =
-    """
+fun kotlinProjectDetails(projectDir: File) = ProjectDetails(
+  projectName = "spring-boot-project-kotlin",
+  projectDir = projectDir,
+  mainClassName = "Application.kt",
+  mainClass =
+  """
         package uk.gov.justice.digital.hmpps.app
   
         import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -67,18 +65,18 @@ fun kotlinProjectDetails(projectDir: File) =
           runApplication<Application>(*args)
         }
 
-    """.trimIndent(),
-    buildScriptName = "build.gradle.kts",
-    buildScript =
-    """
+  """.trimIndent(),
+  buildScriptName = "build.gradle.kts",
+  buildScript =
+  """
           plugins {
             id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1"
           }
 
-    """.trimIndent(),
-    settingsFileName = "settings.gradle.kts",
-    testClass =
-    """
+  """.trimIndent(),
+  settingsFileName = "settings.gradle.kts",
+  testClass =
+  """
         package uk.gov.justice.digital.hmpps.app
         
         import org.assertj.core.api.Assertions.assertThat
@@ -91,5 +89,5 @@ fun kotlinProjectDetails(projectDir: File) =
           }
         }
 
-    """.trimIndent(),
-  )
+  """.trimIndent(),
+)
