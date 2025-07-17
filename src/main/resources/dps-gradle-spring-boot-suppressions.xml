@@ -79,4 +79,18 @@
     <packageUrl regex="true">^pkg:maven/ch\.qos\.logback/logback\-core@.*$</packageUrl>
     <vulnerabilityName>CVE-2024-12801</vulnerabilityName>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppressed as attacker needs a valid auth token to exploit JSON parsing DoS
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.nimbusds/nimbus\-jose\-jwt@.*$</packageUrl>
+    <vulnerabilityName>CVE-2025-53864</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppressed as we don't use Apache's ClassUtils.getClass
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.apache\.commons/commons\-lang3@.*$</packageUrl>
+    <vulnerabilityName>CVE-2025-48924</vulnerabilityName>
+  </suppress>
 </suppressions>
