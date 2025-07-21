@@ -88,6 +88,13 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
+    Suppressed as attacker needs a valid auth token to exploit JSON parsing DoS
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.google\.code\.gson/gson@.*$</packageUrl>
+    <vulnerabilityName>CVE-2025-53864</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
     Suppressed as we don't use Apache's ClassUtils.getClass
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.apache\.commons/commons\-lang3@.*$</packageUrl>
