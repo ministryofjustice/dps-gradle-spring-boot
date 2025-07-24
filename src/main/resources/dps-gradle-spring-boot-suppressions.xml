@@ -57,14 +57,6 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
-    False positive against spring boot, when affects Rust cache projects from 2020.
-   file name: spring-boot-starter-cache-3.3.0-sources.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-cache@.*$</packageUrl>
-    <cve>CVE-2020-36448</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
     Suppressed as attacher needs to have write access to the configuration or be able to manipulate environment variables
    file name: logback-core-1.5.12.jar
    ]]></notes>
